@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8g0ur18lfhmx"
-path="res://.godot/imported/campus_tileset_preview_x2.png-2449962a5aac8fe9609f21a79c45cb94.ctex"
+path="res://.godot/imported/campus_tileset_preview_x2.png-725c3f488f744b0e42310787e87469bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://campus_tileset_preview_x2.png"
-dest_files=["res://.godot/imported/campus_tileset_preview_x2.png-2449962a5aac8fe9609f21a79c45cb94.ctex"]
+source_file="res://assets/escenarios/campus_tileset_preview_x2.png"
+dest_files=["res://.godot/imported/campus_tileset_preview_x2.png-725c3f488f744b0e42310787e87469bf.ctex"]
 
 [params]
 

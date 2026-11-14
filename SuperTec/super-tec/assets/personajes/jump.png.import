@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djcoulqsqke1x"
-path="res://.godot/imported/campus_tileset_817x941.png-2eafc443df4bfad7d6e5c617f40eb5a0.ctex"
+uid="uid://cpcyjiuxovry7"
+path="res://.godot/imported/jump.png-031fdf0a8842e92479d7a93153437ad1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://campus_tileset_817x941.png"
-dest_files=["res://.godot/imported/campus_tileset_817x941.png-2eafc443df4bfad7d6e5c617f40eb5a0.ctex"]
+source_file="res://assets/personajes/jump.png"
+dest_files=["res://.godot/imported/jump.png-031fdf0a8842e92479d7a93153437ad1.ctex"]
 
 [params]
 

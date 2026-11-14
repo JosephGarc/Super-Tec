@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqd3isnqpm"
-path="res://.godot/imported/Wii U - Super Mario Maker PNG.png-34e2ed33196c07f6711bb4ccca2e7546.ctex"
+uid="uid://dw6l0n8hsmwve"
+path="res://.godot/imported/idle.png-8189ddd2b6bb9eb4c4a6f7ba6b0f131f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Wii U - Super Mario Maker PNG.png"
-dest_files=["res://.godot/imported/Wii U - Super Mario Maker PNG.png-34e2ed33196c07f6711bb4ccca2e7546.ctex"]
+source_file="res://assets/personajes/idle.png"
+dest_files=["res://.godot/imported/idle.png-8189ddd2b6bb9eb4c4a6f7ba6b0f131f.ctex"]
 
 [params]
 

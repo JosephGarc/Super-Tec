@@ -89,10 +89,10 @@ func _create_sprite_frames() -> SpriteFrames:
 	for animation_name in frames.get_animation_names():
 		frames.remove_animation(animation_name)
 
-	_add_sheet_animation(frames, "idle", "res://idle.png", [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(0, 2), Vector2i(1, 2)], 2.0, true)
-	_add_sheet_animation(frames, "walk", "res://walk.png", [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(0, 2), Vector2i(1, 2)], 8.0, true)
-	_add_sheet_animation(frames, "jump", "res://jump.png", [Vector2i(0, 0), Vector2i(1, 0)], 8.0, false)
-	_add_sheet_animation(frames, "fall", "res://jump.png", [Vector2i(1, 1)], 1.0, true)
+	_add_sheet_animation(frames, "idle", "res://assets/personajes/idle.png", [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(0, 2), Vector2i(1, 2)], 2.0, true)
+	_add_sheet_animation(frames, "walk", "res://assets/personajes/walk.png", [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(0, 2), Vector2i(1, 2)], 8.0, true)
+	_add_sheet_animation(frames, "jump", "res://assets/personajes/jump.png", [Vector2i(0, 0), Vector2i(1, 0)], 8.0, false)
+	_add_sheet_animation(frames, "fall", "res://assets/personajes/jump.png", [Vector2i(1, 1)], 1.0, true)
 	return frames
 
 func _add_sheet_animation(frames: SpriteFrames, animation_name: String, sheet_path: String, cells: Array[Vector2i], fps: float, loops: bool) -> void:

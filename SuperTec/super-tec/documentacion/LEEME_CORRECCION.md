@@ -1,6 +1,6 @@
 # Escenario SuperTec: corrección de personaje
 
-Este es el proyecto que se ejecuta con F5. La escena principal es `escenario.tscn`.
+Este es el proyecto que se ejecuta con F5. La escena principal es `escenas/escenario.tscn`.
 
 ## Cambios
 
@@ -11,7 +11,7 @@ Este es el proyecto que se ejecuta con F5. La escena principal es `escenario.tsc
 
 ## Abrir
 
-En Godot, importa o abre este archivo `project.godot` y presiona F5.
+En Godot, importa o abre este archivo `../project.godot` y presiona F5.
 
 El ZIP recibido contiene las escenas y sprites de Joshua, pero no trae los archivos del personaje femenino dentro del proyecto principal; por eso esta corrección solo cubre a Joshua.
 Al caer por debajo del mapa, el personaje vuelve a su posición inicial, con la velocidad reiniciada y sin perder vidas.

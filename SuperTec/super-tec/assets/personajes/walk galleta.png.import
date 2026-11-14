@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqd3isnqpm"
-path="res://.godot/imported/Wii U - Super Mario Maker PNG.png-34e2ed33196c07f6711bb4ccca2e7546.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://cvhrsg5c7sjbx"
+valid=false
 
 [deps]
 
-source_file="res://Wii U - Super Mario Maker PNG.png"
-dest_files=["res://.godot/imported/Wii U - Super Mario Maker PNG.png-34e2ed33196c07f6711bb4ccca2e7546.ctex"]
+source_file="res://assets/personajes/walk galleta.png"
 
 [params]
 

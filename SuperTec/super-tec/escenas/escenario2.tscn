@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://8q4k4822tjc8"]
 
-[ext_resource type="Texture2D" uid="uid://djcoulqsqke1x" path="res://campus_tileset_817x941.png" id="1_7cet6"]
-[ext_resource type="Script" uid="uid://b1y1jfi5n4ji3" path="res://personaje_2d.gd" id="2_etwaf"]
-[ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://idle.png" id="2_gvhsl"]
+[ext_resource type="Texture2D" uid="uid://djcoulqsqke1x" path="res://assets/escenarios/campus_tileset_817x941.png" id="1_7cet6"]
+[ext_resource type="Script" uid="uid://b1y1jfi5n4ji3" path="res://scripts/personaje_2d.gd" id="2_etwaf"]
+[ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://assets/personajes/idle.png" id="2_gvhsl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gvhsl"]
 texture = ExtResource("1_7cet6")
