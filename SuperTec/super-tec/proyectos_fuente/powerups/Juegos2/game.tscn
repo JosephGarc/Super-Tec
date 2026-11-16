@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://b86e8qhxq831j"]
+
+[ext_resource type="PackedScene" uid="uid://c2brwltmlaqbl" path="res://Juegos2/Players/Joshua.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://bvyknk52m8s0a" path="res://scenes/demo_enemy.tscn" id="2_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/pickup_azulito.tscn" id="3_azulito"]
+[ext_resource type="PackedScene" path="res://scenes/pickup_coca_helada.tscn" id="4_coca"]
+[ext_resource type="PackedScene" path="res://scenes/pickup_malanga_picante.tscn" id="5_malanga"]
+[ext_resource type="PackedScene" path="res://scenes/pickup_volovan.tscn" id="6_volovan"]
+[ext_resource type="PackedScene" path="res://scenes/pickup_taco.tscn" id="7_taco"]
+[ext_resource type="PackedScene" path="res://scenes/coin.tscn" id="8_coin"]
+[ext_resource type="Script" uid="uid://dc0t1s5o5so1n" path="res://scripts/game.gd" id="9_game"]
+
+[sub_resource type="RectangleShape2D" id="ground_shape"]
+size = Vector2(1100, 80)
+
+[sub_resource type="RectangleShape2D" id="platform_shape"]
+size = Vector2(260, 32)
+
+[node name="Game" type="Node2D" unique_id=1489684566]
+script = ExtResource("9_game")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1896598691]
+
+[node name="Panel" type="Panel" parent="HUD" unique_id=1330119403]
+modulate = Color(1, 1, 1, 0.92)
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 250.0
+offset_bottom = 66.0
+
+[node name="CoinCount" type="Label" parent="HUD" unique_id=253297105]
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 244.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(1, 0.88, 0.3, 1)
+theme_override_colors/font_shadow_color = Color(0.12, 0.08, 0.04, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 30
+text = "Créditos: 0"
+
+[node name="Ground1" type="StaticBody2D" parent="." unique_id=1677514403]
+position = Vector2(350, 560)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground1" unique_id=449720522]
+shape = SubResource("ground_shape")
+
+[node name="Visual" type="Polygon2D" parent="Ground1" unique_id=626169171]
+color = Color(0.27, 0.55, 0.31, 1)
+polygon = PackedVector2Array(-550, -40, 550, -40, 550, 40, -550, 40)
+
+[node name="Ground2" type="StaticBody2D" parent="." unique_id=471454564]
+position = Vector2(1500, 560)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2" unique_id=1778341288]
+shape = SubResource("ground_shape")
+
+[node name="Visual" type="Polygon2D" parent="Ground2" unique_id=865437676]
+color = Color(0.27, 0.55, 0.31, 1)
+polygon = PackedVector2Array(-550, -40, 550, -40, 550, 40, -550, 40)
+
+[node name="Ground3" type="StaticBody2D" parent="." unique_id=2111345661]
+position = Vector2(2650, 560)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3" unique_id=1391820678]
+shape = SubResource("ground_shape")
+
+[node name="Visual" type="Polygon2D" parent="Ground3" unique_id=483064373]
+color = Color(0.27, 0.55, 0.31, 1)
+polygon = PackedVector2Array(-550, -40, 550, -40, 550, 40, -550, 40)
+
+[node name="Ground4" type="StaticBody2D" parent="." unique_id=1723054942]
+position = Vector2(3800, 560)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground4" unique_id=1178907022]
+shape = SubResource("ground_shape")
+
+[node name="Visual" type="Polygon2D" parent="Ground4" unique_id=1125443231]
+color = Color(0.27, 0.55, 0.31, 1)
+polygon = PackedVector2Array(-550, -40, 550, -40, 550, 40, -550, 40)
+
+[node name="Platform1" type="StaticBody2D" parent="." unique_id=84706523]
+position = Vector2(350, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1" unique_id=774919702]
+position = Vector2(0, -107)
+shape = SubResource("platform_shape")
+
+[node name="Visual" type="Polygon2D" parent="Platform1" unique_id=361491804]
+position = Vector2(0, -108)
+color = Color(0.47, 0.65, 0.32, 1)
+polygon = PackedVector2Array(-130, -16, 130, -16, 130, 16, -130, 16)
+
+[node name="Platform2" type="StaticBody2D" parent="." unique_id=1087289697]
+position = Vector2(1750, 331)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2" unique_id=891144283]
+shape = SubResource("platform_shape")
+
+[node name="Visual" type="Polygon2D" parent="Platform2" unique_id=1844282428]
+color = Color(0.47, 0.65, 0.32, 1)
+polygon = PackedVector2Array(-130, -16, 130, -16, 130, 16, -130, 16)
+
+[node name="Platform3" type="StaticBody2D" parent="." unique_id=1893407363]
+position = Vector2(2900, 351)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3" unique_id=2082473702]
+shape = SubResource("platform_shape")
+
+[node name="Visual" type="Polygon2D" parent="Platform3" unique_id=2000818632]
+color = Color(0.47, 0.65, 0.32, 1)
+polygon = PackedVector2Array(-130, -16, 130, -16, 130, 16, -130, 16)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1931109245]
+position = Vector2(100, 185)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="CharacterBody2D" parent="." unique_id=1094039061 instance=ExtResource("1_player")]
+position = Vector2(96, 378)
+
+[node name="EnemigoDePrueba" parent="." unique_id=166768614 instance=ExtResource("2_enemy")]
+position = Vector2(514.00006, 486)
+
+[node name="Azulito" parent="." unique_id=50126826 instance=ExtResource("3_azulito")]
+position = Vector2(840, 491)
+
+[node name="CocaHelada" parent="." unique_id=1452956766 instance=ExtResource("4_coca")]
+position = Vector2(1100, 492)
+
+[node name="MalangaPicante" parent="." unique_id=1137225162 instance=ExtResource("5_malanga")]
+position = Vector2(2250, 492)
+
+[node name="Volovan" parent="." unique_id=1643696421 instance=ExtResource("6_volovan")]
+position = Vector2(3400, 492)
+
+[node name="Taco" parent="." unique_id=1311115931 instance=ExtResource("7_taco")]
+position = Vector2(4250, 492)
+
+[node name="Coin01" parent="." unique_id=2098421371 instance=ExtResource("8_coin")]
+position = Vector2(275, 296)
+
+[node name="Coin02" parent="." unique_id=1474763742 instance=ExtResource("8_coin")]
+position = Vector2(593, 454)
+
+[node name="Coin03" parent="." unique_id=2139530362 instance=ExtResource("8_coin")]
+position = Vector2(427, 296)
+
+[node name="Coin04" parent="." unique_id=586711841 instance=ExtResource("8_coin")]
+position = Vector2(349, 295)
+
+[node name="Coin05" parent="." unique_id=567991214 instance=ExtResource("8_coin")]
+position = Vector2(1020, 450)
+
+[node name="Coin06" parent="." unique_id=395050710 instance=ExtResource("8_coin")]
+position = Vector2(1300, 450)
+
+[node name="Coin07" parent="." unique_id=1163752256 instance=ExtResource("8_coin")]
+position = Vector2(1410, 450)
+
+[node name="Coin08" parent="." unique_id=1837154367 instance=ExtResource("8_coin")]
+position = Vector2(1520, 450)
+
+[node name="Coin09" parent="." unique_id=303916908 instance=ExtResource("8_coin")]
+position = Vector2(1750, 276)
+
+[node name="Coin10" parent="." unique_id=1381906499 instance=ExtResource("8_coin")]
+position = Vector2(2200, 450)
+
+[node name="Coin11" parent="." unique_id=370617400 instance=ExtResource("8_coin")]
+position = Vector2(2450, 450)
+
+[node name="Coin12" parent="." unique_id=1098833006 instance=ExtResource("8_coin")]
+position = Vector2(2560, 450)
+
+[node name="Coin13" parent="." unique_id=1067565400 instance=ExtResource("8_coin")]
+position = Vector2(2670, 450)
+
+[node name="Coin14" parent="." unique_id=404410072 instance=ExtResource("8_coin")]
+position = Vector2(2900, 296)
+
+[node name="Coin15" parent="." unique_id=628583845 instance=ExtResource("8_coin")]
+position = Vector2(3300, 450)
+
+[node name="Coin16" parent="." unique_id=224988294 instance=ExtResource("8_coin")]
+position = Vector2(3600, 450)
+
+[node name="Coin17" parent="." unique_id=250980082 instance=ExtResource("8_coin")]
+position = Vector2(3710, 450)
+
+[node name="Coin18" parent="." unique_id=2016356978 instance=ExtResource("8_coin")]
+position = Vector2(3820, 450)

@@ -4,12 +4,20 @@ const SPEED := 200.0
 const JUMP_VELOCITY := -400.0
 const FRAME_SIZE := Vector2(352.0, 508.0)
 const FALL_MARGIN_CELLS := 6
+const SMALL_PLAYER_SCALE := 0.5
+const FIREBALL_SCENE: PackedScene = preload("res://escenas/powerups/fireball.tscn")
+const ORIGINAL_COLLISION_SIZE := Vector2(14.0, 30.0)
+const SMALL_COLLISION_SIZE := ORIGINAL_COLLISION_SIZE * SMALL_PLAYER_SCALE
+const FIREBALL_COOLDOWN := 0.3
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var follow_camera: Camera2D = get_node_or_null("Camera2D")
 var jump_requested := false
 var spawn_position := Vector2.ZERO
 var fall_limit_y := 600.0
+var has_fire_power := false
+var fireball_cooldown := 0.0
+var original_sprite_scale := Vector2.ONE
 
 func _ready() -> void:
 	floor_max_angle = deg_to_rad(65.0)
@@ -18,13 +26,22 @@ func _ready() -> void:
 	spawn_position = global_position
 	fall_limit_y = _find_fall_limit_y()
 	animated_sprite.sprite_frames = _create_sprite_frames()
+	original_sprite_scale = animated_sprite.scale
+	animated_sprite.scale = original_sprite_scale * SMALL_PLAYER_SCALE
+	_set_collision_size(SMALL_COLLISION_SIZE)
+	add_to_group("jugador")
 	animated_sprite.play("idle")
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_W:
+	if not (event is InputEventKey and event.pressed and not event.echo):
+		return
+	if event.physical_keycode == KEY_W or event.physical_keycode == KEY_UP:
 		jump_requested = true
+	elif event.physical_keycode == KEY_SPACE and has_fire_power:
+		_shoot_fireball()
 
 func _physics_process(delta: float) -> void:
+	fireball_cooldown = maxf(0.0, fireball_cooldown - delta)
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -45,7 +62,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED)
 
 	_update_animation(direction)
+	var was_falling := velocity.y > 0.0
 	move_and_slide()
+	_handle_enemy_collisions(was_falling)
 	if global_position.y > fall_limit_y:
 		_respawn_at_start()
 
@@ -75,6 +94,48 @@ func _respawn_at_start() -> void:
 	animated_sprite.play("idle")
 	if follow_camera != null:
 		follow_camera.reset_smoothing()
+
+func collect_power_up(power_up_id: String) -> void:
+	match power_up_id:
+		"azulito":
+			animated_sprite.scale = original_sprite_scale
+			_set_collision_size(ORIGINAL_COLLISION_SIZE)
+		"malanga_fuego":
+			has_fire_power = true
+
+func _shoot_fireball() -> void:
+	if fireball_cooldown > 0.0:
+		return
+	var fireball := FIREBALL_SCENE.instantiate() as Node2D
+	if fireball == null:
+		return
+	get_tree().current_scene.add_child(fireball)
+	var direction := -1.0 if animated_sprite.flip_h else 1.0
+	fireball.global_position = animated_sprite.global_position + Vector2(direction * 18.0, -4.0)
+	fireball.set("direction", direction)
+	fireball_cooldown = FIREBALL_COOLDOWN
+
+func _set_collision_size(size: Vector2) -> void:
+	var body_shape := get_node_or_null("CollisionShape2D") as CollisionShape2D
+	if body_shape == null:
+		return
+	if body_shape.shape is RectangleShape2D:
+		var rectangle := (body_shape.shape as RectangleShape2D).duplicate() as RectangleShape2D
+		rectangle.size = size
+		body_shape.shape = rectangle
+
+func _handle_enemy_collisions(was_falling: bool) -> void:
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var enemy := collision.get_collider() as Node
+		if enemy == null or not enemy.is_in_group("enemies"):
+			continue
+		if was_falling and collision.get_normal().y < -0.5:
+			enemy.queue_free()
+			velocity.y = JUMP_VELOCITY * 0.55
+			return
+		_respawn_at_start()
+		return
 
 func _update_animation(direction: float) -> void:
 	if not is_on_floor():

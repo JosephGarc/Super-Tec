@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bvyknk52m8s0a"]
+
+[ext_resource type="Script" uid="uid://c3b1tck16tyf1" path="res://scripts/demo_enemy.gd" id="1_enemy"]
+
+[sub_resource type="CircleShape2D" id="enemy_shape"]
+radius = 16.0
+
+[node name="EnemyTest" type="Area2D" unique_id=1492408052]
+scale = Vector2(2, 2)
+script = ExtResource("1_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1486164156]
+shape = SubResource("enemy_shape")

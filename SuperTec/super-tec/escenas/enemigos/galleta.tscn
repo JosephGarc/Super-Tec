@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/personajes/walk_galleta.png" id="1"]
+[ext_resource type="Script" path="res://scripts/galleta.gd" id="2"]
+
+[sub_resource type="AtlasTexture" id="Frame1"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 170, 248)
+
+[sub_resource type="AtlasTexture" id="Frame2"]
+atlas = ExtResource("1")
+region = Rect2(170, 0, 170, 248)
+
+[sub_resource type="AtlasTexture" id="Frame3"]
+atlas = ExtResource("1")
+region = Rect2(0, 248, 170, 248)
+
+[sub_resource type="AtlasTexture" id="Frame4"]
+atlas = ExtResource("1")
+region = Rect2(170, 248, 170, 248)
+
+[sub_resource type="AtlasTexture" id="Frame5"]
+atlas = ExtResource("1")
+region = Rect2(0, 496, 170, 248)
+
+[sub_resource type="AtlasTexture" id="Frame6"]
+atlas = ExtResource("1")
+region = Rect2(170, 496, 170, 248)
+
+[sub_resource type="SpriteFrames" id="WalkFrames"]
+animations = [{"frames": [{"duration": 1.0, "texture": SubResource("Frame1")}, {"duration": 1.0, "texture": SubResource("Frame2")}, {"duration": 1.0, "texture": SubResource("Frame3")}, {"duration": 1.0, "texture": SubResource("Frame4")}, {"duration": 1.0, "texture": SubResource("Frame5")}, {"duration": 1.0, "texture": SubResource("Frame6")}], "loop": true, "name": &"walk", "speed": 8.0}]
+
+[sub_resource type="RectangleShape2D" id="EnemyShape"]
+size = Vector2(12, 17)
+
+[node name="Galleta" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("2")
+enemy_number = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("EnemyShape")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("WalkFrames")
+animation = &"walk"
+scale = Vector2(0.068, 0.068)
+texture_filter = 1
+
+[node name="FloorDetector" type="RayCast2D" parent="."]
+position = Vector2(-6, 6)
+target_position = Vector2(0, 10)
+collision_mask = 1
