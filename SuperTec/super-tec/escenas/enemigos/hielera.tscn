@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://cuq82tsa1uqyn"]
+
+[ext_resource type="Texture2D" uid="uid://gv0sjc5ifpul" path="res://assets/personajes/enemigos/Sprite de Hielera Monstruosa en Acción.png" id="1_cb0s4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv72a"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm4tu"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hi77"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlu7r"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(579, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbcgj"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(772, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2swv"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g0iw"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eugc"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(0, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwr8f"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(193, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jqb4"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(386, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kucgv"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(579, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d61xf"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(772, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo3sn"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(965, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afv3g"]
+atlas = ExtResource("1_cb0s4")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyek6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv72a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm4tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hi77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlu7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbcgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2swv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g0iw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eugc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwr8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jqb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kucgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d61xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo3sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afv3g")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Hielera" type="Node2D" unique_id=1291998832]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=787570596]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_iyek6")
+frame_progress = 0.259039

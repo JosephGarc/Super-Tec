@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://drore7f6y5tix"]
+
+[ext_resource type="Texture2D" uid="uid://cytev1i6d431e" path="res://assets/personajes/enemigos/wolf_254px_spritesheet.png" id="1_d5npa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bekt"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(0, 0, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvun2"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(254, 0, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26d85"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(508, 0, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqigk"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(762, 0, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0m2y"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(1016, 0, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xqgh"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(1270, 0, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk45e"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(1524, 0, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owq35"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(0, 254, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6543t"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(254, 254, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnujs"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(508, 254, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gtse"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(762, 254, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4ar8"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(1016, 254, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw7ps"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(1270, 254, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0vks"]
+atlas = ExtResource("1_d5npa")
+region = Rect2(1524, 254, 254, 254)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvvjw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bekt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvun2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26d85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqigk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0m2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xqgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk45e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owq35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6543t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnujs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gtse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4ar8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw7ps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0vks")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lobo" type="Node2D" unique_id=1237856094]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=162658068]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_yvvjw")
+frame_progress = 0.24522968

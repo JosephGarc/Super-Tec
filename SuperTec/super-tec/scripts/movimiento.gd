@@ -35,7 +35,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey and event.pressed and not event.echo):
 		return
-	if event.physical_keycode == KEY_W or event.physical_keycode == KEY_UP:
+	if event.physical_keycode == KEY_W:
 		jump_requested = true
 	elif event.physical_keycode == KEY_SPACE and has_fire_power:
 		_shoot_fireball()

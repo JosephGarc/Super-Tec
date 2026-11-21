@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://4tyqrxjcdy1k"]
+
+[ext_resource type="Texture2D" uid="uid://v340pn2l6mc0" path="res://assets/personajes/enemigos/Sprite Sheet del Profesor Villano.png" id="1_ws3ha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk6jv"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(0, 772, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlcns"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(193, 772, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0c03"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(386, 772, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xbsv"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(386, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jkfv"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(579, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qy1qv"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(772, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrvyp"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(965, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjxh5"]
+atlas = ExtResource("1_ws3ha")
+region = Rect2(1158, 965, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhyoi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk6jv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlcns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0c03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xbsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jkfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy1qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrvyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjxh5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteVillano" type="Node2D" unique_id=1193232828]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=543329848]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_xhyoi")
+frame_progress = 0.46441418

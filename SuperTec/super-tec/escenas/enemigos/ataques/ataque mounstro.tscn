@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dme8y33vnxau0"]
+
+[ext_resource type="Texture2D" uid="uid://c468cde5dapsu" path="res://assets/personajes/enemigos/gpt-image-2.5-sunburst_Un_sprite_de_activo_de_juego_2D_un_solo_personaje_un_monstruo_enredado_hecho_de_-0.jpg" id="1_1fc7j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy68n"]
+atlas = ExtResource("1_1fc7j")
+region = Rect2(816, 408, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsf0v"]
+atlas = ExtResource("1_1fc7j")
+region = Rect2(0, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xepex"]
+atlas = ExtResource("1_1fc7j")
+region = Rect2(204, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_celke"]
+atlas = ExtResource("1_1fc7j")
+region = Rect2(408, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmvti"]
+atlas = ExtResource("1_1fc7j")
+region = Rect2(612, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5njt3"]
+atlas = ExtResource("1_1fc7j")
+region = Rect2(816, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37pfx"]
+atlas = ExtResource("1_1fc7j")
+region = Rect2(0, 816, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5bvqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy68n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsf0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xepex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_celke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmvti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5njt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37pfx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AtaqueMounstro" type="Node2D" unique_id=682793350]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1313022695]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_5bvqn")
+frame_progress = 0.9089414

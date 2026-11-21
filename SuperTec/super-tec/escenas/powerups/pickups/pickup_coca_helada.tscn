@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/powerups/power_up.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/powerups/coca_helada.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="shape"]
+size = Vector2(12, 12)
+
+[node name="CocaHelada" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1")
+power_up_id = "coca_helada"
+texture = ExtResource("2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape")

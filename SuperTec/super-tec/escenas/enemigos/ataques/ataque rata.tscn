@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bmknrh7wop005"]
+
+[ext_resource type="Texture2D" uid="uid://prhr7mbnkygu" path="res://assets/personajes/enemigos/Hoja de sprites de rata guerrera.png" id="1_4iks4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01omo"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0fgn"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(0, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8omke"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(193, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggu6y"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(386, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30dkk"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(579, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mky7"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(772, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgxcw"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(965, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj8en"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(1158, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvso7"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(0, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86gct"]
+atlas = ExtResource("1_4iks4")
+region = Rect2(193, 579, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjb6m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01omo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0fgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8omke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggu6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30dkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mky7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgxcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj8en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvso7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86gct")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AtaqueRata" type="Node2D" unique_id=1749303178]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1927006300]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_mjb6m")
+frame_progress = 0.08333304

@@ -11,18 +11,27 @@ config_version=5
 [application]
 
 config/name="EscenarioSuperTec"
-run/main_scene="uid://c17g7nfntbuj1"
+run/main_scene="res://escenas/pruebas/selector_escenarios.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/ui/icon.svg"
 
 [display]
 
-window/size/viewport_width=256
-window/size/viewport_height=240
+window/size/viewport_width=512
+window/size/viewport_height=384
 window/size/window_width_override=1024
-window/size/window_height_override=960
+window/size/window_height_override=768
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[layer_names]
+
+2d_physics/layer_1="mundo"
+2d_physics/layer_2="jugador"
+2d_physics/layer_3="enemigos"
+2d_physics/layer_4="powerups"
+2d_physics/layer_5="bloques"
+2d_physics/layer_6="zona_muerte"
 
 [physics]
 

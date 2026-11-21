@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://d27xkhg33bcvd"]
+
+[ext_resource type="Texture2D" uid="uid://prhr7mbnkygu" path="res://assets/personajes/enemigos/Hoja de sprites de rata guerrera.png" id="1_fmixf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ynp0"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(965, 772, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61yng"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(1158, 772, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfrfu"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(0, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23ju3"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(193, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g111o"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(386, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aaw5"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(579, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gg00"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(772, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiksh"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(965, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3e4p"]
+atlas = ExtResource("1_fmixf")
+region = Rect2(1158, 965, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tb4i7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ynp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61yng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfrfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23ju3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g111o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aaw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gg00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiksh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3e4p")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteRata" type="Node2D" unique_id=748183205]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1680134375]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_tb4i7")
+frame_progress = 0.086370386

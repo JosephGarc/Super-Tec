@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bvl3c5pfxvyyf"]
+
+[ext_resource type="Texture2D" path="res://assets/personajes/enemigos/gpt-image-2_Diseño_de_hoja_de_sprites_de_juego_2D_para_un_motor_de_juego_perspectiva_de_des-0 (1).jpg" id="tex_examen"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47hrp"]
+radius = 83.0
+height = 166.0
+
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck1ix"]
+atlas = ExtResource("tex_examen")
+region = Rect2(0, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k35f"]
+atlas = ExtResource("tex_examen")
+region = Rect2(204, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq03p"]
+atlas = ExtResource("tex_examen")
+region = Rect2(408, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by2hg"]
+atlas = ExtResource("tex_examen")
+region = Rect2(612, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6oon"]
+atlas = ExtResource("tex_examen")
+region = Rect2(816, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur2e8"]
+atlas = ExtResource("tex_examen")
+region = Rect2(0, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn6cd"]
+atlas = ExtResource("tex_examen")
+region = Rect2(204, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wiya"]
+atlas = ExtResource("tex_examen")
+region = Rect2(408, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbla1"]
+atlas = ExtResource("tex_examen")
+region = Rect2(816, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n78oe"]
+atlas = ExtResource("tex_examen")
+region = Rect2(612, 204, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84ouy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck1ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k35f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq03p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by2hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6oon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur2e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn6cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wiya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbla1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n78oe")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1883802691]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=377874320]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_47hrp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1228067379]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_84ouy")
+frame_progress = 0.20617086

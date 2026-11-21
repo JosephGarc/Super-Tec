@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b86e8qhxq831j"]
+
+[ext_resource type="PackedScene" uid="uid://c2brwltmlaqbl" path="res://escenas/personajes_juegos/Joshua.tscn" id="1_1ym4d"]
+[ext_resource type="PackedScene" path="res://escenas/personajes_juegos/Perro.tscn" id="2_perro"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gv6ty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv6ty"]
+size = Vector2(1127, 108.5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qjoay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjoay"]
+size = Vector2(880.25, 106)
+
+[node name="Game" type="Node2D" unique_id=319320164]
+position = Vector2(-9, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1799244556]
+position = Vector2(19, 26)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1414357000]
+position = Vector2(-576.99994, 93.00001)
+scale = Vector2(1128, 105.62501)
+texture = SubResource("PlaceholderTexture2D_gv6ty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1021890080]
+position = Vector2(-574, 98)
+shape = SubResource("RectangleShape2D_gv6ty")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D" unique_id=734186691]
+position = Vector2(704.375, 108.125)
+scale = Vector2(874.75, 108.24999)
+texture = SubResource("PlaceholderTexture2D_qjoay")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=714418411]
+position = Vector2(706.125, 105)
+shape = SubResource("RectangleShape2D_qjoay")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1918821873]
+position = Vector2(11, -149)
+zoom = Vector2(0.5, 0.5)
+
+[node name="CharacterBody2D" parent="." unique_id=1649217228 instance=ExtResource("1_1ym4d")]
+position = Vector2(-550, -242)
+
+[node name="Perro" parent="." instance=ExtResource("2_perro")]
+position = Vector2(-100, -41)
+
+

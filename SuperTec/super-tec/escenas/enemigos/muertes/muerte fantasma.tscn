@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cxy5w08k4655n"]
+
+[ext_resource type="Texture2D" uid="uid://f0xl6hdsnjy" path="res://assets/personajes/enemigos/Sprite del Administrador Oscuro.png" id="1_523gq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wblv8"]
+atlas = ExtResource("1_523gq")
+region = Rect2(1158, 772, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giqbi"]
+atlas = ExtResource("1_523gq")
+region = Rect2(0, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oauj8"]
+atlas = ExtResource("1_523gq")
+region = Rect2(193, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvu6y"]
+atlas = ExtResource("1_523gq")
+region = Rect2(386, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leof6"]
+atlas = ExtResource("1_523gq")
+region = Rect2(772, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwvj1"]
+atlas = ExtResource("1_523gq")
+region = Rect2(965, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b367"]
+atlas = ExtResource("1_523gq")
+region = Rect2(1158, 965, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c83yj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wblv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giqbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oauj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvu6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leof6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwvj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b367")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteFantasma" type="Node2D" unique_id=1508989194]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1249512799]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_c83yj")
+frame_progress = 0.9767463

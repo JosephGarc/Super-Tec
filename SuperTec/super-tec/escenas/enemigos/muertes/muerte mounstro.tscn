@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://mxl0clspofbw"]
+
+[ext_resource type="Texture2D" uid="uid://c468cde5dapsu" path="res://assets/personajes/enemigos/gpt-image-2.5-sunburst_Un_sprite_de_activo_de_juego_2D_un_solo_personaje_un_monstruo_enredado_hecho_de_-0.jpg" id="1_4ylbe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3di5f"]
+atlas = ExtResource("1_4ylbe")
+region = Rect2(204, 816, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6mbn"]
+atlas = ExtResource("1_4ylbe")
+region = Rect2(408, 816, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmydf"]
+atlas = ExtResource("1_4ylbe")
+region = Rect2(612, 816, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hgwh"]
+atlas = ExtResource("1_4ylbe")
+region = Rect2(816, 816, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r410o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3di5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6mbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmydf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hgwh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteMounstro" type="Node2D" unique_id=1187908875]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=419292051]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_r410o")
+frame_progress = 0.49040806
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1954568668]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_r410o")
+frame_progress = 0.5375929

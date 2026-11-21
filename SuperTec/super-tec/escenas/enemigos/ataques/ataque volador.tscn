@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://d2o1wmva71rp0"]
+
+[ext_resource type="Texture2D" uid="uid://drqp7p81hod3g" path="res://assets/personajes/enemigos/gpt-image-2_Diseño_de_hoja_de_sprites_de_juego_2D_para_un_motor_de_juego_perspectiva_de_des-0 (1).jpg" id="1_m6kxq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky2y5"]
+atlas = ExtResource("1_m6kxq")
+region = Rect2(0, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y67u8"]
+atlas = ExtResource("1_m6kxq")
+region = Rect2(204, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf3ws"]
+atlas = ExtResource("1_m6kxq")
+region = Rect2(408, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulh17"]
+atlas = ExtResource("1_m6kxq")
+region = Rect2(612, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8catn"]
+atlas = ExtResource("1_m6kxq")
+region = Rect2(816, 612, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytaxc"]
+atlas = ExtResource("1_m6kxq")
+region = Rect2(0, 816, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22wo5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky2y5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y67u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf3ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulh17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8catn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytaxc")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ataque" type="Node2D" unique_id=1033028436]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=201924031]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_22wo5")
+frame_progress = 0.8770803

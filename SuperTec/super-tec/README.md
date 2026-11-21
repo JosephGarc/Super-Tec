@@ -38,3 +38,17 @@ El proyecto principal contiene tres escenas de mapa: `escenas/escenario.tscn`, `
 - Azulito y Malanga de fuego están puestos temporalmente cerca del inicio de `escenario.tscn` para poder probarlos. Los power-ups se ajustan a un tamaño visible uniforme, cercano a la mitad de Joshua; las bolas son más pequeñas. Sus escenas reutilizables y la de la bola están en `escenas/powerups/`.
 - Galleta está puesta en tres zonas de `escenario.tscn`: Galleta 1 junto a las bancas, Galleta 2 en la misma plataforma de madera donde está Joshua en la captura y Galleta 3 en la plataforma izquierda del último tramo. Sus nombres en el árbol de escena las identifican y cada una tiene un rango de patrulla. El contacto lateral devuelve a Joshua al inicio; si cae encima de Galleta, la elimina y rebota.
 - El crédito Eugenio y su colocación quedan pendientes para definirlos junto con la ubicación del enemigo.
+
+## Recursos nuevos integrados
+
+- **Mapas:** cuatro escenas nuevas (`nivel_1.tscn` a `nivel_4.tscn`) en `escenas/mapas_nuevos/`. Sus tilesets e imágenes están en `assets/escenarios/mapas_nuevos/`; los bloques y scripts de soporte están en `escenas/bloques/mapas_nuevos/` y `scripts/`.
+- **Personajes:** Joshua, Perro y la escena de demostración están en `escenas/personajes_juegos/`; sus scripts están en `scripts/personajes_juegos/`. Reutilizan sprites ya presentes en `assets/personajes/`.
+- **Fuentes:** se conservaron los proyectos originales en `proyectos_fuente/mapas_nuevos/` y `proyectos_fuente/personajes_juegos/`, sin sus cachés generadas `.godot`.
+
+Los cuatro mapas y la demostración de personajes están disponibles como escenas independientes; la escena de inicio del juego no se cambió.
+## Enemigos integrados desde `personajes`
+
+Se integraron 16 personajes enemigos en `escenas/enemigos/`, con ataques en `escenas/enemigos/ataques/`, muertes en `escenas/enemigos/muertes/` y sprites en `assets/personajes/enemigos/`. Sus nombres son: Abeja, Basura, Dron, Examen volador, Fantasma graduado, Hielera, Jefe final, Libro, Lobo, Mounstro cables, Multímetro, PC, Rata, Sartén, Villano y William Shakespeare.
+## Selector para probar niveles
+
+Al ejecutar el proyecto con F5 aparece un selector con los tres escenarios actuales y los niveles nuevos 1 a 4. Los nuevos niveles colocan a Joshua en `SpawnJugador`; en cada prueba, Esc vuelve al selector. La escena principal anterior sigue disponible como `escenas/escenario.tscn`.

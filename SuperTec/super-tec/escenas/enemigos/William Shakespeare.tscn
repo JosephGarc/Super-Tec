@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://coyo65fhe4eb7"]
+
+[ext_resource type="Texture2D" uid="uid://b3nhq8f6md5ma" path="res://assets/personajes/enemigos/Sprite de Villano Isabelino en Pixel Art.png" id="1_m0vnk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxg38"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsrrs"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnuyj"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gy05"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrlje"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol00g"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(0, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7pjn"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(193, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbt52"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(386, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3lhs"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(579, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bonf4"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(772, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5epou"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(965, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcktw"]
+atlas = ExtResource("1_m0vnk")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oujrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxg38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsrrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnuyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gy05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrlje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol00g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7pjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbt52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3lhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bonf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5epou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcktw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="WilliamShakespeare" type="Node2D" unique_id=1015687582]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=794112703]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_oujrf")
+frame_progress = 0.8471973

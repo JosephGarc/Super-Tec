@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bj8nglthmf8a0"]
+
+[ext_resource type="Texture2D" uid="uid://v340pn2l6mc0" path="res://assets/personajes/enemigos/Sprite Sheet del Profesor Villano.png" id="1_pu0vj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04n2k"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekq3y"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76oaw"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qye31"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(579, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w7tw"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(772, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1mi6"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkkf3"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5k7t"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(0, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15eew"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(193, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8ly0"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(386, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkbai"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(579, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqddi"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(772, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qq65"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(965, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8futg"]
+atlas = ExtResource("1_pu0vj")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5bnms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04n2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekq3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76oaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qye31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w7tw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1mi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkkf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5k7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15eew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8ly0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkbai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqddi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qq65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8futg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Villano" type="Node2D" unique_id=675647266]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=416090886]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_5bnms")
+frame_progress = 0.19196618

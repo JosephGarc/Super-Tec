@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dfosqjcamsi6v"]
+
+[ext_resource type="Texture2D" uid="uid://dhd1m8o7kx0fb" path="res://assets/personajes/enemigos/Hoja de sprites del dron enemigo volador.png" id="1_f063a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mbbm"]
+atlas = ExtResource("1_f063a")
+region = Rect2(0, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hrp8"]
+atlas = ExtResource("1_f063a")
+region = Rect2(193, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txbw8"]
+atlas = ExtResource("1_f063a")
+region = Rect2(386, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lgir"]
+atlas = ExtResource("1_f063a")
+region = Rect2(579, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gycdo"]
+atlas = ExtResource("1_f063a")
+region = Rect2(772, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anv84"]
+atlas = ExtResource("1_f063a")
+region = Rect2(965, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyu6l"]
+atlas = ExtResource("1_f063a")
+region = Rect2(1158, 965, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xqosk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mbbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hrp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txbw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lgir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gycdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anv84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyu6l")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteDron" type="Node2D" unique_id=1070977432]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=543071991]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_xqosk")
+frame_progress = 0.0043313107

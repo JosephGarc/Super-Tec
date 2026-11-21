@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bs6rrwt8vkepg"]
+
+[ext_resource type="Texture2D" uid="uid://bh7ek01oe8wlf" path="res://assets/personajes/enemigos/Hoja de sprites del hechicero académico.png" id="1_647uy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_025x0"]
+atlas = ExtResource("1_647uy")
+region = Rect2(0, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs5l"]
+atlas = ExtResource("1_647uy")
+region = Rect2(193, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmx8h"]
+atlas = ExtResource("1_647uy")
+region = Rect2(386, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rtyg"]
+atlas = ExtResource("1_647uy")
+region = Rect2(579, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pscta"]
+atlas = ExtResource("1_647uy")
+region = Rect2(772, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi3cn"]
+atlas = ExtResource("1_647uy")
+region = Rect2(965, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1q5x"]
+atlas = ExtResource("1_647uy")
+region = Rect2(1158, 386, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcrp1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_025x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmx8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rtyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pscta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi3cn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1q5x")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AtaqueJefe" type="Node2D" unique_id=1153050664]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=197424863]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_jcrp1")

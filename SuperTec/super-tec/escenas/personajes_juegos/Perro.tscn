@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/personajes/walk_galleta.png" id="1_texture"]
+[ext_resource type="Script" path="res://scripts/personajes_juegos/perro.gd" id="2_script"]
+
+[sub_resource type="AtlasTexture" id="frame_1"]
+atlas = ExtResource("1_texture")
+region = Rect2(0, 0, 170, 248)
+
+[sub_resource type="AtlasTexture" id="frame_2"]
+atlas = ExtResource("1_texture")
+region = Rect2(170, 0, 170, 248)
+
+[sub_resource type="AtlasTexture" id="frame_3"]
+atlas = ExtResource("1_texture")
+region = Rect2(0, 248, 170, 248)
+
+[sub_resource type="AtlasTexture" id="frame_4"]
+atlas = ExtResource("1_texture")
+region = Rect2(170, 248, 170, 248)
+
+[sub_resource type="AtlasTexture" id="frame_5"]
+atlas = ExtResource("1_texture")
+region = Rect2(0, 496, 170, 248)
+
+[sub_resource type="AtlasTexture" id="frame_6"]
+atlas = ExtResource("1_texture")
+region = Rect2(170, 496, 170, 248)
+
+[sub_resource type="SpriteFrames" id="walk_frames"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("frame_1")}, {"duration": 1.0, "texture": SubResource("frame_2")}, {"duration": 1.0, "texture": SubResource("frame_3")}, {"duration": 1.0, "texture": SubResource("frame_4")}, {"duration": 1.0, "texture": SubResource("frame_5")}, {"duration": 1.0, "texture": SubResource("frame_6")}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="enemy_shape"]
+size = Vector2(140, 210)
+
+[node name="Perro" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("2_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("enemy_shape")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("walk_frames")
+animation = &"walk"
+

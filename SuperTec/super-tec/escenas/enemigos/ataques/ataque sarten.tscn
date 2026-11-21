@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://keyn3foy3cq3"]
+
+[ext_resource type="Texture2D" uid="uid://dyx8vc84b637j" path="res://assets/personajes/enemigos/Hoja de sprites_ monstruo sartén en combate.png" id="1_v5x27"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32udk"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(0, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vryn"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(193, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkrw7"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(386, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xouk5"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(579, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mylx2"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(772, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbu52"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(965, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02eag"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(1158, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb506"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(386, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sadfs"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(772, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5254o"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(965, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn54a"]
+atlas = ExtResource("1_v5x27")
+region = Rect2(1158, 579, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_maa1m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32udk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vryn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkrw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xouk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mylx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbu52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02eag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb506")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sadfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5254o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn54a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AtaqueSarten" type="Node2D" unique_id=492437742]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=292614114]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_maa1m")
+frame_progress = 0.82895076

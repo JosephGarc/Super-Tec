@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://38u5biu0f73b"]
+
+[ext_resource type="Script" uid="uid://bg06wdvufr23u" path="res://scripts/bloques/mapas_nuevos/bloque_pregunta.gd" id="1_laucq"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_azulito.tscn" id="3_azulito"]
+[ext_resource type="Texture2D" uid="uid://cracvmth0a6u" path="res://assets/escenarios/mapas_nuevos/campus_tileset_817x941.png" id="2_usbc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bb7m7"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udaao"]
+size = Vector2(14, 4)
+
+[node name="BloquePregunta" type="StaticBody2D" unique_id=323898451]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_laucq")
+contenido = ExtResource("3_azulito")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1685384982]
+texture = ExtResource("2_usbc4")
+region_enabled = true
+region_rect = Rect2(16, 512, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=910052382]
+shape = SubResource("RectangleShape2D_bb7m7")
+
+[node name="ZonaArriba" type="Area2D" parent="." unique_id=1389451919]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaArriba" unique_id=272553763]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_udaao")

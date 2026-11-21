@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bbwo55s7ls4rs"]
+
+[ext_resource type="Texture2D" uid="uid://drqp7p81hod3g" path="res://assets/personajes/enemigos/gpt-image-2_Diseño_de_hoja_de_sprites_de_juego_2D_para_un_motor_de_juego_perspectiva_de_des-0 (1).jpg" id="1_a5gfh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ei13g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w4fb"]
+atlas = SubResource("CompressedTexture2D_ei13g")
+region = Rect2(816, 816, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nl0e4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w4fb")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4g58"]
+atlas = ExtResource("1_a5gfh")
+region = Rect2(408, 816, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbsrp"]
+atlas = ExtResource("1_a5gfh")
+region = Rect2(612, 816, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsinm"]
+atlas = ExtResource("1_a5gfh")
+region = Rect2(816, 816, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kwsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4g58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbsrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsinm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Muerte" type="Node2D" unique_id=85039615]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=104599528]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_nl0e4")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1778638052]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_6kwsr")
+frame_progress = 0.9064921

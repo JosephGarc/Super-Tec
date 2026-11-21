@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://jb46p76jrpqp"]
+
+[ext_resource type="Texture2D" uid="uid://f0xl6hdsnjy" path="res://assets/personajes/enemigos/Sprite del Administrador Oscuro.png" id="1_8vc16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fjmh"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ml1t"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwrhc"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le72p"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(579, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcs4y"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(772, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uresl"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8akt0"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hbri"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(0, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp34q"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(193, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_388fb"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(386, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0058"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(579, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81sik"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(772, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67kjo"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(965, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5w5n"]
+atlas = ExtResource("1_8vc16")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wn6u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fjmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ml1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwrhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le72p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcs4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uresl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8akt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hbri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp34q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_388fb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0058")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81sik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67kjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5w5n")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FantasmaGraduado" type="Node2D" unique_id=1997056949]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2034633609]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_3wn6u")

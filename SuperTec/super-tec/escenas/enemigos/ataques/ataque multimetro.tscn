@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://ndocmtvuata7"]
+
+[ext_resource type="Texture2D" uid="uid://dfqaaoa5hh3b7" path="res://assets/personajes/enemigos/Sprite de multímetro monstruoso.png" id="1_1nhob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ca17"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(0, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdrfu"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(193, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5c8p"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(386, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jurik"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(579, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81p7t"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(772, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw5ra"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(965, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lnc7"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(1158, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk5n3"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(0, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aloqg"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(193, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ablvy"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(386, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_strbp"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(579, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoamm"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(772, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eysiw"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(965, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqthp"]
+atlas = ExtResource("1_1nhob")
+region = Rect2(1158, 579, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujq8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ca17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdrfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5c8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jurik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81p7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw5ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lnc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk5n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aloqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ablvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_strbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoamm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eysiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqthp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AtaqueMultimetro" type="Node2D" unique_id=2115383243]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1402701491]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_ujq8q")
+frame_progress = 0.36141223

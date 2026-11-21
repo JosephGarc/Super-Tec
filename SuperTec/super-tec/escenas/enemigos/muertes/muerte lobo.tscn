@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://myo884c537yi"]
+
+[ext_resource type="Texture2D" uid="uid://cytev1i6d431e" path="res://assets/personajes/enemigos/wolf_254px_spritesheet.png" id="1_u0ar8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4adwo"]
+atlas = ExtResource("1_u0ar8")
+region = Rect2(0, 1302, 254, 217)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1l8t"]
+atlas = ExtResource("1_u0ar8")
+region = Rect2(254, 1085, 254, 217)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juanp"]
+atlas = ExtResource("1_u0ar8")
+region = Rect2(508, 1085, 254, 217)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1acc"]
+atlas = ExtResource("1_u0ar8")
+region = Rect2(762, 1085, 254, 217)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aprvh"]
+atlas = ExtResource("1_u0ar8")
+region = Rect2(1016, 1085, 254, 217)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q75qt"]
+atlas = ExtResource("1_u0ar8")
+region = Rect2(1270, 1085, 254, 217)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0b8d"]
+atlas = ExtResource("1_u0ar8")
+region = Rect2(1524, 1085, 254, 217)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3bvx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4adwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1l8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juanp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1acc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aprvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q75qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0b8d")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteLobo" type="Node2D" unique_id=1863031999]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=349242648]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_u3bvx")
+frame_progress = 0.6143411

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dsqr7s56lr1do"]
+
+[ext_resource type="Texture2D" uid="uid://dhd1m8o7kx0fb" path="res://assets/personajes/enemigos/Hoja de sprites del dron enemigo volador.png" id="1_goy6u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27w2c"]
+atlas = ExtResource("1_goy6u")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4fkf"]
+atlas = ExtResource("1_goy6u")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld3cv"]
+atlas = ExtResource("1_goy6u")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw8s8"]
+atlas = ExtResource("1_goy6u")
+region = Rect2(579, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yebq3"]
+atlas = ExtResource("1_goy6u")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or2an"]
+atlas = ExtResource("1_goy6u")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j5y6n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27w2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4fkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld3cv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw8s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yebq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or2an")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dron" type="Node2D" unique_id=1718802722]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=386016566]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_j5y6n")
+frame_progress = 0.48336568

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://tekeu4r71lnw"]
+
+[ext_resource type="Texture2D" uid="uid://dqvof4nkkb2o5" path="res://assets/personajes/enemigos/Hoja de sprites del monstruo PC retro.png" id="1_of0a8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uveyi"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(1158, 772, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_meo8n"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(0, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfobh"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(193, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dhs0"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(386, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3lra"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(579, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10hab"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(772, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl135"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(965, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wlvw"]
+atlas = ExtResource("1_of0a8")
+region = Rect2(1158, 965, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ggpuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uveyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_meo8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfobh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dhs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3lra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10hab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl135")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wlvw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuertePc" type="Node2D" unique_id=942786232]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1473847731]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_ggpuh")
+frame_progress = 0.6942119

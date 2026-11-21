@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://drnnjndroinx2"]
+
+[ext_resource type="Texture2D" uid="uid://c2il6pqo7hmff" path="res://assets/personajes/enemigos/Hoja de sprites del monstruo basurero.png" id="1_5ty01"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6rj8"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(0, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wowd"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(193, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyy72"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(386, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx2dx"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(579, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4d63"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(772, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlljl"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(965, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od450"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(1158, 386, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf1t4"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(0, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta6e1"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(193, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsn7a"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(386, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar37w"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(579, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxbch"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(772, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_criin"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(965, 579, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv72u"]
+atlas = ExtResource("1_5ty01")
+region = Rect2(1158, 579, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqnqe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6rj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wowd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyy72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx2dx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4d63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlljl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od450")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf1t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta6e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsn7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar37w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxbch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_criin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv72u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AtaqueBasura" type="Node2D" unique_id=989971000]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1633628036]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_tqnqe")
+frame_progress = 0.8132031

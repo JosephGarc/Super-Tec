@@ -3,6 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://djcoulqsqke1x" path="res://assets/escenarios/campus_tileset_817x941.png" id="1_j2ni8"]
 [ext_resource type="Script" uid="uid://0b5o2qrp6416" path="res://scripts/movimiento.gd" id="2_qaa0a"]
 [ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://assets/personajes/idle.png" id="3_emqnf"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_azulito.tscn" id="pu_azulito"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_malanga_picante.tscn" id="pu_malanga_picante"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_coca_helada.tscn" id="pu_coca_helada"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_volovan.tscn" id="pu_volovan"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_taco.tscn" id="pu_taco"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/credito_eugenio.tscn" id="pu_credito"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/rata.tscn" id="en_rata"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/libro.tscn" id="en_libro"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/basura.tscn" id="en_basura"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_enahe"]
 texture = ExtResource("1_j2ni8")
@@ -3361,19 +3370,50 @@ tile_set = SubResource("TileSet_epeo7")
 tile_map_data = PackedByteArray("AAAlAAwAAAAiABQAAAAlAA0AAAAiABUAAAAmAAwAAAAjABQAAAAmAA0AAAAjABUAAAAnAAwAAAAkABQAAAAnAA0AAAAkABUAAAAoAAwAAAAlABQAAAAoAA0AAAAlABUAAAArAAwAAAAqABQAAAArAA0AAAAqABUAAAAsAAwAAAArABQAAAAsAA0AAAArABUAAAAtAAwAAAAsABQAAAAtAA0AAAAsABUAAAAuAAwAAAAtABQAAAAuAA0AAAAtABUAAAAxAAwAAAAuABQAAAAxAA0AAAAuABUAAAAyAAwAAAAvABQAAAAyAA0AAAAvABUAAAAzAAwAAAAwABQAAAAzAA0AAAAwABUAAAA0AAwAAAAxABQAAAA0AA0AAAAxABUAAAAeAAwAAAACAAwAAAAeAA0AAAACAA0AAAAfAAwAAAADAAwAAAAfAA0AAAADAA0AAAAgAAwAAAAEAAwAAAAgAA0AAAAEAA0AAAAnAAkAAAALAAoAAAAtAAkAAAALAAoAAAAzAAkAAAALAAoAAAA3AAoAAAAEAAoAAAA4AAoAAAAFAAoAAAA2AAoAAAADAAoAAAA2AAYAAAAKAAoAAAA3AAYAAAALAAoAAAA4AAYAAAAKAAoAAABIAAsAAAARAAcAAABJAAsAAAASAAcAAABXAAgAAAAPACQAAABXAAkAAAAPACUAAABXAAoAAAAPACYAAABXAAsAAAAPACcAAABXAAwAAAAPACgAAABXAA0AAAAPACkAAABYAAgAAAAQACQAAABYAAkAAAAQACUAAABYAAoAAAAQACYAAABYAAsAAAAQACcAAABYAAwAAAAQACgAAABYAA0AAAAQACkAAABZAAgAAAARACQAAABZAAkAAAARACUAAABZAAoAAAARACYAAABZAAsAAAARACcAAABZAAwAAAARACgAAABZAA0AAAARACkAAABaAAgAAAASACQAAABaAAkAAAASACUAAABaAAoAAAASACYAAABaAAsAAAASACcAAABaAAwAAAASACgAAABaAA0AAAASACkAAABbAAgAAAATACQAAABbAAkAAAATACUAAABbAAoAAAATACYAAABbAAsAAAATACcAAABbAAwAAAATACgAAABbAA0AAAATACkAAABcAAgAAAAUACQAAABcAAkAAAAUACUAAABcAAoAAAAUACYAAABcAAsAAAAUACcAAABcAAwAAAAUACgAAABcAA0AAAAUACkAAABdAAgAAAAVACQAAABdAAkAAAAVACUAAABdAAoAAAAVACYAAABdAAsAAAAVACcAAABdAAwAAAAVACgAAABdAA0AAAAVACkAAABeAAgAAAAWACQAAABeAAkAAAAWACUAAABeAAoAAAAWACYAAABeAAsAAAAWACcAAABeAAwAAAAWACgAAABeAA0AAAAWACkAAABfAAgAAAAXACQAAABfAAkAAAAXACUAAABfAAoAAAAXACYAAABfAAsAAAAXACcAAABfAAwAAAAXACgAAABfAA0AAAAXACkAAABgAAgAAAAYACQAAABgAAkAAAAYACUAAABgAAoAAAAYACYAAABgAAsAAAAYACcAAABgAAwAAAAYACgAAABgAA0AAAAYACkAAABhAAgAAAAZACQAAABhAAkAAAAZACUAAABhAAoAAAAZACYAAABhAAsAAAAZACcAAABhAAwAAAAZACgAAABhAA0AAAAZACkAAABiAAgAAAAaACQAAABiAAkAAAAaACUAAABiAAoAAAAaACYAAABiAAsAAAAaACcAAABiAAwAAAAaACgAAABiAA0AAAAaACkAAABNAAwAAAADAAoAAABOAAwAAAAEAAoAAABPAAwAAAAFAAoAAABSAAoAAAADAAoAAABTAAoAAAAEAAoAAABUAAoAAAAFAAoAAABlAAkAAAADAAoAAABmAAkAAAAEAAoAAABnAAkAAAAFAAoAAABqAAsAAAADAAoAAABrAAsAAAAEAAoAAABsAAsAAAAFAAoAAABbAAQAAAAKAAoAAABcAAQAAAALAAoAAABdAAQAAAAKAAoAAAB2AA0AAAAAAAoAAAB3AA0AAAABAAoAAAB4AA0AAAACAAoAAAA=")
 tile_set = SubResource("TileSet_2g80e")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1860264836]
-position = Vector2(-2, 1)
-script = ExtResource("2_qaa0a")
+[node name="SpawnJugador" type="Marker2D" parent="."]
+position = Vector2(38, 200)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1862827355]
-position = Vector2(39.999996, 207.99998)
-scale = Vector2(0.068, 0.068)
+[node name="PowerUps" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=948542152]
-position = Vector2(40, 210)
-shape = SubResource("RectangleShape2D_5h11f")
+[node name="Azulito1" parent="PowerUps" instance=ExtResource("pu_azulito")]
+position = Vector2(200, 214)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=2009963136]
-position = Vector2(40, 207)
-position_smoothing_enabled = true
-position_smoothing_speed = 100.0
+[node name="MalangaPicante1" parent="PowerUps" instance=ExtResource("pu_malanga_picante")]
+position = Vector2(504, 214)
+
+[node name="CocaHelada1" parent="PowerUps" instance=ExtResource("pu_coca_helada")]
+position = Vector2(968, 182)
+
+[node name="Volovan1" parent="PowerUps" instance=ExtResource("pu_volovan")]
+position = Vector2(1336, 150)
+
+[node name="Taco1" parent="PowerUps" instance=ExtResource("pu_taco")]
+position = Vector2(1720, 166)
+
+[node name="Creditos" type="Node2D" parent="."]
+
+[node name="CreditoEugenio1" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1768, 212)
+
+[node name="CreditoEugenio2" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1784, 212)
+
+[node name="CreditoEugenio3" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1800, 212)
+
+[node name="CreditoEugenio4" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1816, 212)
+
+[node name="Enemigos" type="Node2D" parent="."]
+
+[node name="Rata1" parent="Enemigos" instance=ExtResource("en_rata")]
+position = Vector2(330, 204)
+
+[node name="Libro1" parent="Enemigos" instance=ExtResource("en_libro")]
+position = Vector2(1080, 172)
+
+[node name="Basura1" parent="Enemigos" instance=ExtResource("en_basura")]
+position = Vector2(1450, 204)
+
+[node name="Rata2" parent="Enemigos" instance=ExtResource("en_rata")]
+position = Vector2(1840, 204)

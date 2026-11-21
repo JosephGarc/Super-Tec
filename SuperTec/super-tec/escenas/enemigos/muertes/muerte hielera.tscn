@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://2vqxp85kprac"]
+
+[ext_resource type="Texture2D" uid="uid://gv0sjc5ifpul" path="res://assets/personajes/enemigos/Sprite de Hielera Monstruosa en Acción.png" id="1_r66ok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0hh6"]
+atlas = ExtResource("1_r66ok")
+region = Rect2(0, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iciw3"]
+atlas = ExtResource("1_r66ok")
+region = Rect2(193, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2drs"]
+atlas = ExtResource("1_r66ok")
+region = Rect2(386, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iym3g"]
+atlas = ExtResource("1_r66ok")
+region = Rect2(579, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0hdo"]
+atlas = ExtResource("1_r66ok")
+region = Rect2(772, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h1i0"]
+atlas = ExtResource("1_r66ok")
+region = Rect2(965, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lyte"]
+atlas = ExtResource("1_r66ok")
+region = Rect2(1158, 965, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ig4t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0hh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iciw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2drs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iym3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0hdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h1i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lyte")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteHielera" type="Node2D" unique_id=89495534]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=951325856]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_5ig4t")
+frame_progress = 0.36735114

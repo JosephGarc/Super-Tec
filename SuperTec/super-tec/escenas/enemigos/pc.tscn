@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bbrc0mdfhd0os"]
+
+[ext_resource type="Texture2D" uid="uid://dqvof4nkkb2o5" path="res://assets/personajes/enemigos/Hoja de sprites del monstruo PC retro.png" id="1_ukbfy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crfiw"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de6uy"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s818i"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d7xj"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(579, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbtml"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(772, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hue7p"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj12w"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifkhm"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(0, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pt1j"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(193, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0727r"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(386, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh3ss"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(579, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcquq"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(772, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62yoi"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(965, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mowo1"]
+atlas = ExtResource("1_ukbfy")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mx5f6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crfiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de6uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s818i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d7xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbtml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hue7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj12w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifkhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pt1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0727r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh3ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcquq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62yoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mowo1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Pc" type="Node2D" unique_id=3498146]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=203563673]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_mx5f6")
+frame_progress = 0.4917517

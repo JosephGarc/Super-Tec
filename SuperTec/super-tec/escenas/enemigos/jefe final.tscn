@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://cxcr0oljnnyen"]
+
+[ext_resource type="Texture2D" uid="uid://bh7ek01oe8wlf" path="res://assets/personajes/enemigos/Hoja de sprites del hechicero académico.png" id="1_wg7vs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaa3j"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqohk"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wyyu"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx71k"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(579, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snlhc"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(772, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx7dl"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prciw"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chvmt"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(0, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3gc6"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(193, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmlcb"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(386, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac4rh"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(579, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q25yn"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(772, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogfl5"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(965, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpsun"]
+atlas = ExtResource("1_wg7vs")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxy4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaa3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqohk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wyyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx71k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snlhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx7dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prciw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chvmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3gc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmlcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac4rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q25yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogfl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpsun")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="JefeFinal" type="Node2D" unique_id=35508225]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1237560733]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_oxy4n")

@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cw4ca2uuuk3b1"]
+
+[ext_resource type="Texture2D" uid="uid://dyx8vc84b637j" path="res://assets/personajes/enemigos/Hoja de sprites_ monstruo sartén en combate.png" id="1_xtejs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifswn"]
+atlas = ExtResource("1_xtejs")
+region = Rect2(0, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgu1m"]
+atlas = ExtResource("1_xtejs")
+region = Rect2(193, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1n23"]
+atlas = ExtResource("1_xtejs")
+region = Rect2(386, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rgg7"]
+atlas = ExtResource("1_xtejs")
+region = Rect2(579, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3hla"]
+atlas = ExtResource("1_xtejs")
+region = Rect2(772, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2hn2"]
+atlas = ExtResource("1_xtejs")
+region = Rect2(965, 965, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyk0u"]
+atlas = ExtResource("1_xtejs")
+region = Rect2(1158, 965, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uyrhy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifswn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgu1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1n23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rgg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3hla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2hn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyk0u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteSarten" type="Node2D" unique_id=477673220]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=413210857]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_uyrhy")
+frame_progress = 0.1418226

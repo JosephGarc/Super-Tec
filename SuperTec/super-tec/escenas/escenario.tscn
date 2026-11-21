@@ -3,9 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://assets/personajes/idle.png" id="2_kb1ak"]
 [ext_resource type="Texture2D" uid="uid://djcoulqsqke1x" path="res://assets/escenarios/campus_tileset_817x941.png" id="2_nnu1l"]
 [ext_resource type="Script" uid="uid://0b5o2qrp6416" path="res://scripts/movimiento.gd" id="3_5uytk"]
-[ext_resource type="PackedScene" path="res://escenas/powerups/azulito.tscn" id="4_azulito"]
-[ext_resource type="PackedScene" path="res://escenas/powerups/malanga_fuego.tscn" id="5_malanga_fuego"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_azulito.tscn" id="4_azulito"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_malanga_picante.tscn" id="5_malanga_fuego"]
 [ext_resource type="PackedScene" path="res://escenas/enemigos/galleta.tscn" id="6_galleta"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_coca_helada.tscn" id="pu_coca_helada"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_volovan.tscn" id="pu_volovan"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_taco.tscn" id="pu_taco"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/credito_eugenio.tscn" id="pu_credito"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/rata.tscn" id="en_rata"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/libro.tscn" id="en_libro"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/basura.tscn" id="en_basura"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ycel"]
 texture = ExtResource("2_nnu1l")
@@ -3531,19 +3538,65 @@ position = Vector2(1400, 167)
 patrol_left = -16.0
 patrol_right = 16.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1105957380]
-position = Vector2(-2, 0)
-script = ExtResource("3_5uytk")
+[node name="SpawnJugador" type="Marker2D" parent="."]
+position = Vector2(11, 178)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=157291278]
-position = Vector2(13, 187)
-shape = SubResource("RectangleShape2D_rdr0v")
+[node name="PowerUps" type="Node2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1161399085]
-position = Vector2(13, 185)
-scale = Vector2(0.068, 0.068)
+[node name="CocaHelada1" parent="PowerUps" instance=ExtResource("pu_coca_helada")]
+position = Vector2(1016, 199)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1529875439]
-position = Vector2(12, 186)
-position_smoothing_enabled = true
-position_smoothing_speed = 100.0
+[node name="Volovan1" parent="PowerUps" instance=ExtResource("pu_volovan")]
+position = Vector2(1352, 199)
+
+[node name="Taco1" parent="PowerUps" instance=ExtResource("pu_taco")]
+position = Vector2(1704, 199)
+
+[node name="Creditos" type="Node2D" parent="."]
+
+[node name="CreditoEugenio1" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(424, 197)
+
+[node name="CreditoEugenio2" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(440, 197)
+
+[node name="CreditoEugenio3" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(456, 197)
+
+[node name="CreditoEugenio4" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(472, 197)
+
+[node name="CreditoEugenio5" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1176, 197)
+
+[node name="CreditoEugenio6" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1192, 197)
+
+[node name="CreditoEugenio7" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1208, 197)
+
+[node name="CreditoEugenio8" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1224, 197)
+
+[node name="CreditoEugenio9" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1752, 197)
+
+[node name="CreditoEugenio10" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1768, 197)
+
+[node name="CreditoEugenio11" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1784, 197)
+
+[node name="CreditoEugenio12" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1800, 197)
+
+[node name="Enemigos" type="Node2D" parent="."]
+
+[node name="Rata1" parent="Enemigos" instance=ExtResource("en_rata")]
+position = Vector2(479, 188)
+
+[node name="Libro1" parent="Enemigos" instance=ExtResource("en_libro")]
+position = Vector2(1149, 188)
+
+[node name="Basura1" parent="Enemigos" instance=ExtResource("en_basura")]
+position = Vector2(1679, 188)

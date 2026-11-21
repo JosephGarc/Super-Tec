@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://c2brwltmlaqbl"]
+
+[ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://assets/personajes/idle.png" id="1_dk1fs"]
+[ext_resource type="Script" uid="uid://cvdrjr304ct84" path="res://scripts/personajes_juegos/joshua.gd" id="1_njmr3"]
+[ext_resource type="Texture2D" uid="uid://cpcyjiuxovry7" path="res://assets/personajes/jump.png" id="2_bubpa"]
+[ext_resource type="Texture2D" uid="uid://y0ge0687xask" path="res://assets/personajes/walk.png" id="3_7qagj"]
+[ext_resource type="Script" path="res://scripts/powerups/power_up_controller.gd" id="pw_controller"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/proyectil_powerup.tscn" id="pw_proyectil"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gv6ty"]
+radius = 7.0
+height = 30.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3obpf"]
+atlas = ExtResource("2_bubpa")
+region = Rect2(352, 508, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gxxj"]
+atlas = ExtResource("2_bubpa")
+region = Rect2(352, 508, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njmr3"]
+atlas = ExtResource("1_dk1fs")
+region = Rect2(0, 1016, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlnnp"]
+atlas = ExtResource("2_bubpa")
+region = Rect2(0, 0, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei3u3"]
+atlas = ExtResource("2_bubpa")
+region = Rect2(0, 508, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hkk8"]
+atlas = ExtResource("2_bubpa")
+region = Rect2(352, 0, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8gos"]
+atlas = ExtResource("3_7qagj")
+region = Rect2(0, 0, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d6lq"]
+atlas = ExtResource("3_7qagj")
+region = Rect2(352, 0, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t65ho"]
+atlas = ExtResource("3_7qagj")
+region = Rect2(0, 508, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7bdm"]
+atlas = ExtResource("3_7qagj")
+region = Rect2(352, 508, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxay4"]
+atlas = ExtResource("3_7qagj")
+region = Rect2(0, 1016, 352, 508)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekm43"]
+atlas = ExtResource("3_7qagj")
+region = Rect2(352, 1016, 352, 508)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gv6ty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3obpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gxxj")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njmr3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlnnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei3u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hkk8")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8gos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d6lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t65ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7bdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxay4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekm43")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1649217228]
+script = ExtResource("1_njmr3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1276372299]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_gv6ty")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=356115853]
+scale = Vector2(0.068, 0.068)
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_gv6ty")
+animation = &"walk"
+frame_progress = 0.7647401
+
+[node name="PowerUpController" type="Node" parent="."]
+script = ExtResource("pw_controller")
+projectile_scene = ExtResource("pw_proyectil")
+projectile_spawn_offset = 12.0

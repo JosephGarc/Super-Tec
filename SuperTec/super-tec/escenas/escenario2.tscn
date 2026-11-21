@@ -3,6 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://djcoulqsqke1x" path="res://assets/escenarios/campus_tileset_817x941.png" id="1_7cet6"]
 [ext_resource type="Script" uid="uid://b1y1jfi5n4ji3" path="res://scripts/personaje_2d.gd" id="2_etwaf"]
 [ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://assets/personajes/idle.png" id="2_gvhsl"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_azulito.tscn" id="pu_azulito"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_malanga_picante.tscn" id="pu_malanga_picante"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_coca_helada.tscn" id="pu_coca_helada"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_volovan.tscn" id="pu_volovan"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_taco.tscn" id="pu_taco"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/credito_eugenio.tscn" id="pu_credito"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/rata.tscn" id="en_rata"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/libro.tscn" id="en_libro"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/basura.tscn" id="en_basura"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gvhsl"]
 texture = ExtResource("1_7cet6")
@@ -3261,18 +3270,74 @@ tile_set = SubResource("TileSet_a33dj")
 tile_map_data = PackedByteArray("AAALAA8AAAAbABAAAAAMAA8AAAAcABAAAAANAA4AAAAbABAAAAAOAA4AAAAcABAAAAAPAA0AAAAbABAAAAAQAA0AAAAcABAAAAARAAwAAAAbABAAAAASAAwAAAAcABAAAAAVAAwAAAAdABAAAAAWAAwAAAAeABAAAAAXAA0AAAAdABAAAAAYAA0AAAAeABAAAAAZAA4AAAAdABAAAAAaAA4AAAAeABAAAAAbAA8AAAAdABAAAAAcAA8AAAAeABAAAAAPAA4AAAASABEAAAAPAA8AAAASABEAAAAOAA8AAAASABEAAAANAA8AAAASABEAAAAQAA8AAAASABEAAAAQAA4AAAASABEAAAARAA4AAAASABEAAAARAA8AAAASABEAAAARAA0AAAASABEAAAASAA0AAAASABEAAAASAA4AAAASABEAAAASAA8AAAASABEAAAAVAA0AAAASABEAAAAVAA4AAAASABEAAAAVAA8AAAASABEAAAAWAA8AAAASABEAAAAWAA4AAAASABEAAAAWAA0AAAASABEAAAAXAA4AAAASABEAAAAXAA8AAAASABEAAAAYAA4AAAASABEAAAAYAA8AAAASABEAAAAZAA8AAAASABEAAAAaAA8AAAASABEAAAAAAA0AAAAeABQAAAAAAA4AAAAeABUAAAABAA0AAAAfABQAAAABAA4AAAAfABUAAAAEAA4AAAARABcAAAADAAwAAAAYABcAAAAEAAwAAAAZABcAAAALAAwAAAAYABcAAAAMAAwAAAAZABcAAAAHAAoAAAAXABcAAAAfAA4AAAAgABQAAAAgAA4AAAAhABQAAAAkAA4AAAARABEAAAAkAA8AAAARABIAAAAlAA4AAAASABEAAAAlAA8AAAASABIAAAApAA4AAAARABEAAAApAA8AAAARABIAAAAqAA4AAAASABEAAAAqAA8AAAASABIAAAAuAA4AAAARABEAAAAuAA8AAAARABIAAAAvAA4AAAASABEAAAAvAA8AAAASABIAAAAjAA4AAAAZABAAAAAmAA4AAAAaABAAAAAoAA4AAAAZABAAAAArAA4AAAAaABAAAAAtAA4AAAAZABAAAAAwAA4AAAAaABAAAAB1AA4AAAAAABoAAAB2AA4AAAABABoAAAB3AA4AAAACABoAAAA2AA4AAAARABcAAAA3AA4AAAASABcAAAA4AA4AAAATABcAAAA5AA4AAAAUABcAAAA/AA4AAAARABcAAABAAA4AAAASABcAAABBAA4AAAATABcAAABCAA4AAAAUABcAAABHAA4AAAARABcAAABIAA4AAAASABcAAABJAA4AAAATABcAAABKAA4AAAAUABcAAAA7AAwAAAAUABQAAAA7AA0AAAAUABUAAAA8AAwAAAAVABQAAAA8AA0AAAAVABUAAAA9AAwAAAAWABQAAAA9AA0AAAAWABUAAABEAAwAAAAUABQAAABEAA0AAAAUABUAAABFAAwAAAAVABQAAABFAA0AAAAVABUAAABGAAwAAAAWABQAAABGAA0AAAAWABUAAAA3AAQAAAAaABQAAAA3AAUAAAAaABUAAAA4AAQAAAAbABQAAAA4AAUAAAAbABUAAAAoAAoAAAAaABQAAAAoAAsAAAAaABUAAAApAAoAAAAbABQAAAApAAsAAAAbABUAAAAqAAoAAAAcABQAAAAqAAsAAAAcABUAAAArAAoAAAAdABQAAAArAAsAAAAdABUAAAAOAAcAAAAaABQAAAAOAAgAAAAaABUAAAAPAAcAAAAbABQAAAAPAAgAAAAbABUAAAAQAAcAAAAcABQAAAAQAAgAAAAcABUAAAARAAcAAAAdABQAAAARAAgAAAAdABUAAAAZAAkAAAAaABQAAAAZAAoAAAAaABUAAAAaAAkAAAAbABQAAAAaAAoAAAAbABUAAAAbAAkAAAAcABQAAAAbAAoAAAAcABUAAAAcAAkAAAAdABQAAAAcAAoAAAAdABUAAAABAAgAAAAaABQAAAABAAkAAAAaABUAAAACAAgAAAAbABQAAAACAAkAAAAbABUAAAADAAgAAAAcABQAAAADAAkAAAAcABUAAAAEAAgAAAAdABQAAAAEAAkAAAAdABUAAABPAAwAAAARABAAAABPAA0AAAARABEAAABPAA4AAAARABIAAABQAAwAAAASABAAAABQAA0AAAASABEAAABQAA4AAAASABIAAABRAAwAAAATABAAAABRAA0AAAATABEAAABRAA4AAAASABEAAABSAAkAAAARABAAAABSAAoAAAARABEAAABSAAsAAAARABIAAABTAAkAAAASABAAAABTAAoAAAASABEAAABTAAsAAAASABIAAABUAAkAAAATABAAAABUAAoAAAATABEAAABUAAsAAAATABIAAABYAAkAAAARABAAAABYAAoAAAARABEAAABYAAsAAAARABIAAABZAAkAAAASABAAAABZAAoAAAASABEAAABZAAsAAAASABIAAABaAAkAAAATABAAAABaAAoAAAATABEAAABaAAsAAAATABIAAABbAAwAAAARABAAAABbAA0AAAARABEAAABbAA4AAAARABIAAABcAAwAAAASABAAAABcAA0AAAASABEAAABcAA4AAAASABIAAABdAAwAAAATABAAAABdAA0AAAATABEAAABdAA4AAAATABIAAABSAAwAAAASABEAAABSAA0AAAASABEAAABSAA4AAAASABEAAABTAA4AAAASABEAAABTAA0AAAASABEAAABTAAwAAAASABEAAABUAAwAAAASABEAAABUAA0AAAASABEAAABUAA4AAAASABEAAABYAAwAAAASABEAAABYAA0AAAASABEAAABYAA4AAAASABEAAABZAA4AAAASABEAAABZAA0AAAASABEAAABZAAwAAAASABEAAABaAAwAAAASABEAAABaAA0AAAASABEAAABaAA4AAAASABEAAABHAA0AAAAVABIAAABIAA0AAAAWABIAAABKAAsAAAAVABIAAABLAAsAAAAWABIAAABQAAgAAAAVABIAAABRAAgAAAAWABIAAABGAAkAAAAVABIAAABHAAkAAAAWABIAAABLAAcAAAAVABIAAABMAAcAAAAWABIAAABVAAUAAAAWABIAAABWAAUAAAAVABIAAABXAAUAAAAWABIAAABYAAUAAAAVABIAAABZAAUAAAAWABIAAABUAAUAAAAWABIAAABTAAUAAAAVABIAAABgAAYAAAAXABQAAABgAAcAAAAXABUAAABhAAYAAAAYABQAAABhAAcAAAAYABUAAABiAAYAAAAZABQAAABiAAcAAAAZABUAAABtAAoAAAAXABQAAABtAAsAAAAXABUAAABuAAoAAAAYABQAAABuAAsAAAAYABUAAABvAAoAAAAZABQAAABvAAsAAAAZABUAAAB1AAwAAAAYABcAAAB2AAwAAAAZABcAAABiAA4AAAAgABQAAABjAA4AAAAhABQAAABsAA4AAAAgABQAAABtAA4AAAAhABQAAAA=")
 tile_set = SubResource("TileSet_epeo7")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1466864487]
-script = ExtResource("2_etwaf")
+[node name="SpawnJugador" type="Marker2D" parent="."]
+position = Vector2(55, 212)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=200544435]
-position = Vector2(55, 221)
-scale = Vector2(0.068, 0.068)
+[node name="PowerUps" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=84136153]
-position = Vector2(55, 223)
-shape = SubResource("RectangleShape2D_5h11f")
+[node name="Azulito1" parent="PowerUps" instance=ExtResource("pu_azulito")]
+position = Vector2(184, 229)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1050701317]
-position = Vector2(55, 219)
-position_smoothing_enabled = true
-position_smoothing_speed = 100.0
+[node name="MalangaPicante1" parent="PowerUps" instance=ExtResource("pu_malanga_picante")]
+position = Vector2(536, 229)
+
+[node name="CocaHelada1" parent="PowerUps" instance=ExtResource("pu_coca_helada")]
+position = Vector2(968, 229)
+
+[node name="Volovan1" parent="PowerUps" instance=ExtResource("pu_volovan")]
+position = Vector2(1480, 182)
+
+[node name="Taco1" parent="PowerUps" instance=ExtResource("pu_taco")]
+position = Vector2(1704, 229)
+
+[node name="Creditos" type="Node2D" parent="."]
+
+[node name="CreditoEugenio1" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(88, 227)
+
+[node name="CreditoEugenio2" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(104, 227)
+
+[node name="CreditoEugenio3" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(120, 227)
+
+[node name="CreditoEugenio4" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(136, 227)
+
+[node name="CreditoEugenio5" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1064, 227)
+
+[node name="CreditoEugenio6" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1080, 227)
+
+[node name="CreditoEugenio7" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1096, 227)
+
+[node name="CreditoEugenio8" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1112, 227)
+
+[node name="CreditoEugenio9" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1544, 227)
+
+[node name="CreditoEugenio10" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1560, 227)
+
+[node name="CreditoEugenio11" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1576, 227)
+
+[node name="CreditoEugenio12" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(1592, 227)
+
+[node name="Enemigos" type="Node2D" parent="."]
+
+[node name="Rata1" parent="Enemigos" instance=ExtResource("en_rata")]
+position = Vector2(496, 220)
+
+[node name="Libro1" parent="Enemigos" instance=ExtResource("en_libro")]
+position = Vector2(950, 220)
+
+[node name="Basura1" parent="Enemigos" instance=ExtResource("en_basura")]
+position = Vector2(1568, 220)
+
+[node name="Rata2" parent="Enemigos" instance=ExtResource("en_rata")]
+position = Vector2(1800, 220)

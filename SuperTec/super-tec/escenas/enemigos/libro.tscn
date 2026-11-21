@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bibhdv6hyrfp"]
+
+[ext_resource type="Texture2D" uid="uid://dfklrkqewxxmt" path="res://assets/personajes/enemigos/Hoja de sprites del libro monstruo.png" id="1_vouwo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjanw"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(0, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txutx"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(193, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiifp"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(386, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u6hp"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(579, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbymb"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(772, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xcpp"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(965, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylw8i"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(1158, 0, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65f3s"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(0, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbj55"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(193, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86wlw"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(386, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6upd"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(579, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk8l3"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(772, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtxlw"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(965, 193, 193, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hc1h"]
+atlas = ExtResource("1_vouwo")
+region = Rect2(1158, 193, 193, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5fqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjanw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txutx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiifp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u6hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbymb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xcpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylw8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65f3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbj55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86wlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6upd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk8l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtxlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hc1h")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Libro" type="Node2D" unique_id=1628014746]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=220064260]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_p5fqk")
+frame_progress = 0.11555003

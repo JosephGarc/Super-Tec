@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemigos/enemigo_basico.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/dron.tscn" id="2_visual"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/ataques/ataque dron.tscn" id="3_ataque"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/muertes/muerte dron.tscn" id="4_muerte"]
+
+[sub_resource type="RectangleShape2D" id="forma"]
+size = Vector2(12.6, 12.6)
+
+[node name="Dron" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 17
+script = ExtResource("1_script")
+escena_visual = ExtResource("2_visual")
+escena_ataque = ExtResource("3_ataque")
+escena_muerte = ExtResource("4_muerte")
+alto_en_pantalla = 21.81
+desfase_y = 0.49
+vuela = true
+velocidad = 35.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("forma")

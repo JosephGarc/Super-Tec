@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemigos/enemigo_basico.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/William Shakespeare.tscn" id="2_visual"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/ataques/ataque William Shakespeare.tscn" id="3_ataque"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/muertes/muerte William Shakespeare.tscn" id="4_muerte"]
+
+[sub_resource type="RectangleShape2D" id="forma"]
+size = Vector2(13.7, 18.0)
+
+[node name="WilliamShakespeare" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 17
+script = ExtResource("1_script")
+escena_visual = ExtResource("2_visual")
+escena_ataque = ExtResource("3_ataque")
+escena_muerte = ExtResource("4_muerte")
+alto_en_pantalla = 20.99
+desfase_y = -0.94
+vuela = false
+velocidad = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("forma")

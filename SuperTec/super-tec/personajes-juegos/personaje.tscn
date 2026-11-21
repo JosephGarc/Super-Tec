@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c2mnbk26j8qr7"]
 
-[ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://idle.png" id="1_5b6me"]
+[ext_resource type="Texture2D" uid="uid://dw6l0n8hsmwve" path="res://assets/personajes/idle.png" id="1_5b6me"]
 
 [node name="Personaje" type="Node2D" unique_id=459763229]
 

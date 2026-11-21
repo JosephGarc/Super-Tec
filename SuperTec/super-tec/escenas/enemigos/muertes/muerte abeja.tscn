@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://la527hvnp2e8"]
+
+[ext_resource type="Texture2D" uid="uid://bccugr5i22ax4" path="res://assets/personajes/enemigos/Hoja de sprites de avispa mecánica retro.png" id="1_2q1yh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aenp"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(358, 895, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwqfs"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(537, 895, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um7rh"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(716, 895, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yd3h"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(895, 895, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tayqi"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(1074, 895, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yywj"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(0, 1074, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srjx6"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(179, 1074, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffc1j"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(537, 1074, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gy4jh"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(716, 1074, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80m04"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(895, 1074, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gli1u"]
+atlas = ExtResource("1_2q1yh")
+region = Rect2(1074, 1074, 179, 179)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ynaqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aenp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwqfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_um7rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yd3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tayqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yywj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srjx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffc1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gy4jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80m04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gli1u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MuerteAbeja" type="Node2D" unique_id=1291100928]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1641974796]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_ynaqf")
+frame_progress = 0.81796175

@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://chxgs0npwo8sl"]
+
+[ext_resource type="Texture2D" uid="uid://bccugr5i22ax4" path="res://assets/personajes/enemigos/Hoja de sprites de avispa mecánica retro.png" id="1_4o2bx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1ell"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(537, 358, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12hdr"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(716, 358, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3hpx"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(358, 537, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3c6d"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(537, 537, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij45s"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(716, 537, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66r11"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(895, 537, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4fxu"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(1074, 537, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmyiw"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(0, 716, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjmok"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(179, 716, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n661t"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(358, 716, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajoqy"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(537, 716, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wynif"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(716, 716, 179, 179)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv0f4"]
+atlas = ExtResource("1_4o2bx")
+region = Rect2(895, 716, 179, 179)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cp28n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1ell")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12hdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3hpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3c6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij45s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66r11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4fxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmyiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjmok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n661t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajoqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wynif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv0f4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AtaqueAbeja" type="Node2D" unique_id=1645473334]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2072081954]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_cp28n")
+frame_progress = 0.7881003

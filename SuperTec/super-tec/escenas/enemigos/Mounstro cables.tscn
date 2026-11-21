@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://c3h2iwyn58k78"]
+
+[ext_resource type="Texture2D" uid="uid://c468cde5dapsu" path="res://assets/personajes/enemigos/gpt-image-2.5-sunburst_Un_sprite_de_activo_de_juego_2D_un_solo_personaje_un_monstruo_enredado_hecho_de_-0.jpg" id="1_klo7q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61x4i"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(0, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y884l"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(204, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx3xi"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(408, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cr32"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(612, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8a3s"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(816, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy76g"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(0, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erbvt"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(204, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itjk0"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(408, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk3ka"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(612, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a86fp"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(816, 204, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb0x3"]
+atlas = ExtResource("1_klo7q")
+region = Rect2(0, 408, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jhur"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61x4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y884l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx3xi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cr32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8a3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy76g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erbvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itjk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk3ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a86fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb0x3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MounstroCables" type="Node2D" unique_id=652687137]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1327319883]
+position = Vector2(543, 167.32813)
+scale = Vector2(1.3046875, 1.1830577)
+sprite_frames = SubResource("SpriteFrames_7jhur")
+frame_progress = 0.1700957
