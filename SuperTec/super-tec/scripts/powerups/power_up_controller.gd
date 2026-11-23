@@ -1,6 +1,8 @@
 extends Node
 class_name PowerUpController
 
+const SONIDO := preload("res://scripts/juego/sonido.gd")
+
 ## Componente para agregar como hijo del personaje. El personaje debe
 ## exponer `facing_direction: Vector2` y `collect_power_up(id: String)`.
 ## Hecho por Joseph (proyecto Godot_Joshua_PowerUps) e integrado a Super Tec.
@@ -105,6 +107,7 @@ func _shoot() -> void:
 	projectile.set("direction", _facing_direction())
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = character.global_position + _facing_direction() * projectile_spawn_offset
+	SONIDO.efecto("disparo_hielo" if attack_kind == "ice" else "disparo_fuego")
 
 func _facing_direction() -> Vector2:
 	if character.get("facing_direction") is Vector2:

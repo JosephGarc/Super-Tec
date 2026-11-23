@@ -1,0 +1,156 @@
+[gd_scene format=4 uid="uid://max5qm0oykpx"]
+
+[ext_resource type="TileSet" uid="uid://dtfon4vgdy76l" path="res://assets/escenarios/mapas_nuevos/campus_tileset.tres" id="1_puswg"]
+[ext_resource type="Script" uid="uid://dqpuy84ly4yc6" path="res://scripts/escenarios/mapas_nuevos/zona_muerte.gd" id="2_begye"]
+[ext_resource type="Script" uid="uid://cerce5q6mb1gh" path="res://scripts/escenarios/mapas_nuevos/meta.gd" id="3_begye"]
+[ext_resource type="Script" uid="uid://cn2w51plbtkx7" path="res://scripts/escenarios/mapas_nuevos/constructor_nivel.gd" id="3_svohl"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_coca_helada.tscn" id="pu_coca_helada"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_malanga_picante.tscn" id="pu_malanga_picante"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_volovan.tscn" id="pu_volovan"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_taco.tscn" id="pu_taco"]
+[ext_resource type="PackedScene" path="res://escenas/powerups/pickups/credito_eugenio.tscn" id="pu_credito"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/abeja.tscn" id="en_abeja"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/examen_volador.tscn" id="en_examen_volador"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/lobo.tscn" id="en_lobo"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/monstruo_cables.tscn" id="en_monstruo_cables"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/pc.tscn" id="en_pc"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/villano.tscn" id="en_villano"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a33dj"]
+size = Vector2(2888, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epeo7"]
+size = Vector2(16, 32)
+
+[node name="Nivel6" type="Node2D" unique_id=2054662290]
+metadata/_edit_vertical_guides_ = [963.0]
+
+[node name="Fondo" type="TileMapLayer" parent="." unique_id=62465776]
+z_index = -1
+tile_map_data = PackedByteArray("AAADAAcAAwAFAAcAAAAEAAcAAwAGAAcAAAADAAgAAwAFAAgAAAAEAAgAAwAGAAgAAAADAAkAAwAFAAkAAAAEAAkAAwAGAAkAAAADAAoAAwAFAAoAAAAEAAoAAwAGAAoAAAADAAsAAwAFAAsAAAAEAAsAAwAGAAsAAAADAAwAAwAFAAwAAAAEAAwAAwAGAAwAAAAIAAwAAwAAAAEAAAANAAkAAwAAAAcAAAAOAAkAAwABAAcAAAAPAAkAAwACAAcAAAANAAoAAwAAAAgAAAAOAAoAAwABAAgAAAAPAAoAAwACAAgAAAANAAsAAwAAAAkAAAAOAAsAAwABAAkAAAAPAAsAAwACAAkAAAAOAAwAAwABAAoAAAATAAwAAwABAAEAAAAYAAcAAwAFAAcAAAAZAAcAAwAGAAcAAAAYAAgAAwAFAAgAAAAZAAgAAwAGAAgAAAAYAAkAAwAFAAkAAAAZAAkAAwAGAAkAAAAYAAoAAwAFAAoAAAAZAAoAAwAGAAoAAAAYAAsAAwAFAAsAAAAZAAsAAwAGAAsAAAAYAAwAAwAFAAwAAAAZAAwAAwAGAAwAAAAhAAcAAwAFAAcAAAAiAAcAAwAGAAcAAAAhAAgAAwAFAAgAAAAiAAgAAwAGAAgAAAAhAAkAAwAFAAkAAAAiAAkAAwAGAAkAAAAhAAoAAwAFAAoAAAAiAAoAAwAGAAoAAAAhAAsAAwAFAAsAAAAiAAsAAwAGAAsAAAAhAAwAAwAFAAwAAAAiAAwAAwAGAAwAAAAmAAwAAwAAAAEAAAAwAAkAAwAAAAcAAAAxAAkAAwABAAcAAAAyAAkAAwACAAcAAAAwAAoAAwAAAAgAAAAxAAoAAwABAAgAAAAyAAoAAwACAAgAAAAwAAsAAwAAAAkAAAAxAAsAAwABAAkAAAAyAAsAAwACAAkAAAAxAAwAAwABAAoAAAA2AAwAAwABAAEAAABIAAcAAwAFAAcAAABJAAcAAwAGAAcAAABIAAgAAwAFAAgAAABJAAgAAwAGAAgAAABIAAkAAwAFAAkAAABJAAkAAwAGAAkAAABIAAoAAwAFAAoAAABJAAoAAwAGAAoAAABIAAsAAwAFAAsAAABJAAsAAwAGAAsAAABIAAwAAwAFAAwAAABJAAwAAwAGAAwAAABNAAcAAwAFAAcAAABOAAcAAwAGAAcAAABNAAgAAwAFAAgAAABOAAgAAwAGAAgAAABNAAkAAwAFAAkAAABOAAkAAwAGAAkAAABNAAoAAwAFAAoAAABOAAoAAwAGAAoAAABNAAsAAwAFAAsAAABOAAsAAwAGAAsAAABNAAwAAwAFAAwAAABOAAwAAwAGAAwAAABSAAwAAwAAAAEAAABWAAkAAwAAAAcAAABXAAkAAwABAAcAAABYAAkAAwACAAcAAABWAAoAAwAAAAgAAABXAAoAAwABAAgAAABYAAoAAwACAAgAAABWAAsAAwAAAAkAAABXAAsAAwABAAkAAABYAAsAAwACAAkAAABXAAwAAwABAAoAAABfAAwAAwABAAEAAABkAAwAAwAAAAEAAABoAAwAAwABAAEAAABuAAcAAwAFAAcAAABvAAcAAwAGAAcAAABuAAgAAwAFAAgAAABvAAgAAwAGAAgAAABuAAkAAwAFAAkAAABvAAkAAwAGAAkAAABuAAoAAwAFAAoAAABvAAoAAwAGAAoAAABuAAsAAwAFAAsAAABvAAsAAwAGAAsAAABuAAwAAwAFAAwAAABvAAwAAwAGAAwAAABzAAcAAwAFAAcAAAB0AAcAAwAGAAcAAABzAAgAAwAFAAgAAAB0AAgAAwAGAAgAAABzAAkAAwAFAAkAAAB0AAkAAwAGAAkAAABzAAoAAwAFAAoAAAB0AAoAAwAGAAoAAABzAAsAAwAFAAsAAAB0AAsAAwAGAAsAAABzAAwAAwAFAAwAAAB0AAwAAwAGAAwAAACJAAwAAwAAAAEAAACVAAkAAwAAAAcAAACWAAkAAwABAAcAAACXAAkAAwACAAcAAACVAAoAAwAAAAgAAACWAAoAAwABAAgAAACXAAoAAwACAAgAAACVAAsAAwAAAAkAAACWAAsAAwABAAkAAACXAAsAAwACAAkAAACWAAwAAwABAAoAAACbAAwAAwABAAEAAACfAAcAAwAFAAcAAACgAAcAAwAGAAcAAACfAAgAAwAFAAgAAACgAAgAAwAGAAgAAACfAAkAAwAFAAkAAACgAAkAAwAGAAkAAACfAAoAAwAFAAoAAACgAAoAAwAGAAoAAACfAAsAAwAFAAsAAACgAAsAAwAGAAsAAACfAAwAAwAFAAwAAACgAAwAAwAGAAwAAACkAAcAAwAFAAcAAAClAAcAAwAGAAcAAACkAAgAAwAFAAgAAAClAAgAAwAGAAgAAACkAAkAAwAFAAkAAAClAAkAAwAGAAkAAACkAAoAAwAFAAoAAAClAAoAAwAGAAoAAACkAAsAAwAFAAsAAAClAAsAAwAGAAsAAACkAAwAAwAFAAwAAAClAAwAAwAGAAwAAAAFAAIAAwAaABgAAAAGAAIAAwAbABgAAAAHAAIAAwAcABgAAAAFAAMAAwAaABkAAAAGAAMAAwAbABkAAAAHAAMAAwAcABkAAAAcAAMAAwAaABgAAAAdAAMAAwAbABgAAAAeAAMAAwAcABgAAAAcAAQAAwAaABkAAAAdAAQAAwAbABkAAAAeAAQAAwAcABkAAAAzAAQAAwAaABgAAAA0AAQAAwAbABgAAAA1AAQAAwAcABgAAAAzAAUAAwAaABkAAAA0AAUAAwAbABkAAAA1AAUAAwAcABkAAABKAAIAAwAaABgAAABLAAIAAwAbABgAAABMAAIAAwAcABgAAABKAAMAAwAaABkAAABLAAMAAwAbABkAAABMAAMAAwAcABkAAABhAAMAAwAaABgAAABiAAMAAwAbABgAAABjAAMAAwAcABgAAABhAAQAAwAaABkAAABiAAQAAwAbABkAAABjAAQAAwAcABkAAAB4AAQAAwAaABgAAAB5AAQAAwAbABgAAAB6AAQAAwAcABgAAAB4AAUAAwAaABkAAAB5AAUAAwAbABkAAAB6AAUAAwAcABkAAACPAAIAAwAaABgAAACQAAIAAwAbABgAAACRAAIAAwAcABgAAACPAAMAAwAaABkAAACQAAMAAwAbABkAAACRAAMAAwAcABkAAAA=")
+tile_set = ExtResource("1_puswg")
+collision_enabled = false
+
+[node name="Suelo" type="TileMapLayer" parent="." unique_id=1972702284]
+tile_map_data = PackedByteArray("AABAAAkAAwANAAAAAABEAAoAAwANAAAAAABFAAoAAwANAAAAAAB6AAoAAwANAAAAAAB7AAoAAwANAAAAAAAdAAsAAwALAAEAAAAdAAwAAwALAAEAAAAAAA0AAwAEAAAAAAABAA0AAwAEAAAAAAACAA0AAwAEAAAAAAADAA0AAwAEAAAAAAAEAA0AAwAEAAAAAAAFAA0AAwAEAAAAAAAGAA0AAwAEAAAAAAAHAA0AAwAEAAAAAAAIAA0AAwAEAAAAAAAJAA0AAwAEAAAAAAANAA0AAwAEAAAAAAATAA0AAwAEAAAAAAAUAA0AAwAEAAAAAAAaAA0AAwAEAAAAAAAdAA0AAwAEAAAAAAAhAA0AAwAEAAAAAAAiAA0AAwAEAAAAAAAmAA0AAwAEAAAAAAAnAA0AAwAEAAAAAAAwAA0AAwAEAAAAAAAxAA0AAwAEAAAAAAAyAA0AAwAEAAAAAAAzAA0AAwAEAAAAAAA0AA0AAwAEAAAAAAA1AA0AAwAEAAAAAAA2AA0AAwAEAAAAAAA3AA0AAwAEAAAAAABNAA0AAwAEAAAAAABOAA0AAwAEAAAAAABSAA0AAwAEAAAAAABTAA0AAwAEAAAAAABUAA0AAwAEAAAAAABVAA0AAwAEAAAAAABWAA0AAwAEAAAAAABXAA0AAwAEAAAAAABYAA0AAwAEAAAAAABZAA0AAwAEAAAAAABaAA0AAwAEAAAAAABbAA0AAwAEAAAAAABfAA0AAwAEAAAAAABoAA0AAwAEAAAAAABuAA0AAwAEAAAAAABwAA0AAwAEAAAAAABxAA0AAwAEAAAAAAByAA0AAwAEAAAAAABzAA0AAwAEAAAAAAB0AA0AAwAEAAAAAAB1AA0AAwAEAAAAAAB2AA0AAwAEAAAAAAB3AA0AAwAEAAAAAACJAA0AAwAEAAAAAACKAA0AAwAEAAAAAACLAA0AAwAEAAAAAACMAA0AAwAEAAAAAACNAA0AAwAEAAAAAACOAA0AAwAEAAAAAACPAA0AAwAEAAAAAACQAA0AAwAEAAAAAACRAA0AAwAEAAAAAACSAA0AAwAEAAAAAACTAA0AAwAEAAAAAACUAA0AAwAEAAAAAACVAA0AAwAEAAAAAACWAA0AAwAEAAAAAACXAA0AAwAEAAAAAAAAAA4AAwAFAAAAAAABAA4AAwAFAAAAAAACAA4AAwAFAAAAAAADAA4AAwAFAAAAAAAEAA4AAwAFAAAAAAAFAA4AAwAFAAAAAAAGAA4AAwAFAAAAAAAHAA4AAwAFAAAAAAAIAA4AAwAFAAAAAAAJAA4AAwAFAAAAAAANAA4AAwAFAAAAAAAOAA4AAwAFAAAAAAAPAA4AAwAFAAAAAAATAA4AAwAFAAAAAAAUAA4AAwAFAAAAAAAYAA4AAwAFAAAAAAAZAA4AAwAFAAAAAAAaAA4AAwAFAAAAAAAbAA4AAwAFAAAAAAAcAA4AAwAFAAAAAAAdAA4AAwAFAAAAAAAhAA4AAwAFAAAAAAAiAA4AAwAFAAAAAAAmAA4AAwAFAAAAAAAnAA4AAwAFAAAAAAAwAA4AAwAFAAAAAAAxAA4AAwAFAAAAAAAyAA4AAwAFAAAAAAAzAA4AAwAFAAAAAAA0AA4AAwAFAAAAAAA1AA4AAwAFAAAAAAA2AA4AAwAFAAAAAAA3AA4AAwAFAAAAAABIAA4AAwAFAAAAAABJAA4AAwAFAAAAAABNAA4AAwAFAAAAAABOAA4AAwAFAAAAAABSAA4AAwAFAAAAAABTAA4AAwAFAAAAAABUAA4AAwAFAAAAAABVAA4AAwAFAAAAAABWAA4AAwAFAAAAAABXAA4AAwAFAAAAAABYAA4AAwAFAAAAAABZAA4AAwAFAAAAAABaAA4AAwAFAAAAAABbAA4AAwAFAAAAAABfAA4AAwAFAAAAAABgAA4AAwAFAAAAAABkAA4AAwAFAAAAAABoAA4AAwAFAAAAAABpAA4AAwAFAAAAAABtAA4AAwAFAAAAAABuAA4AAwAFAAAAAABvAA4AAwAFAAAAAABwAA4AAwAFAAAAAABxAA4AAwAFAAAAAAByAA4AAwAFAAAAAABzAA4AAwAFAAAAAAB0AA4AAwAFAAAAAAB1AA4AAwAFAAAAAAB2AA4AAwAFAAAAAAB3AA4AAwAFAAAAAACJAA4AAwAFAAAAAACKAA4AAwAFAAAAAACLAA4AAwAFAAAAAACMAA4AAwAFAAAAAACNAA4AAwAFAAAAAACOAA4AAwAFAAAAAACPAA4AAwAFAAAAAACQAA4AAwAFAAAAAACRAA4AAwAFAAAAAACSAA4AAwAFAAAAAACTAA4AAwAFAAAAAACUAA4AAwAFAAAAAACVAA4AAwAFAAAAAACWAA4AAwAFAAAAAACXAA4AAwAFAAAAAACTAAYAAwALAAEAAACUAAYAAwALAAEAAACSAAcAAwALAAEAAACTAAcAAwALAAEAAACUAAcAAwALAAEAAAA6AAgAAwANAAAAAAA7AAgAAwANAAAAAACRAAgAAwALAAEAAACSAAgAAwALAAEAAACTAAgAAwALAAEAAACUAAgAAwALAAEAAAAqAAkAAwANAAAAAAArAAkAAwANAAAAAAAsAAkAAwANAAAAAAA/AAkAAwANAAAAAACQAAkAAwALAAEAAACRAAkAAwALAAEAAACSAAkAAwALAAEAAACTAAkAAwALAAEAAACUAAkAAwALAAEAAAAdAAoAAwALAAEAAAA3AAoAAwALAAEAAABbAAoAAwALAAEAAABtAAoAAwALAAEAAAB/AAoAAwANAAAAAACAAAoAAwANAAAAAACEAAoAAwANAAAAAACFAAoAAwANAAAAAACPAAoAAwALAAEAAACQAAoAAwALAAEAAACRAAoAAwALAAEAAACSAAoAAwALAAEAAACTAAoAAwALAAEAAACUAAoAAwALAAEAAAAnAAsAAwALAAEAAAA3AAsAAwALAAEAAABaAAsAAwALAAEAAABbAAsAAwALAAEAAABpAAsAAwALAAEAAABtAAsAAwALAAEAAACOAAsAAwALAAEAAACPAAsAAwALAAEAAACQAAsAAwALAAEAAACRAAsAAwALAAEAAACSAAsAAwALAAEAAACTAAsAAwALAAEAAACUAAsAAwALAAEAAAAnAAwAAwALAAEAAAA3AAwAAwALAAEAAABZAAwAAwALAAEAAABaAAwAAwALAAEAAABbAAwAAwALAAEAAABpAAwAAwALAAEAAABtAAwAAwALAAEAAACNAAwAAwALAAEAAACOAAwAAwALAAEAAACPAAwAAwALAAEAAACQAAwAAwALAAEAAACRAAwAAwALAAEAAACSAAwAAwALAAEAAACTAAwAAwALAAEAAACUAAwAAwALAAEAAAAOAA0AAwAEAAAAAAAPAA0AAwAEAAAAAAAYAA0AAwAEAAAAAAAZAA0AAwAEAAAAAAAbAA0AAwAEAAAAAAAcAA0AAwAEAAAAAABIAA0AAwAEAAAAAABJAA0AAwAEAAAAAABgAA0AAwAEAAAAAABkAA0AAwAEAAAAAABpAA0AAwAEAAAAAABtAA0AAwAEAAAAAABvAA0AAwAEAAAAAACYAA0AAwAEAAAAAACZAA0AAwAEAAAAAACaAA0AAwAEAAAAAACbAA0AAwAEAAAAAACcAA0AAwAEAAAAAACdAA0AAwAEAAAAAACeAA0AAwAEAAAAAACfAA0AAwAEAAAAAACgAA0AAwAEAAAAAAChAA0AAwAEAAAAAACiAA0AAwAEAAAAAACjAA0AAwAEAAAAAACkAA0AAwAEAAAAAAClAA0AAwAEAAAAAACmAA0AAwAEAAAAAACnAA0AAwAEAAAAAACYAA4AAwAFAAAAAACZAA4AAwAFAAAAAACaAA4AAwAFAAAAAACbAA4AAwAFAAAAAACcAA4AAwAFAAAAAACdAA4AAwAFAAAAAACeAA4AAwAFAAAAAACfAA4AAwAFAAAAAACgAA4AAwAFAAAAAAChAA4AAwAFAAAAAACiAA4AAwAFAAAAAACjAA4AAwAFAAAAAACkAA4AAwAFAAAAAAClAA4AAwAFAAAAAACmAA4AAwAFAAAAAACnAA4AAwAFAAAAAAA=")
+tile_set = ExtResource("1_puswg")
+collision_visibility_mode = 1
+
+[node name="Bloques" type="TileMapLayer" parent="." unique_id=2047999281]
+tile_map_data = PackedByteArray("AAAIAAkAAQAAAAAAAgA0AAkAAQAAAAAAAQBUAAkAAQAAAAAAAQBVAAkAAQAAAAAAAQBWAAkAAQAAAAAAAQBXAAkAAQAAAAAAAwBYAAkAAQAAAAAAAQBZAAkAAQAAAAAAAQBWAAYAAQAAAAAAAgBXAAYAAQAAAAAABAAGAAkAAQAAAAAABAAHAAkAAQAAAAAAAQAZAAkAAQAAAAAABAAyAAkAAQAAAAAAAwAzAAkAAQAAAAAABABwAAkAAQAAAAAABAB0AAkAAQAAAAAABAA=")
+tile_set = ExtResource("1_puswg")
+
+[node name="ZonaMuerte" type="Area2D" parent="." unique_id=1309431578]
+script = ExtResource("2_begye")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaMuerte" unique_id=1050898971]
+position = Vector2(1344, 240)
+shape = SubResource("RectangleShape2D_a33dj")
+
+[node name="SpawnJugador" type="Marker2D" parent="." unique_id=1078420356]
+position = Vector2(40, 200)
+
+[node name="Meta" type="Area2D" parent="." unique_id=1119391661]
+position = Vector2(2536, 192)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_begye")
+siguiente_nivel = "res://escenas/pruebas/niveles/nivel_7.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meta" unique_id=1112836599]
+shape = SubResource("RectangleShape2D_epeo7")
+
+[node name="Constructor" type="Node" parent="." unique_id=1153941427 node_paths=PackedStringArray("suelo", "bloques", "fondo")]
+script = ExtResource("3_svohl")
+archivo_mapa = "res://mapas/mapa_G_estacionamiento_sin_fondo.txt"
+suelo = NodePath("../Suelo")
+bloques = NodePath("../Bloques")
+fondo = NodePath("../Fondo")
+
+[node name="Enemigos" type="Node2D" parent="." unique_id=1614528752]
+
+[node name="MonstruoCables1" parent="Enemigos" instance=ExtResource("en_monstruo_cables")]
+position = Vector2(232, 188)
+
+[node name="Abeja1" parent="Enemigos" instance=ExtResource("en_abeja")]
+position = Vector2(808, 172)
+
+[node name="Villano1" parent="Enemigos" instance=ExtResource("en_villano")]
+position = Vector2(856, 188)
+
+[node name="ExamenVolador1" parent="Enemigos" instance=ExtResource("en_examen_volador")]
+position = Vector2(1176, 172)
+
+[node name="Lobo1" parent="Enemigos" instance=ExtResource("en_lobo")]
+position = Vector2(1368, 188)
+
+[node name="Pc1" parent="Enemigos" instance=ExtResource("en_pc")]
+position = Vector2(1416, 188)
+
+[node name="MonstruoCables2" parent="Enemigos" instance=ExtResource("en_monstruo_cables")]
+position = Vector2(1800, 188)
+
+[node name="ExamenVolador2" parent="Enemigos" instance=ExtResource("en_examen_volador")]
+position = Vector2(1848, 172)
+
+[node name="Villano2" parent="Enemigos" instance=ExtResource("en_villano")]
+position = Vector2(1896, 188)
+
+[node name="PowerUps" type="Node2D" parent="."]
+
+
+[node name="CocaHelada1" parent="PowerUps" instance=ExtResource("pu_coca_helada")]
+position = Vector2(792, 194)
+
+[node name="MalangaPicante1" parent="PowerUps" instance=ExtResource("pu_malanga_picante")]
+position = Vector2(1256, 194)
+
+[node name="Volovan1" parent="PowerUps" instance=ExtResource("pu_volovan")]
+position = Vector2(1784, 194)
+
+[node name="Taco1" parent="PowerUps" instance=ExtResource("pu_taco")]
+position = Vector2(2136, 146)
+
+[node name="Creditos" type="Node2D" parent="."]
+
+[node name="CreditoEugenio1" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(152, 190)
+
+[node name="CreditoEugenio2" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(216, 190)
+
+[node name="CreditoEugenio3" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(248, 190)
+
+[node name="CreditoEugenio4" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(552, 190)
+
+[node name="CreditoEugenio5" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(840, 134)
+
+[node name="CreditoEugenio6" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2200, 190)
+
+[node name="CreditoEugenio7" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2216, 190)
+
+[node name="CreditoEugenio8" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2232, 190)
+
+[node name="CreditoEugenio9" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2248, 190)
+
+[node name="CreditoEugenio10" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2408, 190)
+
+[node name="CreditoEugenio11" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2424, 190)
+
+[node name="CreditoEugenio12" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2440, 190)
+
+[node name="CreditoEugenio13" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2456, 190)
+
+[node name="CreditoEugenio14" parent="Creditos" instance=ExtResource("pu_credito")]
+position = Vector2(2472, 190)

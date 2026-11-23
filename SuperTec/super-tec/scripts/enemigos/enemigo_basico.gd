@@ -31,6 +31,7 @@ extends CharacterBody2D
 @export var distancia_ataque := 40.0
 
 # Copias de las hojas de sprites con fondo transparente (los originales traen fondo pintado)
+const SONIDO := preload("res://scripts/juego/sonido.gd")
 const CARPETA_SIN_FONDO := "res://assets/personajes/enemigos/sin_fondo/"
 const DURACION_CONGELADO := 3.0
 
@@ -157,7 +158,9 @@ func receive_power_up_attack(tipo: String, _segundos: float = 0.0) -> void:
 	if tipo == "ice":
 		congelado = DURACION_CONGELADO
 		sprite.modulate = Color("#a8e9ff")
+		SONIDO.efecto("congelar")
 	elif tipo == "fire":
+		SONIDO.efecto("quemar")
 		recibir_dano(1)
 
 

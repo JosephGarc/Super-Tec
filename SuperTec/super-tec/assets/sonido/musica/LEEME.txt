@@ -1,0 +1,23 @@
+MÚSICA DE SUPER TEC
+===================
+
+Pon aquí las pistas con estos nombres exactos (sirve .ogg, .wav o .mp3):
+
+  menu            -> selector de niveles
+  campus_dia      -> niveles 1, 3, 4 y 6
+  campus_noche    -> niveles 2 y 7   (si no existe, usa campus_dia)
+  castillo        -> niveles 5 y 8
+  castillo_final  -> nivel 9         (si no existe, usa castillo)
+  volovan         -> mientras Joshua es invencible con el volován
+
+Se repiten solas (loop). No hay que tocar código: con poner el archivo basta.
+Para cambiar qué pista suena en cada nivel: scripts/juego/sonido.gd -> MUSICA_POR_NIVEL.
+
+Recomendación: chiptune hecho en BeepBox (https://www.beepbox.co), exportado en .ogg o .wav.
+No usar canciones de Mario ni de otros juegos (tienen derechos de autor).
+
+Las pistas actuales las generó Claude con código (chiptune estilo 8 bits, originales):
+  menu = corrido tumbado, campus_dia = reggaetón, campus_noche = lo-fi,
+  castillo = phonk, castillo_final = phonk acelerado/hyperpop, volovan = reggaetón rápido.
+Si alguien compone versiones mejores, nada más reemplacen el archivo con el mismo nombre.
+El volumen de cada pista se ajusta en scripts/juego/sonido.gd -> VOLUMEN_MUSICA.

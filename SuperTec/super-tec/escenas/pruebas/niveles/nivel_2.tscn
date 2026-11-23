@@ -7,4 +7,4 @@
 script = ExtResource("1_script")
 map_scene = ExtResource("2_map")
 add_joshua = true
-nombre_nivel = "Nivel 5"
+nombre_nivel = "Nivel 2"

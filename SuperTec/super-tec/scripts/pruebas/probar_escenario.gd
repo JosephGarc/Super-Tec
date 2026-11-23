@@ -1,5 +1,7 @@
 extends Node2D
 
+const SONIDO := preload("res://scripts/juego/sonido.gd")
+
 @export var map_scene: PackedScene
 @export var add_joshua := false
 @export var nombre_nivel := ""   # se muestra arriba en pantalla (Nivel 1, Nivel 2...)
@@ -13,6 +15,9 @@ func _ready() -> void:
 		return
 	var map_instance := map_scene.instantiate()
 	add_child(map_instance)
+	# Música del nivel ("Nivel 5" -> 5)
+	if nombre_nivel.begins_with("Nivel "):
+		SONIDO.musica_nivel(nombre_nivel.get_slice(" ", 1).to_int())
 
 	if add_joshua:
 		var player := JOSHUA_SCENE.instantiate() as CharacterBody2D

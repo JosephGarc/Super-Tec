@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/pruebas/probar_escenario.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://escenas/mapas_nuevos/nivel_8.tscn" id="2_map"]
+
+[node name="Prueba_nivel_8" type="Node2D"]
+script = ExtResource("1_script")
+map_scene = ExtResource("2_map")
+add_joshua = true
+nombre_nivel = "Nivel 8"

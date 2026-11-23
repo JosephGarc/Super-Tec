@@ -1,10 +1,14 @@
 extends StaticBody2D
 
+const SONIDO := preload("res://scripts/juego/sonido.gd")
+
 func golpear(jugador):
 	_afectar_lo_de_arriba()
 	if jugador.get("es_grande") == true:
+		SONIDO.efecto("romper")
 		queue_free()          # Mario grande: se rompe
 	else:
+		SONIDO.efecto("golpe_bloque")
 		_rebotar()            # Mario chico: solo rebota
 
 func _rebotar():

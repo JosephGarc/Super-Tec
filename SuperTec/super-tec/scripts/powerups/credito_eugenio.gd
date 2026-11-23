@@ -1,6 +1,8 @@
 extends Area2D
 class_name CreditoEugenio
 
+const SONIDO := preload("res://scripts/juego/sonido.gd")
+
 ## Crédito Eugenio (la "moneda" del juego, sistema de Joseph).
 ## Al tocarlo, suma 1 al contador del HUD (nodo del grupo "game").
 
@@ -19,4 +21,5 @@ func _on_body_entered(body: Node2D) -> void:
 		var game := get_tree().get_first_node_in_group("game")
 		if game and game.has_method("collect_coin"):
 			game.collect_coin()
+		SONIDO.efecto("credito")
 		queue_free()

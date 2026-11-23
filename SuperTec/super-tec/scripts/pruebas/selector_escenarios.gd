@@ -1,16 +1,23 @@
 extends Control
 
+const SONIDO := preload("res://scripts/juego/sonido.gd")
+
 const OPTIONS := [
-	{"label": "Nivel 1", "scene": "res://escenas/pruebas/niveles/escenario_1.tscn"},
-	{"label": "Nivel 2", "scene": "res://escenas/pruebas/niveles/escenario_2.tscn"},
-	{"label": "Nivel 3", "scene": "res://escenas/pruebas/niveles/escenario_3.tscn"},
-	{"label": "Nivel 4", "scene": "res://escenas/pruebas/niveles/nivel_1.tscn"},
-	{"label": "Nivel 5", "scene": "res://escenas/pruebas/niveles/nivel_2.tscn"},
-	{"label": "Nivel 6", "scene": "res://escenas/pruebas/niveles/nivel_3.tscn"},
-	{"label": "Nivel 7", "scene": "res://escenas/pruebas/niveles/nivel_4.tscn"},
+	{"label": "Nivel 1", "scene": "res://escenas/pruebas/niveles/nivel_1.tscn"},
+	{"label": "Nivel 2", "scene": "res://escenas/pruebas/niveles/nivel_2.tscn"},
+	{"label": "Nivel 3", "scene": "res://escenas/pruebas/niveles/nivel_3.tscn"},
+	{"label": "Nivel 4", "scene": "res://escenas/pruebas/niveles/nivel_4.tscn"},
+	{"label": "Nivel 5", "scene": "res://escenas/pruebas/niveles/nivel_5.tscn"},
+	{"label": "Nivel 6", "scene": "res://escenas/pruebas/niveles/nivel_6.tscn"},
+	{"label": "Nivel 7", "scene": "res://escenas/pruebas/niveles/nivel_7.tscn"},
+	{"label": "Nivel 8", "scene": "res://escenas/pruebas/niveles/nivel_8.tscn"},
+	{"label": "Nivel 9", "scene": "res://escenas/pruebas/niveles/nivel_9.tscn"},
 ]
 
 func _ready() -> void:
+	# Elegir nivel desde el selector = partida nueva (créditos 0 y 3 vidas)
+	preload("res://scripts/juego/estado_juego.gd").reiniciar()
+	SONIDO.musica("menu")
 	_build_menu()
 
 func _build_menu() -> void:
@@ -38,7 +45,7 @@ func _build_menu() -> void:
 	column.add_child(title)
 
 	var grid := GridContainer.new()
-	grid.columns = 2
+	grid.columns = 3
 	grid.add_theme_constant_override("h_separation", 6)
 	grid.add_theme_constant_override("v_separation", 6)
 	column.add_child(grid)
@@ -46,9 +53,11 @@ func _build_menu() -> void:
 	for option in OPTIONS:
 		var button := Button.new()
 		button.text = option["label"]
-		button.custom_minimum_size = Vector2(214, 42)
+		button.custom_minimum_size = Vector2(146, 42)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.pressed.connect(_open_scene.bind(option["scene"]))
+		button.mouse_entered.connect(func(): SONIDO.efecto("menu"))
+		button.focus_entered.connect(func(): SONIDO.efecto("menu"))
 		grid.add_child(button)
 
 	var hint := Label.new()
@@ -57,6 +66,7 @@ func _build_menu() -> void:
 	column.add_child(hint)
 
 func _open_scene(path: String) -> void:
+	SONIDO.efecto("menu_aceptar")
 	var error := get_tree().change_scene_to_file(path)
 	if error != OK:
 		push_error("No se pudo abrir la escena: %s" % path)

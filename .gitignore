@@ -1,2 +1,9 @@
 # Respaldos locales (zips grandes): no se suben a GitHub
 respaldos/
+
+# Pruebas temporales que hizo Claude (no se suben a GitHub)
+SuperTec/super-tec/escenas/pruebas/test_*
+SuperTec/super-tec/scripts/pruebas/test_*
+SuperTec/super-tec/escenas/pruebas/*_resultado.txt
+SuperTec/super-tec/escenas/pruebas/*captura*
+SuperTec/super-tec/escenas/pruebas/sondeo9.json

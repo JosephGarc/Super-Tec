@@ -59,6 +59,28 @@ var spawn_guardado := false
 var limite_caida := INF
 var _muriendo := false
 
+# Punto de reaparición "cercano" (como en Mario): el último lugar de piso firme
+# donde estuvo Joshua, lejos de enemigos. Si cae a un precipicio, vuelve a antes del hueco.
+const INTERVALO_PUNTO_SEGURO := 0.2
+const DISTANCIA_SEGURA_ENEMIGOS := 64.0
+const INVULNERABLE_AL_REAPARECER := 2.0
+var _punto_seguro := Vector2.ZERO
+var _hay_punto_seguro := false
+var _tiempo_punto_seguro := 0.0
+var _parpadeo := 0.0
+
+# Créditos y vidas que no se reinician al cambiar de nivel
+const ESTADO := preload("res://scripts/juego/estado_juego.gd")
+const SONIDO := preload("res://scripts/juego/sonido.gd")
+# Sonido de cada power-up al consumirlo
+const SONIDO_POWER_UP := {
+	"azulito": "crecer",
+	"coca_helada": "tomar_coca",
+	"malanga_picante": "comer_papa",
+	"volovan": "mordida_volovan",
+	"taco": "mordida_taco",
+}
+
 # Se cargan con preload para no depender de la caché de class_name de Godot
 const HUD_SCRIPT := preload("res://scripts/powerups/hud_super_tec.gd")
 var hud: CanvasLayer
@@ -78,7 +100,13 @@ func _ready() -> void:
 	collision_shape.shape = collision_shape.shape.duplicate()
 	_aplicar_tamano(false)
 
+	# Las vidas vienen del nivel anterior
+	power_ups.lives = ESTADO.vidas
+	ESTADO.empezar_nivel()
+
 	power_ups.power_up_collected.connect(_on_power_up_collected)
+	# Al acabarse el volován regresa la música del nivel
+	power_ups.power_up_expired.connect(_on_power_up_expired)
 	power_ups.extra_life_added.connect(_on_extra_life_added)
 
 	hud = HUD_SCRIPT.new()
@@ -93,6 +121,7 @@ func _physics_process(delta: float) -> void:
 
 	_effect_clock += delta
 	_damage_cooldown = maxf(0.0, _damage_cooldown - delta)
+	_parpadeo = maxf(0.0, _parpadeo - delta)
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -117,6 +146,7 @@ func _physics_process(delta: float) -> void:
 	if jump_buffer_timer > 0.0 and coyote_timer > 0.0:
 		velocity.y = JUMP_VELOCITY
 		jump_buffer_timer = 0.0
+		SONIDO.efecto("salto")
 		coyote_timer = 0.0
 
 	if w_recien_soltada and velocity.y < 0.0:
@@ -140,12 +170,14 @@ func _physics_process(delta: float) -> void:
 	var was_falling := velocity.y > 0.0
 	move_and_slide()
 	_revisar_choques(was_falling)
+	_guardar_punto_seguro(delta)
 	_update_visual_effects()
 	if global_position.y > limite_caida:
 		morir()
 
 
 func _process(delta: float) -> void:
+	ESTADO.vidas = power_ups.lives   # el taco suma vidas desde el PowerUpController
 	_life_popup_time = maxf(0.0, _life_popup_time - delta)
 	queue_redraw()
 
@@ -169,6 +201,7 @@ func _revisar_choques(was_falling: bool) -> void:
 			continue
 		if was_falling and normal.y < -0.5:
 			velocity.y = JUMP_VELOCITY * STOMP_BOUNCE_MULTIPLIER
+			SONIDO.efecto("aplastar")
 			# Los enemigos nuevos tienen animación de muerte (y el jefe aguanta varios golpes)
 			if objeto.has_method("aplastado"):
 				objeto.aplastado()
@@ -210,6 +243,7 @@ func take_damage() -> bool:
 		return false
 	_damage_cooldown = 0.7
 	if es_grande:
+		SONIDO.efecto("encoger")
 		power_ups.reset_growth()
 		velocity.x = -facing_direction.x * 180.0
 		velocity.y = -260.0
@@ -249,25 +283,64 @@ func _animar_crecimiento() -> void:
 	_growth_tween.tween_property(animated_sprite, "scale", final, 0.12).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
+# Guarda el punto de reaparición cada poco tiempo, solo si:
+# - Joshua está parado en el piso del mapa (no en un bloque que se rompe ni en un enemigo)
+# - hay piso debajo de los dos pies (no está en la orilla de un precipicio)
+# - no hay enemigos cerca
+func _guardar_punto_seguro(delta: float) -> void:
+	_tiempo_punto_seguro -= delta
+	if _tiempo_punto_seguro > 0.0 or _muriendo or not is_on_floor():
+		return
+	_tiempo_punto_seguro = INTERVALO_PUNTO_SEGURO
+	if not (_piso_firme(-5.0) and _piso_firme(5.0)):
+		return
+	for enemigo in get_tree().get_nodes_in_group("enemies"):
+		if enemigo is Node2D and enemigo.global_position.distance_to(global_position) < DISTANCIA_SEGURA_ENEMIGOS:
+			return
+	_punto_seguro = global_position
+	_hay_punto_seguro = true
+
+
+func _piso_firme(desplazamiento_x: float) -> bool:
+	var desde := global_position + Vector2(desplazamiento_x, 0.0)
+	var consulta := PhysicsRayQueryParameters2D.create(desde, desde + Vector2(0.0, 28.0), CAPA_MUNDO)
+	consulta.exclude = [get_rid()]
+	var choque := get_world_2d().direct_space_state.intersect_ray(consulta)
+	return not choque.is_empty() and choque.collider is TileMapLayer
+
+
 # La llama la zona de muerte (y take_damage cuando Joshua es chico).
-# Pierde una vida y sus power-ups; si se queda sin vidas, el nivel se reinicia.
+# Pierde una vida y sus power-ups y reaparece cerca de donde murió.
+# Si se queda sin vidas (game over), el nivel se repite desde el inicio.
 func morir() -> void:
 	if _muriendo:
 		return
 	_muriendo = true
 	power_ups.lives -= 1
+	ESTADO.vidas = power_ups.lives
 	if power_ups.lives <= 0:
-		get_tree().call_deferred("reload_current_scene")
+		# Game over: suena el jingle y luego se repite el nivel
+		ESTADO.game_over()
+		SONIDO.detener_musica()
+		SONIDO.efecto("game_over")
+		visible = false
+		set_physics_process(false)
+		get_tree().create_timer(3.2).timeout.connect(get_tree().reload_current_scene)
 		return
+	SONIDO.efecto("morir")
 	call_deferred("_reaparecer")
 
 
 func _reaparecer() -> void:
 	_muriendo = false
 	power_ups.reset_effects()
+	SONIDO.musica_invencible(false)
 	_aplicar_tamano(false)
-	global_position = spawn_position
+	global_position = _punto_seguro if _hay_punto_seguro else spawn_position
 	velocity = Vector2.ZERO
+	# Un rato sin recibir daño para que no lo vuelva a tocar un enemigo al aparecer
+	_damage_cooldown = INVULNERABLE_AL_REAPARECER
+	_parpadeo = INVULNERABLE_AL_REAPARECER
 	coyote_timer = 0.0
 	jump_buffer_timer = 0.0
 	w_presionada_antes = false
@@ -296,7 +369,8 @@ func _update_animation(direction: float) -> void:
 # ---------------------------------------------------------------
 
 func _update_visual_effects() -> void:
-	var alpha := 0.18 if power_ups.is_effect_near_expiration() and int(_effect_clock * 8.0) % 2 == 0 else 1.0
+	var parpadea: bool = power_ups.is_effect_near_expiration() or _parpadeo > 0.0
+	var alpha := 0.18 if parpadea and int(_effect_clock * 8.0) % 2 == 0 else 1.0
 	modulate = Color(1.0, 1.0, 1.0, alpha)
 	if power_ups.attack_kind == "ice":
 		animated_sprite.modulate = Color("#a8e9ff")
@@ -307,6 +381,9 @@ func _update_visual_effects() -> void:
 
 
 func _on_power_up_collected(power_up_id: String) -> void:
+	SONIDO.efecto(SONIDO_POWER_UP.get(power_up_id, "crecer"))
+	if power_up_id == "volovan":
+		SONIDO.musica_invencible(true)
 	_held_item = POWER_UP_TEXTURES.get(power_up_id)
 	_consume_progress = 0.0
 	if _consume_tween and _consume_tween.is_running():
@@ -317,6 +394,11 @@ func _on_power_up_collected(power_up_id: String) -> void:
 	queue_redraw()
 
 
+func _on_power_up_expired(power_up_id: String) -> void:
+	if power_up_id == "volovan":
+		SONIDO.musica_invencible(false)
+
+
 func _finish_consuming() -> void:
 	_held_item = null
 	_consume_progress = 0.0
@@ -324,6 +406,8 @@ func _finish_consuming() -> void:
 
 
 func _on_extra_life_added(_total_lives: int) -> void:
+	# primero la mordida del taco y luego el sonido de vida extra
+	get_tree().create_timer(0.7).timeout.connect(func(): SONIDO.efecto("vida_extra"))
 	_life_popup_time = 1.2
 	queue_redraw()
 
