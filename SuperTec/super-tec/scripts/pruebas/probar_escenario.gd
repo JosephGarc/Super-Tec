@@ -7,17 +7,20 @@ const SONIDO := preload("res://scripts/juego/sonido.gd")
 @export var nombre_nivel := ""   # se muestra arriba en pantalla (Nivel 1, Nivel 2...)
 
 const JOSHUA_SCENE: PackedScene = preload("res://escenas/personajes_juegos/Joshua.tscn")
-const SELECTOR_PATH := "res://escenas/pruebas/selector_escenarios.tscn"
+const MENU_PATH := "res://menu/menu_principal.tscn"
 
 func _ready() -> void:
 	if map_scene == null:
 		push_error("Asigna una escena de mapa a este escenario de prueba.")
 		return
+	# Número del nivel ("Nivel 5" -> 5): música y progreso.
+	# Va antes de cargar el mapa para que los créditos sepan si ya los tenías.
+	if nombre_nivel.begins_with("Nivel "):
+		var numero := nombre_nivel.get_slice(" ", 1).to_int()
+		SONIDO.musica_nivel(numero)
+		preload("res://scripts/juego/progreso.gd").empezar_nivel(numero)
 	var map_instance := map_scene.instantiate()
 	add_child(map_instance)
-	# Música del nivel ("Nivel 5" -> 5)
-	if nombre_nivel.begins_with("Nivel "):
-		SONIDO.musica_nivel(nombre_nivel.get_slice(" ", 1).to_int())
 
 	if add_joshua:
 		var player := JOSHUA_SCENE.instantiate() as CharacterBody2D
@@ -65,10 +68,10 @@ func _add_hint() -> void:
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	var hint := Label.new()
-	hint.text = (nombre_nivel + "   ·   " if nombre_nivel != "" else "") + "Esc: volver al selector"
+	hint.text = (nombre_nivel + "   ·   " if nombre_nivel != "" else "") + "Esc: menú"
 	hint.position = Vector2(8, 8)
 	layer.add_child(hint)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene_to_file(SELECTOR_PATH)
+		get_tree().change_scene_to_file(MENU_PATH)

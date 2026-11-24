@@ -102,7 +102,6 @@ func _ready() -> void:
 
 	# Las vidas vienen del nivel anterior
 	power_ups.lives = ESTADO.vidas
-	ESTADO.empezar_nivel()
 
 	power_ups.power_up_collected.connect(_on_power_up_collected)
 	# Al acabarse el volován regresa la música del nivel

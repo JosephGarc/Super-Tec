@@ -61,7 +61,7 @@ position = Vector2(3080, 192)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("meta_script")
-siguiente_nivel = "res://escenas/pruebas/selector_escenarios.tscn"
+siguiente_nivel = "res://escenas/cinematicas/final.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Meta" unique_id=1112836599]
 shape = SubResource("RectangleShape2D_epeo7")

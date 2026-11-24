@@ -6,6 +6,7 @@ class_name HudSuperTec
 ## los créditos Eugenio puedan avisarle (igual que en el proyecto de power-ups).
 
 const ESTADO := preload("res://scripts/juego/estado_juego.gd")
+const PROGRESO := preload("res://scripts/juego/progreso.gd")
 const TEXTURA_CREDITO := preload("res://assets/powerups/credito_eugenio.png")
 const ICONOS := {
 	"azulito": preload("res://assets/powerups/azulito.png"),
@@ -34,6 +35,7 @@ const BRILLO := Color("#ffc2cc")
 
 var _controller: Node
 var _label_creditos: Label
+var _label_nivel: Label
 var _corazones: Control
 var _label_vidas: Label
 var _efectos: Control
@@ -54,6 +56,10 @@ func _ready() -> void:
 	icono.size = Vector2(32, 32)
 	add_child(icono)
 	_label_creditos = _crear_label(Vector2(46, 36))
+	# créditos de este nivel (de 20), chiquito al lado
+	_label_nivel = _crear_label(Vector2(140, 44))
+	_label_nivel.add_theme_font_size_override("font_size", 16)
+	_label_nivel.modulate = Color(1, 1, 1, 0.85)
 
 	# Fila 2: corazones (vidas)
 	_corazones = Control.new()
@@ -94,9 +100,9 @@ func configurar(controller: Node) -> void:
 	_actualizar()
 
 
-# Los créditos se guardan en EstadoJuego para que no se reinicien al cambiar de nivel
-func collect_coin() -> void:
-	ESTADO.creditos += 1
+# Cada crédito tiene su nombre (id). Se apunta en el intento y se guarda al llegar a la meta.
+func collect_coin(id: String = "") -> void:
+	PROGRESO.agregar_credito(id)
 	_actualizar()
 
 
@@ -112,7 +118,9 @@ func _vidas() -> int:
 func _actualizar() -> void:
 	if _label_creditos == null:
 		return
-	_label_creditos.text = "x %d" % ESTADO.creditos
+	_label_creditos.text = "x %d" % PROGRESO.total()
+	if PROGRESO.nivel_actual > 0:
+		_label_nivel.text = "%d/%d" % [PROGRESO.creditos_nivel(PROGRESO.nivel_actual), PROGRESO.CREDITOS_POR_NIVEL]
 
 	var vidas := maxi(_vidas(), 0)
 	if vidas != _vidas_dibujadas:

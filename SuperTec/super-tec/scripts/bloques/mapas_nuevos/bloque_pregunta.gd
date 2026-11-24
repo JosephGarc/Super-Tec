@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 const SONIDO := preload("res://scripts/juego/sonido.gd")
+const PROGRESO := preload("res://scripts/juego/progreso.gd")
 
 @export var contenido: PackedScene   # Por defecto suelta el azulito (se asigna en bloque_pregunta.tscn)
 ## Si no hay "contenido", se elige uno de esta lista según la posición del bloque
@@ -44,14 +45,18 @@ func golpear(_jugador):
 func _soltar_credito() -> void:
 	SONIDO.efecto("credito")
 	var juego := get_tree().get_first_node_in_group("game")
+	var id := "bloque_%d_%d" % [int(position.x), int(position.y)]
+	var ya_lo_tenia := PROGRESO.ya_lo_tenia(id)
 	if juego and juego.has_method("collect_coin"):
-		juego.collect_coin()
+		juego.collect_coin(id)
 	# El crédito sale del bloque, sube y desaparece (solo es de adorno, ya se contó)
 	var credito := CREDITO_ESCENA.instantiate() as Area2D
 	credito.monitoring = false
 	credito.monitorable = false
 	credito.position = position + Vector2(0, -16)
 	get_parent().add_child(credito)
+	if ya_lo_tenia:
+		credito.modulate = Color(1, 1, 1, 0.4)
 	credito.remove_from_group("coins")   # ya se contó: que no cuente como crédito suelto
 	var t := credito.create_tween()
 	t.tween_property(credito, "position:y", credito.position.y - 24.0, 0.25).set_ease(Tween.EASE_OUT)
