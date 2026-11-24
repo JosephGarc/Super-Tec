@@ -9,18 +9,12 @@
 [ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_volovan.tscn" id="pu_volovan"]
 [ext_resource type="PackedScene" path="res://escenas/powerups/pickups/pickup_taco.tscn" id="pu_taco"]
 [ext_resource type="PackedScene" path="res://escenas/powerups/pickups/credito_eugenio.tscn" id="pu_credito"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/abeja.tscn" id="en_abeja"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/dron.tscn" id="en_dron"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/examen_volador.tscn" id="en_examen_volador"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/fantasma_graduado.tscn" id="en_fantasma_graduado"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/hielera.tscn" id="en_hielera"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/lobo.tscn" id="en_lobo"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/monstruo_cables.tscn" id="en_monstruo_cables"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/multimetro.tscn" id="en_multimetro"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/pc.tscn" id="en_pc"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/sarten.tscn" id="en_sarten"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/villano.tscn" id="en_villano"]
-[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/william_shakespeare.tscn" id="en_william_shakespeare"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/monstruo_tesis.tscn" id="boss_tesis"]
+[ext_resource type="Script" path="res://scripts/powerups/spawner_arena_tesis.gd" id="spawner_tesis"]
+[ext_resource type="Script" path="res://scripts/escenarios/mapas_nuevos/arena_tesis.gd" id="arena_tesis"]
+[ext_resource type="Script" path="res://scripts/escenarios/mapas_nuevos/checkpoint_jefe.gd" id="checkpoint_jefe"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/dron.tscn" id="dron"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/lobo.tscn" id="lobo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a33dj"]
 size = Vector2(3400, 48)
@@ -28,8 +22,11 @@ size = Vector2(3400, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epeo7"]
 size = Vector2(16, 32)
 
-[node name="Nivel8" type="Node2D" unique_id=2054662290]
+[node name="Nivel9" type="Node2D" unique_id=2054662290]
 metadata/_edit_vertical_guides_ = [963.0]
+
+[node name="ArenaTesis" type="Node2D" parent="."]
+script = ExtResource("arena_tesis")
 
 [node name="Fondo" type="TileMapLayer" parent="." unique_id=1217375527]
 z_index = -1
@@ -56,12 +53,21 @@ shape = SubResource("RectangleShape2D_a33dj")
 [node name="SpawnJugador" type="Marker2D" parent="." unique_id=1078420356]
 position = Vector2(40, 200)
 
+[node name="CheckpointJefe" type="Area2D" parent="."]
+position = Vector2(2460, 184)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("checkpoint_jefe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckpointJefe"]
+shape = SubResource("RectangleShape2D_epeo7")
+
 [node name="Meta" type="Area2D" parent="." unique_id=1119391661]
 position = Vector2(3080, 192)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("meta_script")
-siguiente_nivel = "res://escenas/cinematicas/final.tscn"
+siguiente_nivel = "res://escenas/overworld_super_tec.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Meta" unique_id=1112836599]
 shape = SubResource("RectangleShape2D_epeo7")
@@ -75,55 +81,19 @@ fondo = NodePath("../Fondo")
 
 [node name="Enemigos" type="Node2D" parent="." unique_id=1614528752]
 
-[node name="WilliamShakespeare1" parent="Enemigos" instance=ExtResource("en_william_shakespeare")]
-position = Vector2(1640, 156)
+[node name="MonstruoDeLaTesis" parent="Enemigos" instance=ExtResource("boss_tesis")]
+position = Vector2(2824, 164)
 
-[node name="Lobo1" parent="Enemigos" instance=ExtResource("en_lobo")]
-position = Vector2(392, 188)
+[node name="DronPrevio1" parent="Enemigos" instance=ExtResource("dron")]
+position = Vector2(960, 170)
 
-[node name="Abeja1" parent="Enemigos" instance=ExtResource("en_abeja")]
-position = Vector2(424, 172)
-
-[node name="Villano1" parent="Enemigos" instance=ExtResource("en_villano")]
-position = Vector2(456, 188)
-
-[node name="Pc1" parent="Enemigos" instance=ExtResource("en_pc")]
-position = Vector2(760, 188)
-
-[node name="Dron1" parent="Enemigos" instance=ExtResource("en_dron")]
-position = Vector2(808, 172)
-
-[node name="MonstruoCables1" parent="Enemigos" instance=ExtResource("en_monstruo_cables")]
-position = Vector2(856, 188)
-
-[node name="Sarten1" parent="Enemigos" instance=ExtResource("en_sarten")]
-position = Vector2(888, 188)
-
-[node name="ExamenVolador1" parent="Enemigos" instance=ExtResource("en_examen_volador")]
-position = Vector2(1288, 172)
-
-[node name="Multimetro1" parent="Enemigos" instance=ExtResource("en_multimetro")]
-position = Vector2(1896, 188)
-
-[node name="FantasmaGraduado1" parent="Enemigos" instance=ExtResource("en_fantasma_graduado")]
-position = Vector2(1944, 172)
-
-[node name="Hielera1" parent="Enemigos" instance=ExtResource("en_hielera")]
-position = Vector2(1992, 188)
-
-[node name="Villano2" parent="Enemigos" instance=ExtResource("en_villano")]
-position = Vector2(2040, 188)
-
-[node name="Dron2" parent="Enemigos" instance=ExtResource("en_dron")]
-position = Vector2(2088, 172)
-
-[node name="MonstruoCables2" parent="Enemigos" instance=ExtResource("en_monstruo_cables")]
-position = Vector2(2664, 188)
-
-[node name="Lobo2" parent="Enemigos" instance=ExtResource("en_lobo")]
-position = Vector2(2712, 188)
+[node name="LoboPrevio1" parent="Enemigos" instance=ExtResource("lobo")]
+position = Vector2(1900, 188)
 
 [node name="PowerUps" type="Node2D" parent="."]
+
+[node name="GeneradorArenaTesis" type="Node2D" parent="."]
+script = ExtResource("spawner_tesis")
 
 
 [node name="CocaHelada1" parent="PowerUps" instance=ExtResource("pu_coca_helada")]

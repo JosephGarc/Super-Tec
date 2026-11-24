@@ -15,6 +15,6 @@ speed = 300.0
 shape = SubResource("CircleShape2D_projectile")
 
 [node name="Visual" type="Sprite2D" parent="."]
-texture_filter = 1
+texture_filter = 0
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)

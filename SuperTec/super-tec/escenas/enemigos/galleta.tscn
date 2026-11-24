@@ -45,7 +45,7 @@ shape = SubResource("EnemyShape")
 sprite_frames = SubResource("WalkFrames")
 animation = &"walk"
 scale = Vector2(0.068, 0.068)
-texture_filter = 1
+texture_filter = 0
 
 [node name="FloorDetector" type="RayCast2D" parent="."]
 position = Vector2(-6, 6)

@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/sarten.tscn" id="en_sarten"]
 [ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/villano.tscn" id="en_villano"]
 [ext_resource type="PackedScene" path="res://escenas/enemigos/jugables/william_shakespeare.tscn" id="en_william_shakespeare"]
+[ext_resource type="Script" path="res://scripts/escenarios/mapas_nuevos/cofre_lapiz.gd" id="cofre_lapiz"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a33dj"]
 size = Vector2(3144, 48)
@@ -100,6 +101,10 @@ position = Vector2(1960, 172)
 position = Vector2(2328, 188)
 
 [node name="PowerUps" type="Node2D" parent="."]
+
+[node name="CofreUniversitario" type="Area2D" parent="."]
+position = Vector2(2520, 166)
+script = ExtResource("cofre_lapiz")
 
 
 [node name="CocaHelada1" parent="PowerUps" instance=ExtResource("pu_coca_helada")]

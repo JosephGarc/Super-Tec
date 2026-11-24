@@ -12,20 +12,58 @@ const PROGRESO := preload("res://scripts/juego/progreso.gd")
 @export var da_credito := false
 const CREDITO_ESCENA := preload("res://escenas/powerups/pickups/credito_eugenio.tscn")
 var usado := false
+var _luz: PointLight2D
+var _golpe_tween: Tween
+@onready var _sprite: Sprite2D = $Sprite2D
+
+func _ready() -> void:
+	_agregar_brillo()
+
+func _agregar_brillo() -> void:
+	var gradiente := Gradient.new()
+	gradiente.colors = [Color(1, 1, 1, 0.38), Color(1, 1, 1, 0)]
+	var textura := GradientTexture2D.new()
+	textura.gradient = gradiente
+	textura.width = 64
+	textura.height = 64
+	textura.fill = GradientTexture2D.FILL_RADIAL
+	_luz = PointLight2D.new()
+	_luz.texture = textura
+	_luz.energy = 0.26
+	_luz.texture_scale = 0.24
+	_luz.color = Color("#ffe59a")
+	add_child(_luz)
+
+func _animar_golpe() -> void:
+	if _golpe_tween and _golpe_tween.is_running():
+		_golpe_tween.kill()
+	var reposo := _sprite.position
+	var tono := _sprite.modulate
+	var energia := _luz.energy
+	_golpe_tween = create_tween()
+	_golpe_tween.set_parallel(true)
+	_golpe_tween.tween_property(_sprite, "position:y", reposo.y - 5.0, 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_golpe_tween.tween_property(_sprite, "modulate", Color("#fff2bb"), 0.06)
+	_golpe_tween.tween_property(_luz, "energy", energia + 0.65, 0.06)
+	_golpe_tween.chain().set_parallel(true)
+	_golpe_tween.tween_property(_sprite, "position:y", reposo.y, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_golpe_tween.tween_property(_sprite, "modulate", tono, 0.15)
+	_golpe_tween.tween_property(_luz, "energy", energia, 0.18)
 
 func golpear(_jugador):
+	if _jugador.has_method("shake"):
+		_jugador.shake(1.4, 0.1)
 	if usado:
+		_animar_golpe()
 		SONIDO.efecto("golpe_bloque")
 		return
 	usado = true
 	SONIDO.efecto("golpe_bloque")
 	$Sprite2D.modulate = Color(0.5, 0.5, 0.5)   # se oscurece = ya usado
+	_animar_golpe()
 	for cuerpo in $ZonaArriba.get_overlapping_bodies():
 		if cuerpo.has_method("morir"):
 			cuerpo.morir()
-	var t = create_tween()
-	t.tween_property($Sprite2D, "position:y", -4.0, 0.08)
-	t.tween_property($Sprite2D, "position:y", 0.0, 0.08)
 	if da_credito:
 		_soltar_credito()
 		return

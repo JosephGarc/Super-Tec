@@ -7,6 +7,7 @@ class_name HudSuperTec
 
 const ESTADO := preload("res://scripts/juego/estado_juego.gd")
 const PROGRESO := preload("res://scripts/juego/progreso.gd")
+const ARTE_LAPIZ := preload("res://scripts/juego/arte_lapiz.gd")
 const TEXTURA_CREDITO := preload("res://assets/powerups/credito_eugenio.png")
 const ICONOS := {
 	"azulito": preload("res://assets/powerups/azulito.png"),
@@ -41,6 +42,10 @@ var _label_vidas: Label
 var _efectos: Control
 var _reloj := 0.0
 var _vidas_dibujadas := -1
+var _lapiz_label: Label
+var _icono_lapiz: TextureRect
+var _estado_lapiz := ""
+var _label_tiempo: Label
 
 
 func _ready() -> void:
@@ -60,6 +65,18 @@ func _ready() -> void:
 	_label_nivel = _crear_label(Vector2(140, 44))
 	_label_nivel.add_theme_font_size_override("font_size", 16)
 	_label_nivel.modulate = Color(1, 1, 1, 0.85)
+	_lapiz_label = _crear_label(Vector2(10, 112))
+	_lapiz_label.position = Vector2(34, 108)
+	_lapiz_label.add_theme_font_size_override("font_size", 14)
+	_lapiz_label.add_theme_color_override("font_color", Color("#ffe27a"))
+	_icono_lapiz = TextureRect.new()
+	_icono_lapiz.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_icono_lapiz.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_icono_lapiz.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_icono_lapiz.position = Vector2(8, 108)
+	_icono_lapiz.size = Vector2(22, 22)
+	add_child(_icono_lapiz)
+	actualizar_lapiz(0, false)
 
 	# Fila 2: corazones (vidas)
 	_corazones = Control.new()
@@ -81,6 +98,16 @@ func _ready() -> void:
 	_efectos.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_efectos.draw.connect(_dibujar_efectos)
 	add_child(_efectos)
+	_label_tiempo = _crear_label(Vector2.ZERO)
+	_label_tiempo.anchor_left = 1.0
+	_label_tiempo.anchor_right = 1.0
+	_label_tiempo.offset_left = -300.0   # ancho de sobra para "NIVEL 9 · 00:00.00"
+	_label_tiempo.offset_right = -10.0
+	_label_tiempo.offset_top = 48.0
+	_label_tiempo.offset_bottom = 80.0
+	_label_tiempo.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_label_tiempo.add_theme_font_size_override("font_size", 18)
+	_label_tiempo.clip_text = false
 	_actualizar()
 
 
@@ -100,6 +127,24 @@ func configurar(controller: Node) -> void:
 	_actualizar()
 
 
+func actualizar_lapiz(cargas: int, equipado: bool = true, enfriamiento: bool = false) -> void:
+	var estado := "descargado"
+	if equipado and not enfriamiento and cargas > 0:
+		estado = "cargado" if cargas >= 3 else "normal"
+	if estado != _estado_lapiz and is_instance_valid(_icono_lapiz):
+		_estado_lapiz = estado
+		_icono_lapiz.texture = ARTE_LAPIZ.obtener_icono_estado(estado)
+	if is_instance_valid(_lapiz_label):
+		if not equipado:
+			_lapiz_label.text = "LÁPIZ · Busca el cofre en Nivel 8"
+		elif estado == "cargado":
+			_lapiz_label.text = "LÁPIZ CARGADO · %d  (J/K)" % cargas
+		elif estado == "descargado":
+			_lapiz_label.text = "LÁPIZ EN RECARGA · %d  (J/K)" % cargas
+		else:
+			_lapiz_label.text = "LÁPIZ LISTO · %d  (J/K)" % cargas
+
+
 # Cada crédito tiene su nombre (id). Se apunta en el intento y se guarda al llegar a la meta.
 func collect_coin(id: String = "") -> void:
 	PROGRESO.agregar_credito(id)
@@ -108,6 +153,9 @@ func collect_coin(id: String = "") -> void:
 
 func _process(delta: float) -> void:
 	_reloj += delta
+	if is_instance_valid(_label_tiempo):
+		var nivel := ESTADO.nivel_cronometro()
+		_label_tiempo.text = ("NIVEL %d  ·  " % nivel if nivel > 0 else "TIEMPO  ") + ESTADO.cronometro_formateado()
 	_actualizar()
 
 

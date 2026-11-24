@@ -56,6 +56,7 @@ var _jugador: Node2D = null
 var _segundos_sin_verlo := 0.0
 var _congelada := 0.0
 var _etiqueta: Label
+var _muriendo := false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var floor_detector: RayCast2D = $FloorDetector
@@ -71,6 +72,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if _muriendo:
+		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -210,11 +213,32 @@ func _hay_obstaculo_enfrente() -> bool:
 # ---------------------------------------------------------------------
 func receive_power_up_attack(attack_kind: String, _damage: float = 1.0) -> void:
 	if attack_kind == "fire":
-		queue_free()
+		_morir_con_destello()
 	elif attack_kind == "ice":
 		_congelada = DURACION_CONGELADA
-		sprite.modulate = Color("#a8e9ff")
+		var destello := create_tween()
+		destello.tween_property(sprite, "modulate", Color.WHITE, 0.05)
+		destello.tween_property(sprite, "modulate", Color("#a8e9ff"), 0.1)
 		sprite.pause()
+
+
+func aplastado() -> void:
+	_morir_con_destello()
+
+
+func _morir_con_destello() -> void:
+	if _muriendo:
+		return
+	_muriendo = true
+	velocity = Vector2.ZERO
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	sprite.pause()
+	sprite.modulate = Color("#fff1b8")
+	var destello := create_tween()
+	destello.tween_property(sprite, "modulate", Color("#ffbd79"), 0.07)
+	destello.tween_property(sprite, "modulate:a", 0.0, 0.1)
+	destello.tween_callback(queue_free)
 
 
 # ---------------------------------------------------------------------
@@ -226,10 +250,11 @@ func _crear_etiqueta() -> void:
 	_etiqueta = Label.new()
 	_etiqueta.text = NOMBRES[estado]
 	_etiqueta.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_etiqueta.add_theme_font_size_override("font_size", 28)
+	_etiqueta.add_theme_font_size_override("font_size", 12)
 	_etiqueta.add_theme_color_override("font_outline_color", Color.BLACK)
-	_etiqueta.add_theme_constant_override("outline_size", 6)
-	_etiqueta.scale = Vector2(0.25, 0.25)
-	_etiqueta.size = Vector2(160, 40)
-	_etiqueta.position = Vector2(-20, -24)
+	_etiqueta.add_theme_constant_override("outline_size", 3)
+	_etiqueta.add_theme_color_override("font_color", Color("#f4f6f2"))
+	_etiqueta.scale = Vector2(0.7, 0.7)
+	_etiqueta.size = Vector2(120, 24)
+	_etiqueta.position = Vector2(-60, -30)
 	add_child(_etiqueta)

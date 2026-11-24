@@ -1,7 +1,7 @@
 extends Control
 ## ==========================================================
 ##  SUPER TEC - Menú de inicio
-##  Tecnológico Superior de Xalapa
+##  Instituto Tecnológico Superior de Xalapa
 ##  Godot 4.x
 ##
 ##  Todo el menú se construye por código, así que solo necesitas
@@ -13,11 +13,11 @@ extends Control
 ##  para el selector de niveles.
 ## ==========================================================
 
-## Escena que se abre en "NUEVA PARTIDA" (la cinemática de Joshua entrando al Tec,
-## que al terminar manda al Nivel 1).
-@export_file("*.tscn") var escena_juego: String = "res://escenas/cinematicas/intro.tscn"
-## Escena que se abre en "CONTINUAR" (niveles ya superados y el siguiente).
-@export_file("*.tscn") var escena_niveles: String = "res://escenas/pruebas/selector_escenarios.tscn"
+## Escena que se abre en "NUEVA PARTIDA": nombre y personaje; luego la cinemática
+## de entrada al Tec y el mapa del campus.
+@export_file("*.tscn") var escena_juego: String = "res://escenas/inicio_super_tec.tscn"
+## Escena que se abre en "CONTINUAR": el mapa del campus (niveles superados y el siguiente).
+@export_file("*.tscn") var escena_niveles: String = "res://escenas/overworld_super_tec.tscn"
 
 ## (Opcional) Fuente pixel, por ejemplo "Press Start 2P" (licencia libre OFL).
 @export var fuente: Font
@@ -43,7 +43,6 @@ var _titulo: Label
 var _fade: ColorRect
 var _slider_musica: HSlider
 var _slider_efectos: HSlider
-var _chk_pantalla: CheckButton
 var _bloqueado := false
 var _listo := false
 var _t := 0.0
@@ -108,7 +107,7 @@ func _crear_titulo() -> void:
 	_titulo.offset_bottom = 80
 	add_child(_titulo)
 
-	var sub := _texto("Tecnológico Superior de Xalapa", 14, Color.WHITE, 5)
+	var sub := _texto("Instituto Tecnológico Superior de Xalapa", 14, Color.WHITE, 5)
 	sub.set_anchors_preset(PRESET_TOP_WIDE)
 	sub.offset_top = 78
 	sub.offset_bottom = 98
@@ -166,18 +165,6 @@ func _crear_panel_opciones() -> Control:
 	_slider_efectos = _slider(_on_volumen_cambiado)
 	v.add_child(_slider_efectos)
 
-	_chk_pantalla = CheckButton.new()
-	_chk_pantalla.text = "Pantalla completa"
-	_chk_pantalla.add_theme_font_size_override("font_size", 13)
-	_chk_pantalla.add_theme_color_override("font_color", Color.WHITE)
-	_chk_pantalla.add_theme_color_override("font_focus_color", C_DORADO)
-	_chk_pantalla.add_theme_color_override("font_hover_color", C_DORADO)
-	if fuente:
-		_chk_pantalla.add_theme_font_override("font", fuente)
-	_chk_pantalla.toggled.connect(_on_pantalla_completa)
-	_chk_pantalla.focus_entered.connect(func(): _sonar("menu"))
-	v.add_child(_chk_pantalla)
-
 	v.add_child(_boton("REGRESAR", func(): _mostrar(_menu)))
 	centro.set_meta("foco", _slider_musica)
 	return centro
@@ -198,7 +185,7 @@ func _crear_panel_creditos() -> Control:
 	var centro := _panel_base("CRÉDITOS")
 	var v: VBoxContainer = centro.get_meta("contenido")
 	v.add_theme_constant_override("separation", 3)
-	for l in CREDITOS_EQUIPO.LINEAS + ["", "Tecnológico Superior de Xalapa", "Hecho con Godot Engine"]:
+	for l in CREDITOS_EQUIPO.LINEAS + ["", "Instituto Tecnológico Superior de Xalapa", "Hecho con Godot Engine"]:
 		v.add_child(_texto(l, 10, Color.WHITE, 4))
 
 	var b := _boton("REGRESAR", func(): _mostrar(_menu))
@@ -395,20 +382,12 @@ func _on_volumen_cambiado() -> void:
 	_guardar_config()
 
 
-func _on_pantalla_completa(activo: bool) -> void:
-	DisplayServer.window_set_mode(
-		DisplayServer.WINDOW_MODE_FULLSCREEN if activo else DisplayServer.WINDOW_MODE_WINDOWED
-	)
-	_guardar_config()
-
-
 func _guardar_config() -> void:
 	if not _listo:
 		return
 	var c := ConfigFile.new()
 	c.set_value("audio", "musica", _slider_musica.value)
 	c.set_value("audio", "efectos", _slider_efectos.value)
-	c.set_value("video", "pantalla_completa", _chk_pantalla.button_pressed)
 	c.save(CONFIG_PATH)
 
 
@@ -419,9 +398,6 @@ func _cargar_config() -> void:
 	_slider_efectos.set_value_no_signal(c.get_value("audio", "efectos", 0.9))
 	SONIDO.volumen_musica(_slider_musica.value)
 	SONIDO.volumen_efectos(_slider_efectos.value)
-	_chk_pantalla.set_pressed_no_signal(c.get_value("video", "pantalla_completa", false))
-	if _chk_pantalla.button_pressed:
-		_on_pantalla_completa(true)
 
 
 # ==========================================================
@@ -466,10 +442,10 @@ class Fondo extends Control:
 
 		# Pinos
 		_pino(Vector2(s.x * 0.28, piso))
-		_pino(Vector2(s.x * 0.62, piso))
+		_pino(Vector2(s.x * 0.55, piso))
 
 		# Edificio del Tecnológico
-		_edificio(Vector2(s.x * 0.84, piso))
+		_edificio(Vector2(s.x * 0.835, piso))
 
 		# Bloques flotando: ?, ladrillo, ?
 		for i in 3:
@@ -504,28 +480,102 @@ class Fondo extends Control:
 			]), Color("2e6b35"))
 
 	func _edificio(base: Vector2) -> void:
-		var w := 140.0
-		var h := 90.0
-		var r := Rect2(base.x - w / 2.0, base.y - h, w, h)
-		draw_rect(r, Color("e8d8b0"))
-		draw_rect(r, Color("5a3a1a"), false, 2.0)
-		# Techo
-		draw_rect(Rect2(r.position.x - 6, r.position.y - 8, w + 12, 8), Color("1b3b6f"))
-		# Ventanas
-		for fy in 3:
-			for fx in 6:
-				var v := Rect2(r.position.x + 8 + fx * 22, r.position.y + 10 + fy * 19, 13, 11)
-				draw_rect(v, Color("7ec8e3"))
-				draw_rect(v, Color("5a3a1a"), false, 1.0)
-		# Puerta
-		draw_rect(Rect2(base.x - 10, base.y - 22, 20, 22), Color("5a3a1a"))
-		# Letrero
-		var f := ThemeDB.fallback_font
-		var letrero := Rect2(base.x - 30, r.position.y - 26, 60, 17)
-		draw_rect(letrero, Color("1b3b6f"))
-		draw_rect(letrero, Color.WHITE, false, 1.5)
-		draw_string(f, Vector2(letrero.position.x, letrero.position.y + 13), "ITSX",
-			HORIZONTAL_ALIGNMENT_CENTER, letrero.size.x, 12, Color.WHITE)
+		_edificio_a(base.x, base.y, 164.0, 92.0, 0.8)
+
+	# Edificio A del ITSX (como el real, con la pintura nueva): rojo vino con
+	# columnas y letrero en vino oscuro, letras amarillas,
+	# toldos durazno y base amarilla. La puerta queda en x = cx.
+	func _edificio_a(cx: float, piso: float, ancho: float, alto: float, escala: float = 1.0) -> void:
+		var rojo := Color("5e1420")    # columnas y letrero: vino oscuro
+		var muro := Color("8a2433")    # paredes: rojo vino
+		var blanco := Color("f4f2ec")  # marquitos de las ventanas
+		var vidrio := Color("35566a")
+		var vidrio_claro := Color("7fb0c6")
+		var toldo := Color("f3c48e")
+		var amarillo := Color("f2c14e")
+		var x0 := cx - ancho / 2.0
+		var alto_letrero := 16.0 * escala
+		var arriba := piso - alto + alto_letrero
+		# cuerpo rojo vino
+		draw_rect(Rect2(x0, arriba, ancho, alto - alto_letrero), muro)
+		# letrero rojo con letras amarillas
+		var letrero := Rect2(x0, piso - alto, ancho, alto_letrero)
+		draw_rect(letrero, rojo)
+		var fuente := ThemeDB.fallback_font
+		var texto := "INSTITUTO TECNOLÓGICO SUPERIOR DE XALAPA"
+		var tam := maxi(8, int(10 * escala))
+		while tam > 6 and fuente.get_string_size(texto, HORIZONTAL_ALIGNMENT_LEFT, -1, tam).x > ancho - 6:
+			tam -= 1   # que el letrero quepa completo
+		draw_string(fuente, Vector2(x0, letrero.position.y + alto_letrero * 0.78), texto,
+			HORIZONTAL_ALIGNMENT_CENTER, ancho, tam, amarillo)
+		var medio := arriba + (piso - arriba) * 0.42
+		var base_alto := 7.0 * escala
+		# bahías de ventanas separadas por columnas rojas
+		var bahia := 40.0 * escala
+		var x := x0
+		var entrada_izq := cx - 30 * escala
+		var entrada_der := cx + 30 * escala
+		while x < x0 + ancho - 1:
+			var fin := minf(x + bahia, x0 + ancho)
+			var izq := x
+			var der := fin
+			if der > entrada_izq and izq < entrada_der:   # aquí va la entrada
+				x = fin
+				continue
+			# ventanas de arriba (vidrio con marquitos blancos)
+			var v := Rect2(izq + 5 * escala, arriba + 5 * escala, der - izq - 10 * escala, medio - arriba - 9 * escala)
+			draw_rect(v, vidrio)
+			var k := v.position.x + 9 * escala
+			while k < v.end.x - 2:
+				draw_line(Vector2(k, v.position.y), Vector2(k, v.end.y), blanco, 1.0)
+				k += 9 * escala
+			# toldo durazno inclinado
+			draw_colored_polygon(PackedVector2Array([
+				Vector2(izq + 2 * escala, medio - 3 * escala), Vector2(der - 2 * escala, medio - 3 * escala),
+				Vector2(der + 1 * escala, medio + 9 * escala), Vector2(izq - 1 * escala, medio + 9 * escala)]), toldo)
+			# ventanas de abajo (asomando bajo el toldo)
+			draw_rect(Rect2(izq + 5 * escala, medio + 11 * escala, der - izq - 10 * escala, piso - base_alto - medio - 14 * escala), vidrio)
+			x = fin
+		# columnas rojas entre bahías
+		x = x0
+		while x <= x0 + ancho + 1:
+			if x < entrada_izq - 1 or x > entrada_der + 1:
+				draw_rect(Rect2(x - 2.5 * escala, arriba, 5 * escala, piso - arriba), rojo)
+			x += bahia
+		# base amarilla
+		draw_rect(Rect2(x0, piso - base_alto, ancho, base_alto), amarillo)
+		# entrada central: vidrio alto con marco y columnas rojas
+		var ent := Rect2(entrada_izq, arriba, entrada_der - entrada_izq, piso - arriba)
+		draw_rect(ent, vidrio_claro)
+		for c in 5:
+			var lx := ent.position.x + c * ent.size.x / 4.0
+			draw_line(Vector2(lx, ent.position.y), Vector2(lx, piso), blanco, 1.0)
+		for f in 4:
+			var ly := ent.position.y + f * ent.size.y / 4.0
+			draw_line(Vector2(ent.position.x, ly), Vector2(ent.end.x, ly), blanco, 1.0)
+		draw_rect(Rect2(ent.position.x - 4 * escala, arriba, 6 * escala, piso - arriba), rojo)
+		draw_rect(Rect2(ent.end.x - 2 * escala, arriba, 6 * escala, piso - arriba), rojo)
+		draw_rect(Rect2(cx - 13 * escala, piso - 28 * escala, 26 * escala, 28 * escala), Color("2e4652"))   # puerta
+		draw_line(Vector2(cx, piso - 28 * escala), Vector2(cx, piso), blanco, 1.0)
+		# palmeras y arbolitos al frente
+		for px in [cx - 22 * escala, cx + 26 * escala]:
+			_palmera(Vector2(px, piso), escala)
+		var ax := x0 + 18 * escala
+		while ax < x0 + ancho:
+			if absf(ax - cx) > 50 * escala:
+				draw_line(Vector2(ax, piso), Vector2(ax, piso - 12 * escala), Color("7a5a3a"), 2.0)
+				draw_circle(Vector2(ax, piso - 16 * escala), 8 * escala, Color("3f9a47"))
+				draw_circle(Vector2(ax - 3 * escala, piso - 18 * escala), 5 * escala, Color("56b65d"))
+			ax += 46 * escala
+
+	func _palmera(base: Vector2, escala: float) -> void:
+		var alto := 52.0 * escala
+		draw_line(base, base + Vector2(3 * escala, -alto), Color("7a5a3a"), 4.0 * escala)
+		var copa := base + Vector2(3 * escala, -alto)
+		for k in 6:
+			var ang := -PI + k * PI / 5.0 + sin(t * 1.5 + k) * 0.05
+			var punta := copa + Vector2(cos(ang), sin(ang) * 0.5 + 0.35) * 22.0 * escala
+			draw_colored_polygon(PackedVector2Array([copa, punta + Vector2(0, -4 * escala), punta + Vector2(0, 3 * escala)]), Color("2f8f3e") if k % 2 else Color("3fae4c"))
 
 	# Bloque ? (dorado con libro) o ladrillo rojo, como en los niveles
 	func _bloque(p: Vector2, ladrillo: bool) -> void:

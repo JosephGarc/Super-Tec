@@ -29,6 +29,8 @@ extends CharacterBody2D
 @export var rango_patrulla := 48.0
 @export var vida := 1
 @export var distancia_ataque := 40.0
+@export var radio_deteccion_volador := 180.0
+@export var radio_arrive_volador := 38.0
 
 # Copias de las hojas de sprites con fondo transparente (los originales traen fondo pintado)
 const SONIDO := preload("res://scripts/juego/sonido.gd")
@@ -62,7 +64,7 @@ func _ready() -> void:
 	frames_muerte = _cargar_frames(escena_muerte)
 
 	sprite = AnimatedSprite2D.new()
-	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.position.y = desfase_y
 	add_child(sprite)
 	_poner_frames(frames_normal)
@@ -91,7 +93,7 @@ func _physics_process(delta: float) -> void:
 	var rapidez := velocidad * (0.25 if congelado > 0.0 else 1.0)
 
 	if vuela:
-		velocity.y = cos(tiempo * 2.5) * 12.0   # flota subiendo y bajando
+		_aplicar_steering_volador(delta, rapidez)
 	elif not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -109,11 +111,42 @@ func _physics_process(delta: float) -> void:
 			direccion *= -1.0
 
 	# Al atacar se lanza hacia Joshua un poco más rápido
-	velocity.x = direccion * rapidez * (1.8 if atacando > 0.0 else 1.0)
+	if not vuela:
+		velocity.x = direccion * rapidez * (1.8 if atacando > 0.0 else 1.0)
 	_revisar_ataque()
 	sprite.flip_h = (direccion < 0.0) == mira_a_la_derecha
 	move_and_slide()
 	_revisar_contacto_con_jugador()
+
+
+func _aplicar_steering_volador(delta: float, rapidez: float) -> void:
+	# Wander alrededor del punto inicial; Seek al jugador en rango y Arrive al
+	# frenar en una distancia segura. El suavizado evita oscilaciones fuertes.
+	var objetivo := inicio + Vector2(sin(tiempo * 0.72) * rango_patrulla, cos(tiempo * 1.1) * 14.0)
+	var jugador := get_tree().get_first_node_in_group("jugador") as Node2D
+	if jugador != null and global_position.distance_to(jugador.global_position) <= radio_deteccion_volador:
+		var hacia := jugador.global_position - global_position
+		var distancia := hacia.length()
+		if distancia > radio_arrive_volador:
+			objetivo = jugador.global_position - hacia.normalized() * radio_arrive_volador
+		else:
+			objetivo = global_position
+	var deseada := (objetivo - global_position).normalized() * rapidez
+	if objetivo == global_position:
+		deseada = Vector2.ZERO
+	if deseada.length_squared() > 0.01:
+		var desde := global_position
+		var hasta := desde + deseada.normalized() * 26.0
+		var consulta := PhysicsRayQueryParameters2D.create(desde, hasta, 1 | 16)
+		consulta.exclude = [get_rid()]
+		if not get_world_2d().direct_space_state.intersect_ray(consulta).is_empty():
+			var desvio := Vector2(-deseada.y, deseada.x).normalized()
+			if absf(desvio.y) < 0.25:
+				desvio.y = -0.7
+			deseada = desvio * rapidez
+	velocity = velocity.move_toward(deseada, rapidez * 2.4 * delta)
+	if absf(velocity.x) > 0.1:
+		direccion = signf(velocity.x)
 
 
 func _revisar_ataque() -> void:

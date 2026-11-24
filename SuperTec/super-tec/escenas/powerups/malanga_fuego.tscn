@@ -15,7 +15,7 @@ power_up_id = "malanga_fuego"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2")
 scale = Vector2(0.2, 0.2)
-texture_filter = 1
+texture_filter = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("PickupShape")

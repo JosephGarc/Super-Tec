@@ -18,9 +18,9 @@ const PROGRESO := preload("res://scripts/juego/progreso.gd")
 const CREDITOS_EQUIPO := preload("res://scripts/juego/creditos_equipo.gd")
 const TEX_EUGENIO := preload("res://assets/powerups/credito_eugenio.png")
 
-const NIVEL_1 := "res://escenas/pruebas/niveles/nivel_1.tscn"
+const CAMPUS := "res://escenas/overworld_super_tec.tscn"
 const MENU := "res://menu/menu_principal.tscn"
-const CONTINUAR := "res://escenas/pruebas/selector_escenarios.tscn"
+const ESTADO := preload("res://scripts/juego/estado_juego.gd")
 
 const PISO := 268.0
 const ESCALA_JOSHUA := 0.11
@@ -42,6 +42,7 @@ var _fade: ColorRect
 var _saltar := false
 var _avanzar := false
 var _terminado := false
+var _es_ella := false
 
 
 func _ready() -> void:
@@ -81,19 +82,21 @@ func _intro() -> void:
 	await _aparecer_desde_negro()
 	await _mostrar_cartel("Xalapa, Veracruz\nPrimer día de clases")
 	await _caminar(255, 3.2)
-	await _decir("Joshua", "¡Por fin! Primer día en el Tecnológico Superior de Xalapa.")
+	await _decir("Joshua", "¡Por fin! Primer día en el Tec.")
 	await _aparecer(_eugenio)
-	await _decir("Eugenio", "Bienvenido al Tec, Joshua. Yo soy Eugenio... el de los créditos.")
-	await _decir("Eugenio", "Para titularte tienes que pasar los 9 semestres y juntar mis 180 créditos.")
-	await _decir("Joshua", "¿Los 180? Va, ¡voy por todos!")
+	await _decir("Eugenio", "Bienvenido al Tec, Joshua. Soy Eugenio.")
+	await _decir("Eugenio", "Para titularte tienes que pasar los 9 semestres y juntar 180 créditos.")
+	await _decir("Eugenio", "Yo voy a comprobar que consigas los créditos suficientes.")
+	await _decir("Joshua", "¿180? ¡De una, los consigo!")
+	await _decir("Eugenio", "Así me gusta. ¡Mucha suerte, Joshua!")
 	await _caminar(380, 1.3)
 	await _entrar_por_la_puerta()
-	await _terminar(NIVEL_1)
+	await _terminar(CAMPUS)
 
 
 func _titulo() -> void:
 	_fondo.modo = "auditorio"
-	SONIDO.musica("menu")
+	SONIDO.musica("final_titulo")
 	_joshua.position = Vector2(-30, _y_joshua())
 	_eugenio.position = Vector2(330, PISO)
 	_diploma.position = _eugenio.position + Vector2(-16, -30)
@@ -119,21 +122,23 @@ func _faltan_creditos() -> void:
 	var tiene := PROGRESO.total()
 	var faltan := PROGRESO.CREDITOS_TOTALES - tiene
 	_fondo.modo = "oficina"
-	SONIDO.musica("campus_noche")
+	SONIDO.musica("final_faltan")
 	_joshua.position = Vector2(-30, _y_joshua())
 	_eugenio.position = Vector2(372, PISO)
 	await _aparecer_desde_negro()
 	await _mostrar_cartel("Servicios Escolares")
 	await _caminar(262, 2.8)
-	await _decir("Joshua", "Vengo por mi título. Ya pasé los 9 semestres.")
-	await _decir("Eugenio", "A ver tu kárdex...")
+	await _decir("Joshua", "Buenas noches, Eugenio. Ya terminé los 9 semestres...")
+	await _decir("Joshua", "¿Me podría decir si ya puedo tramitar mi título, por favor?")
+	await _decir("Eugenio", "Claro, Joshua. Déjame revisar tu kárdex...")
 	await _sacudir(_eugenio)
-	await _decir("Eugenio", "Tienes %d de 180 créditos. Te faltan %d." % [tiene, faltan])
-	await _decir("Eugenio", "Sin los 180 créditos no hay título.")
-	await _decir("Joshua", "¿Neta? ¿Y ahora qué hago?")
+	await _decir("Eugenio", "Llevas %d de 180 créditos. Todavía te faltan %d." % [tiene, faltan])
+	await _decir("Eugenio", "Sin los 180 créditos aún no puedo darte el título.")
+	await _decir("Joshua", "Ah, no sabía... ¿Qué me recomienda hacer?")
 	await _decir("Eugenio", "Regresa a los semestres y consigue los que te faltan. Aquí te espero.")
-	await _mostrar_cartel("Usa CONTINUAR para repetir niveles\ny conseguir los créditos que te faltan.", 3.5)
-	await _terminar(CONTINUAR)
+	await _decir("Joshua", "Muchas gracias, Eugenio. ¡Ahorita regreso con todos!")
+	await _mostrar_cartel("Regresa al Mapa del Tec\ny consigue los créditos que te faltan.", 3.5)
+	await _terminar(CAMPUS)
 
 
 # ==========================================================
@@ -208,7 +213,17 @@ func _entrar_por_la_puerta() -> void:
 	await _esperar_tween(tw)
 
 
+# Los personajes se llaman Joshua y Sam (según el que eligieron al inicio)
+func _nombre_jugador() -> String:
+	return "Sam" if _es_ella else "Joshua"
+
+
 func _decir(quien: String, texto: String) -> void:
+	if _es_ella:
+		texto = texto.replace("Ingeniero", "Ingeniera").replace("Bienvenido", "Bienvenida")
+	texto = texto.replace("Joshua", _nombre_jugador())
+	if quien == "Joshua":
+		quien = _nombre_jugador()
 	if _saltar:
 		return
 	_caja.visible = true
@@ -275,7 +290,7 @@ func _pantalla_fin() -> void:
 	for linea in CREDITOS_EQUIPO.LINEAS:
 		caja.add_child(_etiqueta(linea, 11, Color.WHITE))
 	caja.add_child(_etiqueta(" ", 8, Color.WHITE))
-	caja.add_child(_etiqueta("Tecnológico Superior de Xalapa · 2026", 11, C_DORADO))
+	caja.add_child(_etiqueta("Instituto Tecnológico Superior de Xalapa · 2026", 11, C_DORADO))
 	caja.modulate.a = 0.0
 	var tw := create_tween()
 	tw.tween_property(capa, "color:a", 0.88, 1.0)
@@ -322,6 +337,12 @@ func _construir() -> void:
 	# Joshua con sus mismas animaciones del juego
 	var j: Node = load("res://escenas/personajes_juegos/Joshua.tscn").instantiate()
 	var frames: SpriteFrames = (j.get_node("AnimatedSprite2D") as AnimatedSprite2D).sprite_frames
+	# Si en la pantalla de inicio eligieron a la chica, sale ella (mismo sprite del juego)
+	if ESTADO.personaje_seleccionado == "mujer" and j.has_method("_crear_spriteframes_mujer"):
+		var frames_mujer = j._crear_spriteframes_mujer()
+		if frames_mujer:
+			frames = frames_mujer
+			_es_ella = true
 	j.free()
 	_joshua = AnimatedSprite2D.new()
 	_joshua.sprite_frames = frames
@@ -499,23 +520,106 @@ class Escenario extends Control:
 		for i in range(-1, int(s.x / 110.0) + 2):
 			draw_circle(Vector2(i * 110.0 + 20, piso + 6), 30, Color("2f7d3a"))
 			draw_circle(Vector2(i * 110.0 + 55, piso + 10), 22, Color("3f9a47"))
-		# Edificio del Tec con puerta en x = 380
-		var r := Rect2(280, piso - 120, 200, 120)
-		draw_rect(r, Color("e8d8b0"))
-		draw_rect(r, Color("5a3a1a"), false, 2.0)
-		draw_rect(Rect2(272, piso - 130, 216, 10), Color("1b3b6f"))
-		for fy in 3:
-			for fx in 7:
-				if fy == 2 and fx == 3:
-					continue
-				var v := Rect2(290 + fx * 27, piso - 108 + fy * 32, 16, 18)
-				draw_rect(v, Color("7ec8e3"))
-				draw_rect(v, Color("5a3a1a"), false, 1.0)
-		draw_rect(Rect2(366, piso - 34, 28, 34), Color("5a3a1a"))   # puerta
-		draw_rect(Rect2(350, piso - 158, 60, 20), Color("1b3b6f"))
-		draw_rect(Rect2(350, piso - 158, 60, 20), Color.WHITE, false, 1.5)
-		draw_string(ThemeDB.fallback_font, Vector2(350, piso - 143), "ITSX", HORIZONTAL_ALIGNMENT_CENTER, 60, 13, Color.WHITE)
+		# Edificio A del ITSX con la puerta en x = 380
+		_edificio_a(380.0, piso, 262.0, 112.0)
+		# banqueta con guarnición amarilla
+		draw_rect(Rect2(0, piso - 2, size.x, 2), Color("f2c14e"))
 		_piso_campus(piso)
+
+	# Edificio A del ITSX (como el real, con la pintura nueva): rojo vino con
+	# columnas y letrero en vino oscuro, letras amarillas,
+	# toldos durazno y base amarilla. La puerta queda en x = cx.
+	func _edificio_a(cx: float, piso: float, ancho: float, alto: float, escala: float = 1.0) -> void:
+		var rojo := Color("5e1420")    # columnas y letrero: vino oscuro
+		var muro := Color("8a2433")    # paredes: rojo vino
+		var blanco := Color("f4f2ec")  # marquitos de las ventanas
+		var vidrio := Color("35566a")
+		var vidrio_claro := Color("7fb0c6")
+		var toldo := Color("f3c48e")
+		var amarillo := Color("f2c14e")
+		var x0 := cx - ancho / 2.0
+		var alto_letrero := 16.0 * escala
+		var arriba := piso - alto + alto_letrero
+		# cuerpo rojo vino
+		draw_rect(Rect2(x0, arriba, ancho, alto - alto_letrero), muro)
+		# letrero rojo con letras amarillas
+		var letrero := Rect2(x0, piso - alto, ancho, alto_letrero)
+		draw_rect(letrero, rojo)
+		var fuente := ThemeDB.fallback_font
+		var texto := "INSTITUTO TECNOLÓGICO SUPERIOR DE XALAPA"
+		var tam := maxi(8, int(10 * escala))
+		while tam > 6 and fuente.get_string_size(texto, HORIZONTAL_ALIGNMENT_LEFT, -1, tam).x > ancho - 6:
+			tam -= 1   # que el letrero quepa completo
+		draw_string(fuente, Vector2(x0, letrero.position.y + alto_letrero * 0.78), texto,
+			HORIZONTAL_ALIGNMENT_CENTER, ancho, tam, amarillo)
+		var medio := arriba + (piso - arriba) * 0.42
+		var base_alto := 7.0 * escala
+		# bahías de ventanas separadas por columnas rojas
+		var bahia := 40.0 * escala
+		var x := x0
+		var entrada_izq := cx - 30 * escala
+		var entrada_der := cx + 30 * escala
+		while x < x0 + ancho - 1:
+			var fin := minf(x + bahia, x0 + ancho)
+			var izq := x
+			var der := fin
+			if der > entrada_izq and izq < entrada_der:   # aquí va la entrada
+				x = fin
+				continue
+			# ventanas de arriba (vidrio con marquitos blancos)
+			var v := Rect2(izq + 5 * escala, arriba + 5 * escala, der - izq - 10 * escala, medio - arriba - 9 * escala)
+			draw_rect(v, vidrio)
+			var k := v.position.x + 9 * escala
+			while k < v.end.x - 2:
+				draw_line(Vector2(k, v.position.y), Vector2(k, v.end.y), blanco, 1.0)
+				k += 9 * escala
+			# toldo durazno inclinado
+			draw_colored_polygon(PackedVector2Array([
+				Vector2(izq + 2 * escala, medio - 3 * escala), Vector2(der - 2 * escala, medio - 3 * escala),
+				Vector2(der + 1 * escala, medio + 9 * escala), Vector2(izq - 1 * escala, medio + 9 * escala)]), toldo)
+			# ventanas de abajo (asomando bajo el toldo)
+			draw_rect(Rect2(izq + 5 * escala, medio + 11 * escala, der - izq - 10 * escala, piso - base_alto - medio - 14 * escala), vidrio)
+			x = fin
+		# columnas rojas entre bahías
+		x = x0
+		while x <= x0 + ancho + 1:
+			if x < entrada_izq - 1 or x > entrada_der + 1:
+				draw_rect(Rect2(x - 2.5 * escala, arriba, 5 * escala, piso - arriba), rojo)
+			x += bahia
+		# base amarilla
+		draw_rect(Rect2(x0, piso - base_alto, ancho, base_alto), amarillo)
+		# entrada central: vidrio alto con marco y columnas rojas
+		var ent := Rect2(entrada_izq, arriba, entrada_der - entrada_izq, piso - arriba)
+		draw_rect(ent, vidrio_claro)
+		for c in 5:
+			var lx := ent.position.x + c * ent.size.x / 4.0
+			draw_line(Vector2(lx, ent.position.y), Vector2(lx, piso), blanco, 1.0)
+		for f in 4:
+			var ly := ent.position.y + f * ent.size.y / 4.0
+			draw_line(Vector2(ent.position.x, ly), Vector2(ent.end.x, ly), blanco, 1.0)
+		draw_rect(Rect2(ent.position.x - 4 * escala, arriba, 6 * escala, piso - arriba), rojo)
+		draw_rect(Rect2(ent.end.x - 2 * escala, arriba, 6 * escala, piso - arriba), rojo)
+		draw_rect(Rect2(cx - 13 * escala, piso - 28 * escala, 26 * escala, 28 * escala), Color("2e4652"))   # puerta
+		draw_line(Vector2(cx, piso - 28 * escala), Vector2(cx, piso), blanco, 1.0)
+		# palmeras y arbolitos al frente
+		for px in [cx - 22 * escala, cx + 26 * escala]:
+			_palmera(Vector2(px, piso), escala)
+		var ax := x0 + 18 * escala
+		while ax < x0 + ancho:
+			if absf(ax - cx) > 50 * escala:
+				draw_line(Vector2(ax, piso), Vector2(ax, piso - 12 * escala), Color("7a5a3a"), 2.0)
+				draw_circle(Vector2(ax, piso - 16 * escala), 8 * escala, Color("3f9a47"))
+				draw_circle(Vector2(ax - 3 * escala, piso - 18 * escala), 5 * escala, Color("56b65d"))
+			ax += 46 * escala
+
+	func _palmera(base: Vector2, escala: float) -> void:
+		var alto := 52.0 * escala
+		draw_line(base, base + Vector2(3 * escala, -alto), Color("7a5a3a"), 4.0 * escala)
+		var copa := base + Vector2(3 * escala, -alto)
+		for k in 6:
+			var ang := -PI + k * PI / 5.0 + sin(t * 1.5 + k) * 0.05
+			var punta := copa + Vector2(cos(ang), sin(ang) * 0.5 + 0.35) * 22.0 * escala
+			draw_colored_polygon(PackedVector2Array([copa, punta + Vector2(0, -4 * escala), punta + Vector2(0, 3 * escala)]), Color("2f8f3e") if k % 2 else Color("3fae4c"))
 
 	func _piso_campus(piso: float) -> void:
 		var s := size

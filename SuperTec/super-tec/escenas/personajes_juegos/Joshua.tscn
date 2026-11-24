@@ -127,7 +127,7 @@ shape = SubResource("CapsuleShape2D_gv6ty")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=356115853]
 scale = Vector2(0.068, 0.068)
-texture_filter = 1
+texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_gv6ty")
 animation = &"walk"
 frame_progress = 0.7647401

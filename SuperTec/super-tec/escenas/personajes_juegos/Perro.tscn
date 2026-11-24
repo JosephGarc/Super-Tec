@@ -47,7 +47,7 @@ script = ExtResource("2_script")
 shape = SubResource("enemy_shape")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
+texture_filter = 0
 sprite_frames = SubResource("walk_frames")
 animation = &"walk"
 
