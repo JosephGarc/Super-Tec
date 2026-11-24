@@ -174,20 +174,28 @@ static func _preparar() -> void:
 	arbol.root.add_child.call_deferred(_nodo)
 
 
+# Los sonidos "bip" se generan una sola vez como WAV y se guardan en caché.
+# (Antes se usaba AudioStreamGenerator: esos reproductores se quedaban "sonando"
+# para siempre y acababan ocupando todos los canales, y a veces dejaban el juego mudo.)
+static var _cache_sintetizados := {}
+
+
 static func _reproducir_sintetizado(reproductor: AudioStreamPlayer, nombre: String, volumen_db: float = 0.0) -> void:
 	var duracion: float = DURACION_SINTETIZADA.get(nombre, 0.12)
-	var generador := AudioStreamGenerator.new()
-	generador.mix_rate = 22050.0
-	generador.buffer_length = maxf(0.35, duracion + 0.08)
-	reproductor.stream = generador
+	if not _cache_sintetizados.has(nombre):
+		_cache_sintetizados[nombre] = _sintetizar(nombre, duracion)
+	reproductor.stream = _cache_sintetizados[nombre]
 	reproductor.volume_db = VOLUMEN_EFECTO.get(nombre, -2.0) + volumen_db
 	_reproducir(reproductor)
-	var playback := reproductor.get_stream_playback() as AudioStreamGeneratorPlayback
-	if playback == null:
-		return
-	var muestras := PackedVector2Array()
-	var cantidad := maxi(1, int(duracion * generador.mix_rate))
-	muestras.resize(cantidad)
+	if nombre in JINGLES:
+		_bajar_musica(duracion)
+
+
+static func _sintetizar(nombre: String, duracion: float) -> AudioStreamWAV:
+	var mix_rate := 22050
+	var cantidad := maxi(1, int(duracion * mix_rate))
+	var datos := PackedByteArray()
+	datos.resize(cantidad * 2)
 	var fase := 0.0
 	var notas := PackedFloat32Array([523.25, 659.25, 783.99, 1046.5])
 	var frecuencia_inicio := 440.0
@@ -210,20 +218,22 @@ static func _reproducir_sintetizado(reproductor: AudioStreamPlayer, nombre: Stri
 			frecuencia_final = 1040.0
 	var duracion_nota := duracion / float(notas.size())
 	for i in range(cantidad):
-		var tiempo := float(i) / generador.mix_rate
+		var tiempo := float(i) / mix_rate
 		var progreso := tiempo / duracion
 		var frecuencia := lerpf(frecuencia_inicio, frecuencia_final, progreso)
 		if nombre == "meta" or nombre == "nivel_completado":
 			frecuencia = notas[mini(int(tiempo / duracion_nota), notas.size() - 1)]
-		fase = fmod(fase + TAU * frecuencia / generador.mix_rate, TAU)
+		fase = fmod(fase + TAU * frecuencia / mix_rate, TAU)
 		var pulso := 0.72 if sin(fase) >= 0.0 else -0.72
 		var ataque := minf(tiempo / 0.008, 1.0)
 		var salida := minf((duracion - tiempo) / 0.035, 1.0)
-		var amplitud := pulso * ataque * salida
-		muestras[i] = Vector2(amplitud, amplitud)
-	playback.push_buffer(muestras)
-	if nombre in JINGLES:
-		_bajar_musica(duracion)
+		datos.encode_s16(i * 2, int(clampf(pulso * ataque * salida, -1.0, 1.0) * 32767.0))
+	var wav := AudioStreamWAV.new()
+	wav.format = AudioStreamWAV.FORMAT_16_BITS
+	wav.mix_rate = mix_rate
+	wav.stereo = false
+	wav.data = datos
+	return wav
 
 
 static func _crear_bus(nombre: String) -> void:

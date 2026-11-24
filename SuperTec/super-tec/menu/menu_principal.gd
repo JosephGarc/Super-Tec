@@ -24,6 +24,7 @@ extends Control
 
 ## Los créditos del equipo están en scripts/juego/creditos_equipo.gd
 
+const SALIDA := preload("res://scripts/juego/salida.gd")
 const SONIDO := preload("res://scripts/juego/sonido.gd")
 const ESTADO := preload("res://scripts/juego/estado_juego.gd")
 const PROGRESO := preload("res://scripts/juego/progreso.gd")
@@ -134,7 +135,7 @@ func _crear_menu() -> Control:
 	caja.add_child(_boton("OPCIONES", func(): _mostrar(_panel_opciones)))
 	caja.add_child(_boton("CRÉDITOS", func(): _mostrar(_panel_creditos)))
 	if not OS.has_feature("web"):
-		caja.add_child(_boton("SALIR", func(): get_tree().quit()))
+		caja.add_child(_boton("SALIR", func(): SALIDA.salir()))
 
 	if PROGRESO.hay_partida:
 		caja.add_child(_texto("Créditos: %d / %d" % [PROGRESO.total(), PROGRESO.CREDITOS_TOTALES], 11, C_DORADO, 4))
