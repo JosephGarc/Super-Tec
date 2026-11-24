@@ -47,6 +47,12 @@ const ZONAS_NIVELES := [
 var _jugador: CharacterBody2D
 var _sprite: AnimatedSprite2D
 var _nodo_cercano := -1
+# Selección de nivel de uno en uno: el personaje camina solo por el camino
+var _nivel_actual := 0
+var _caminando := false
+var _flecha_izq: Polygon2D
+var _flecha_der: Polygon2D
+var _reloj := 0.0
 var _cambiando_escena := false
 var _etiquetas: Array[Label] = []
 var _insignias: Array[Label] = []
@@ -189,7 +195,12 @@ func _crear_numero_nivel(numero: int) -> void:
 func _crear_jugador() -> void:
 	_jugador = CharacterBody2D.new()
 	_jugador.name = "JugadorOverworld"
-	_jugador.position = ESTADO.posicion_overworld if ESTADO.posicion_overworld != Vector2.ZERO else POSICIONES_NIVELES[0]
+	var inicio: Vector2 = ESTADO.posicion_overworld if ESTADO.posicion_overworld != Vector2.ZERO else POSICIONES_NIVELES[0]
+	_nivel_actual = 0
+	for indice in range(POSICIONES_NIVELES.size()):
+		if inicio.distance_to(POSICIONES_NIVELES[indice]) < inicio.distance_to(POSICIONES_NIVELES[_nivel_actual]):
+			_nivel_actual = indice
+	_jugador.position = POSICIONES_NIVELES[_nivel_actual]
 	add_child(_jugador)
 	var prototipo := ESCENA_JOSHUA.instantiate() as CharacterBody2D
 	var sprite_original := prototipo.get_node("AnimatedSprite2D") as AnimatedSprite2D
@@ -216,7 +227,7 @@ func _crear_interfaz() -> void:
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	var guia := Label.new()
-	guia.text = "WASD / Flechas mover · Enter nivel · Esc menú · M audio · F9 selector"
+	guia.text = "← / → (A / D) cambiar de nivel · Enter entrar · Esc menú · M audio"
 	guia.anchor_left = 0.0
 	guia.anchor_right = 1.0
 	guia.anchor_top = 1.0
@@ -322,34 +333,105 @@ func _texto_nodo(numero: int) -> String:
 	var estado := "Completado" if ESTADO.nivel_completado(numero) else "Enter para entrar"
 	return "Nivel %d · %s\n%s · %s" % [numero, ZONAS_NIVELES[numero - 1], creditos, estado]
 
-func _physics_process(_delta: float) -> void:
-	if _jugador == null or _cambiando_escena:
+func _physics_process(delta: float) -> void:
+	if _jugador == null:
 		return
-	var direccion := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if Input.is_physical_key_pressed(KEY_A):
-		direccion.x -= 1.0
-	if Input.is_physical_key_pressed(KEY_D):
-		direccion.x += 1.0
-	if Input.is_physical_key_pressed(KEY_W):
-		direccion.y -= 1.0
-	if Input.is_physical_key_pressed(KEY_S):
-		direccion.y += 1.0
-	if direccion.length_squared() > 1.0:
-		direccion = direccion.normalized()
-	var desplazamiento := direccion * VELOCIDAD * _delta
-	var destino := _jugador.position + desplazamiento
-	if _sobre_camino(destino):
-		_jugador.position = destino
-	elif _sobre_camino(_jugador.position + Vector2(desplazamiento.x, 0)):
-		_jugador.position.x += desplazamiento.x
-	elif _sobre_camino(_jugador.position + Vector2(0, desplazamiento.y)):
-		_jugador.position.y += desplazamiento.y
-	if not direccion.is_zero_approx():
-		if not is_zero_approx(direccion.x):
-			_sprite.flip_h = direccion.x < 0.0
-		_sprite.play("walk")
+	_reloj += delta
+	_actualizar_flechas()
+	if _caminando or _cambiando_escena:
+		return
+	_sprite.play("idle")
+	var derecha := Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_down") \
+		or Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_S)
+	var izquierda := Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_up") \
+		or Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_W)
+	if derecha and not izquierda:
+		_ir_a_nivel(_nivel_actual + 1)
+	elif izquierda and not derecha:
+		_ir_a_nivel(_nivel_actual - 1)
+
+
+## Camina por el camino hasta el nivel indicado (solo uno a la vez)
+func _ir_a_nivel(indice: int) -> void:
+	if indice < 0 or indice >= POSICIONES_NIVELES.size():
+		return
+	if not PROGRESO.desbloqueado(indice + 1):
+		if not _caminando:
+			_caminando = true
+			SONIDO.efecto("golpe_bloque")
+			var tw := create_tween()
+			var sentido := signf(float(indice - _nivel_actual))
+			tw.tween_property(_jugador, "position", POSICIONES_NIVELES[_nivel_actual] + Vector2(10.0 * sentido, 0), 0.07)
+			tw.tween_property(_jugador, "position", POSICIONES_NIVELES[_nivel_actual], 0.1)
+			tw.tween_interval(0.15)
+			tw.tween_callback(func(): _caminando = false)
+		return
+	var desde := CAMINO.find(POSICIONES_NIVELES[_nivel_actual])
+	var hasta := CAMINO.find(POSICIONES_NIVELES[indice])
+	var puntos: Array[Vector2] = []
+	if desde < 0 or hasta < 0 or desde == hasta:
+		puntos.append(POSICIONES_NIVELES[indice])
 	else:
-		_sprite.play("idle")
+		var paso := 1 if hasta > desde else -1
+		var k := desde + paso
+		while true:
+			puntos.append(CAMINO[k])
+			if k == hasta:
+				break
+			k += paso
+	_caminando = true
+	_sprite.play("walk")
+	var tw := create_tween()
+	var anterior: Vector2 = _jugador.position
+	for punto in puntos:
+		var tiempo := anterior.distance_to(punto) / (VELOCIDAD * 2.2)
+		tw.tween_callback(_mirar_hacia.bind(punto))
+		tw.tween_property(_jugador, "position", punto, tiempo)
+		anterior = punto
+	tw.tween_callback(func():
+		_nivel_actual = indice
+		_caminando = false
+		_sprite.play("idle"))
+
+
+func _mirar_hacia(punto: Vector2) -> void:
+	if absf(punto.x - _jugador.position.x) > 1.0:
+		_sprite.flip_h = punto.x < _jugador.position.x
+
+
+# Flechitas a los lados del personaje: a qué nivel puedes moverte
+func _crear_flechas() -> void:
+	_flecha_izq = Polygon2D.new()
+	_flecha_izq.polygon = PackedVector2Array([Vector2(0, -34), Vector2(0, 34), Vector2(-42, 0)])
+	_flecha_der = Polygon2D.new()
+	_flecha_der.polygon = PackedVector2Array([Vector2(0, -34), Vector2(0, 34), Vector2(42, 0)])
+	for f in [_flecha_izq, _flecha_der]:
+		f.color = Color("#ffd23f")
+		f.z_index = 25
+		var borde := Line2D.new()
+		var pts: PackedVector2Array = f.polygon.duplicate()
+		pts.append(pts[0])
+		borde.points = pts
+		borde.width = 9.0
+		borde.default_color = Color("#14202e")
+		borde.joint_mode = Line2D.LINE_JOINT_ROUND
+		f.add_child(borde)
+		f.move_child(borde, 0)
+		add_child(f)
+
+
+func _actualizar_flechas() -> void:
+	if _flecha_izq == null:
+		_crear_flechas()
+	var vaiven := sin(_reloj * 6.0) * 6.0
+	var base := _jugador.position + Vector2(0, -45)
+	_flecha_izq.position = base + Vector2(-80 - vaiven, 0)
+	_flecha_der.position = base + Vector2(80 + vaiven, 0)
+	_flecha_izq.visible = not _caminando and _nivel_actual > 0
+	_flecha_der.visible = not _caminando and _nivel_actual < POSICIONES_NIVELES.size() - 1
+	# la flecha hacia un nivel bloqueado sale gris
+	_flecha_der.color = Color("#ffd23f") if PROGRESO.desbloqueado(_nivel_actual + 2) else Color("#7d8591")
+
 
 func _sobre_camino(punto: Vector2) -> bool:
 	for indice in range(CAMINO.size() - 1):
@@ -365,7 +447,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("ui_cancel") and not _cambiando_escena:
 		call_deferred("_cambiar_a", INICIO_PATH)
-	elif event.is_action_pressed("ui_accept") and _nodo_cercano >= 0 and not _cambiando_escena:
+	elif event.is_action_pressed("ui_accept") and _nodo_cercano >= 0 and not _cambiando_escena and not _caminando:
 		if not PROGRESO.desbloqueado(_nodo_cercano + 1):
 			SONIDO.efecto("golpe_bloque")
 			return
