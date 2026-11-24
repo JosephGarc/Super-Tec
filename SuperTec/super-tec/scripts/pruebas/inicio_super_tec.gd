@@ -95,14 +95,15 @@ func _crear_interfaz() -> void:
 	tarjetas.add_theme_constant_override("separation", 14)
 	columna.add_child(tarjetas)
 	var previews := _crear_previews()
-	tarjetas.add_child(_crear_tarjeta("hombre", "Joshua", previews["hombre"]))
-	tarjetas.add_child(_crear_tarjeta("mujer", "Sam", previews["mujer"]))
+	tarjetas.add_child(_crear_tarjeta("hombre", "Hombre", previews["hombre"]))
+	tarjetas.add_child(_crear_tarjeta("mujer", "Mujer", previews["mujer"]))
 	var fila_jugador := HBoxContainer.new()
 	fila_jugador.add_theme_constant_override("separation", 8)
 	columna.add_child(fila_jugador)
 	_nombre_jugador = LineEdit.new()
-	_nombre_jugador.placeholder_text = "Nombre del jugador"
-	_nombre_jugador.text = ESTADO.nombre_jugador
+	_nombre_jugador.placeholder_text = "Escribe tu nombre"
+	_nombre_jugador.max_length = 14   # que quepa en los diálogos y el ranking
+	_nombre_jugador.text = ESTADO.nombre_jugador if ESTADO.nombre_jugador != "Jugador" else ""
 	_nombre_jugador.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_nombre_jugador.custom_minimum_size.y = 34
 	fila_jugador.add_child(_nombre_jugador)
@@ -220,6 +221,14 @@ func _estilo_boton(fondo: Color, borde: Color, ancho: int = 1) -> StyleBoxFlat:
 
 func _comenzar() -> void:
 	if _cambiando_escena:
+		return
+	# El nombre es obligatorio: así te llaman en las cinemáticas
+	if _nombre_jugador.text.strip_edges().is_empty():
+		_nombre_jugador.placeholder_text = "¡Primero escribe tu nombre!"
+		_nombre_jugador.grab_focus()
+		var aviso := create_tween()
+		aviso.tween_property(_nombre_jugador, "modulate", Color(1, 0.55, 0.55), 0.12)
+		aviso.tween_property(_nombre_jugador, "modulate", Color.WHITE, 0.35)
 		return
 	_cambiando_escena = true
 	ESTADO.personaje_seleccionado = _personaje_seleccionado

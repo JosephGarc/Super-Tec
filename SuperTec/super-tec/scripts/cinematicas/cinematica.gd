@@ -213,9 +213,10 @@ func _entrar_por_la_puerta() -> void:
 	await _esperar_tween(tw)
 
 
-# Los personajes se llaman Joshua y Sam (según el que eligieron al inicio)
+# El personaje se llama como lo escribió el jugador en la pantalla de inicio
 func _nombre_jugador() -> String:
-	return "Sam" if _es_ella else "Joshua"
+	var nombre := String(ESTADO.nombre_jugador).strip_edges()
+	return nombre if not nombre.is_empty() else "Jugador"
 
 
 func _decir(quien: String, texto: String) -> void:

@@ -15,6 +15,7 @@ const CARPETA_EFECTOS := "res://assets/sonido/efectos/"
 const CARPETA_MUSICA := "res://assets/sonido/musica/"
 const EXTENSIONES := ["ogg", "wav", "mp3"]
 const CONTROL_SILENCIO := preload("res://scripts/juego/control_silencio.gd")
+const PROGRESO := preload("res://scripts/juego/progreso.gd")
 ## Los power-ups (aparecer, crecer, encoger, coca, malanga, volován y taco)
 ## usan sus archivos .wav de assets/sonido/efectos/, no el sonido sintetizado.
 const EFECTOS_SINTETIZADOS := [
@@ -56,6 +57,7 @@ static var _siguiente := 0
 static var _reproductor_musica: AudioStreamPlayer = null
 static var _musica_actual := ""
 static var _pista_antes_de_volovan := ""
+static var _tween_bajar: Tween = null
 static var _cache := {}
 
 
@@ -97,6 +99,10 @@ static func musica(nombre: String) -> void:
 	if stream == null and RESPALDO.has(nombre):
 		stream = _cargar(CARPETA_MUSICA + RESPALDO[nombre])
 	_musica_actual = nombre
+	# Si una canción corta (jingle) estaba bajando la música, se cancela
+	# para que no deje la pista nueva en silencio
+	if _tween_bajar != null and _tween_bajar.is_valid():
+		_tween_bajar.kill()
 	_reproductor_musica.stop()
 	if stream == null:
 		return
@@ -111,7 +117,10 @@ static func musica_invencible(activa: bool) -> void:
 		_pista_antes_de_volovan = _musica_actual
 		musica("volovan")
 	elif not activa and _musica_actual == "volovan":
-		musica(_pista_antes_de_volovan)
+		var pista := _pista_antes_de_volovan
+		if pista == "" or pista == "volovan":
+			pista = MUSICA_POR_NIVEL.get(PROGRESO.nivel_actual, "campus_dia")
+		musica(pista)
 
 
 static func musica_nivel(numero: int) -> void:
@@ -242,10 +251,14 @@ static func _repetir_musica() -> void:
 static func _bajar_musica(segundos: float) -> void:
 	if _reproductor_musica == null or not _reproductor_musica.playing:
 		return
+	if _tween_bajar != null and _tween_bajar.is_valid():
+		_tween_bajar.kill()
 	var t := _nodo.create_tween()
 	t.tween_property(_reproductor_musica, "volume_db", _volumen_pista() - 18.0, 0.1)
 	t.tween_interval(maxf(segundos - 0.2, 0.0))
-	t.tween_property(_reproductor_musica, "volume_db", _volumen_pista(), 0.4)
+	# al final regresa al volumen de la pista que esté sonando en ese momento
+	t.tween_callback(func(): _nodo.create_tween().tween_property(_reproductor_musica, "volume_db", _volumen_pista(), 0.4))
+	_tween_bajar = t
 
 
 static func _volumen_pista() -> float:
