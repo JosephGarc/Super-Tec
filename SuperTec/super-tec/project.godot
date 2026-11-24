@@ -13,7 +13,8 @@ config_version=5
 config/name="Super Tec"
 run/main_scene="res://menu/menu_principal.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://assets/ui/icon.svg"
+config/icon="res://assets/ui/icono_super_tec.png"
+config/windows_native_icon="res://assets/ui/icono_super_tec.ico"
 
 [display]
 

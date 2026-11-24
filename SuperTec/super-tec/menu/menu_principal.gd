@@ -37,6 +37,7 @@ const C_ROJO_BLOQUE := Color("b8324f")
 
 var _menu: Control
 var _panel_opciones: Control
+var _chk_pantalla: CheckButton
 var _panel_creditos: Control
 var _panel_confirmar: Control
 var _titulo: Label
@@ -164,6 +165,18 @@ func _crear_panel_opciones() -> Control:
 	v.add_child(_texto("Efectos", 13, Color.WHITE, 4))
 	_slider_efectos = _slider(_on_volumen_cambiado)
 	v.add_child(_slider_efectos)
+
+	_chk_pantalla = CheckButton.new()
+	_chk_pantalla.text = "Pantalla completa"
+	_chk_pantalla.add_theme_font_size_override("font_size", 13)
+	_chk_pantalla.add_theme_color_override("font_color", Color.WHITE)
+	_chk_pantalla.add_theme_color_override("font_focus_color", C_DORADO)
+	_chk_pantalla.add_theme_color_override("font_hover_color", C_DORADO)
+	if fuente:
+		_chk_pantalla.add_theme_font_override("font", fuente)
+	_chk_pantalla.toggled.connect(_on_pantalla_completa)
+	_chk_pantalla.focus_entered.connect(func(): _sonar("menu"))
+	v.add_child(_chk_pantalla)
 
 	v.add_child(_boton("REGRESAR", func(): _mostrar(_menu)))
 	centro.set_meta("foco", _slider_musica)
@@ -382,12 +395,20 @@ func _on_volumen_cambiado() -> void:
 	_guardar_config()
 
 
+func _on_pantalla_completa(activo: bool) -> void:
+	DisplayServer.window_set_mode(
+		DisplayServer.WINDOW_MODE_FULLSCREEN if activo else DisplayServer.WINDOW_MODE_WINDOWED
+	)
+	_guardar_config()
+
+
 func _guardar_config() -> void:
 	if not _listo:
 		return
 	var c := ConfigFile.new()
 	c.set_value("audio", "musica", _slider_musica.value)
 	c.set_value("audio", "efectos", _slider_efectos.value)
+	c.set_value("video", "pantalla_completa", _chk_pantalla.button_pressed)
 	c.save(CONFIG_PATH)
 
 
@@ -398,6 +419,9 @@ func _cargar_config() -> void:
 	_slider_efectos.set_value_no_signal(c.get_value("audio", "efectos", 0.9))
 	SONIDO.volumen_musica(_slider_musica.value)
 	SONIDO.volumen_efectos(_slider_efectos.value)
+	_chk_pantalla.set_pressed_no_signal(c.get_value("video", "pantalla_completa", false))
+	if _chk_pantalla.button_pressed:
+		_on_pantalla_completa(true)
 
 
 # ==========================================================
